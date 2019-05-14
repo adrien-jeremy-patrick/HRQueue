@@ -1,6 +1,5 @@
-package com.codeup.blog.Repositories;
+package com.hrqueue.hrqueue.repositories;
 
-import com.codeup.blog.models.Post;
 import com.hrqueue.hrqueue.models.Case;
 import org.springframework.data.repository.CrudRepository;
 

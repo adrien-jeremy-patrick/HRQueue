@@ -25,18 +25,29 @@ public class User {
 
 
     @Column (nullable = false)
-    private boolean isAdmin;
+    private boolean admin;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "writer")
     private List<Case> cases;
 
-    public User(String firstName, String lastName, String username, String password, boolean isAdmin, List<Case> cases) {
+    public User(String firstName, String lastName, String username, String password, boolean admin, List<Case> cases) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
-        this.isAdmin = isAdmin;
+        this.admin = admin;
         this.cases = cases;
+    }
+
+    public User(String firstName, String lastName, String username, String password, boolean admin) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.admin = admin;
+    }
+
+    public User() {
     }
 
     public long getId() {
@@ -80,11 +91,11 @@ public class User {
     }
 
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(boolean admin) {
-        isAdmin = admin;
+        this.admin = admin;
     }
 
     public List<Case> getCases() {
