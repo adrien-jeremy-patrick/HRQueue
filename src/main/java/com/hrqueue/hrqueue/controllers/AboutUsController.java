@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class HelloController {
+public class AboutUsController {
 
-    @GetMapping("/hello")
+    @GetMapping("/about")
     @ResponseBody
     public String hello() {
-        return "Hello from HRQueue!";
+        return "This is our timeline of events with pictures we take and our dev portfolio section";
     }
 }
