@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DepartmentController {
 
     @GetMapping("/departments")
-    @ResponseBody
-    public String hello() {
-        return "Departments";
+
+    public String departments() {
+        return "departments";
     }
 }

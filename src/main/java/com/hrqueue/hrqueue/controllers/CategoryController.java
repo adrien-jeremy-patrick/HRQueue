@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class CategoryController {
 
     @GetMapping("/categories")
-    @ResponseBody
-    public String hello() {
-        return "Categories";
+
+    public String categories() {
+        return "categories";
     }
 }
