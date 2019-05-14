@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class CommentController {
 
     @GetMapping("/comments")
-    @ResponseBody
-    public String hello() {
-        return "Comments";
+
+    public String comments() {
+        return "comments";
     }
 }

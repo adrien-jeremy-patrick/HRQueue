@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class AboutUsController {
 
     @GetMapping("/about")
-    @ResponseBody
-    public String hello() {
-        return "This is our timeline of events with pictures we take and our dev portfolio section";
+
+    public String about() {
+
+
+        return "about";
     }
 }

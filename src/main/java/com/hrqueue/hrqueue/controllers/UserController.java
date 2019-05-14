@@ -14,21 +14,21 @@ public class UserController {
     }
 
     @GetMapping("/rep-dashboard")
-    @ResponseBody
+
     public String showRepDash() {
-        return "This is the HR Rep dashboard. The available cases will be on this page";
+        return "reps/rep-dashboard";
     }
 
     @GetMapping("/admin-dashboard")
-    @ResponseBody
+
     public String showAdminDash() {
-        return "This is the admin dashboard The available cases will be ont this page.";
+        return "reps/admin-dashboard";
     }
 
     @GetMapping("/user/{id}/edit")
-    @ResponseBody
+
     public String showUserEdit() {
-        return "This is where the the rep or admin can edit profiles";
+        return "reps/user-edit";
     }
 
 
