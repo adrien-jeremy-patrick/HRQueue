@@ -1,0 +1,36 @@
+
+
+
+
+
+/*-------------------------------------------------------------------------*/
+/*-----------------------BODY CSS AND VARIABLE DECLARATION-----------------*/
+/*-------------------------------------------------------------------------*/
+
+body {
+
+    --color1: #F5F3F4;
+    --color2: #789BA5;
+    --color3: #ECC919;
+    --color4: #323830;
+    --color5: #263B65;
+    --color6: #ae9524;
+    --color7: #8C487E;
+    --color8: #359FEE;
+    --color9: #DB4B3F;
+
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.left-div {
+    background-color: var(--color2);
+    height: 100vh;
+    width: 30%;
+    float: left;
+    overflow: auto;
+    z-index: 20;
+}
