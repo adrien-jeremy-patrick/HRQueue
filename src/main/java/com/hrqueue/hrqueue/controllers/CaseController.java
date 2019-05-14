@@ -8,34 +8,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class CaseController {
 
     @GetMapping("/cases")
-    @ResponseBody
-    public String hello() {
-        return "Cases";
+
+    public String cases() {
+        return "cases/cases";
     }
 
 
     @GetMapping("/create-case")
-    @ResponseBody
+
     public String CreateCase() {
-        return "Create a case";
+        return "cases/create-case";
     }
 
     @GetMapping("/customer-queue")
-    @ResponseBody
+
     public String viewCustQueue() {
-        return "View the customer queue";
+        return "cases/customer-queue";
     }
 
 
     @GetMapping("/case{id}")
-    @ResponseBody
+
     public String editCase() {
-        return "here the rep / admin can look at the case and edit it";
+        return "cases/case";
     }
 
     @GetMapping("/case{id}/delete")
-    @ResponseBody
+
     public String deleteCase() {
-        return "admin can delete a case.";
+        return "cases/cases";
     }
 }
