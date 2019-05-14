@@ -1,4 +1,6 @@
 package com.hrqueue.hrqueue.repositories;
+
+
 import com.hrqueue.hrqueue.models.Case;
 import org.springframework.data.repository.CrudRepository;
 
