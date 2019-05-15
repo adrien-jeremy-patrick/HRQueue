@@ -1,7 +1,4 @@
 USE hrqueue_db;
-
-
-
 INSERT INTO categories (category)
 VALUES
 ('Beneficiaries'),
@@ -21,7 +18,6 @@ VALUES
 ('Retirement'),
 ('Tuition Reimbursement'),
 ('Vacation');
-
 INSERT INTO departments (department)
 VALUES
 ('Animal Care Services'),
@@ -32,8 +28,8 @@ VALUES
 ('City Attorney'),
 ('City Auditor'),
 ('City Clerk'),
-('City Council\'s Office'),
-('City Manager\'S Office'),
+('City Councils Office'),
+('City Managers Office'),
 ('Convention & Sports Facilities'),
 ('Development Services'),
 ('Economic Development'),
@@ -50,7 +46,7 @@ VALUES
 ('Innovation'),
 ('Library'),
 ('Management & Budget'),
-('Mayor\'S Office'),
+('Mayor Office'),
 ('Municipal Court'),
 ('Neighborhood & Housing Services'),
 ('Parks & Recreation'),

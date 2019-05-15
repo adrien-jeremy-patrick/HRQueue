@@ -3,6 +3,7 @@ package com.hrqueue.hrqueue.controllers;
 import com.hrqueue.hrqueue.models.User;
 import com.hrqueue.hrqueue.repositories.CaseRepository;
 import com.hrqueue.hrqueue.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +46,10 @@ public class UserController {
 
     @GetMapping("/rep-admin-dashboard")
     public String showRepDash(Model model) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         model.addAttribute("allCases", caseRepository.findAll());
+        model.addAttribute("user", loggedInUser);
         return "users/rep-admin-dashboard";
     }
 
