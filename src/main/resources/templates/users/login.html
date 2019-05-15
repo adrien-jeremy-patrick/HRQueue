@@ -7,7 +7,33 @@
 <body>
 <nav th:replace="fragments/navbar :: myNav" />
 
-Login form for reps and admins
+<div class="right-div">
+    <h1>This is login for <b>HR Representatives and HR Admins.</b></h1>
+    <h3>If you are a guest, please submit a request to be seen by an HR Representative <a href="/create-case">here.</a></h3>
+
+    <h1>Log In</h1>
+    <div th:if="${param.error}">
+        Invalid Username and Password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+
+    <form class="white-text login-form" th:action="@{/login}" method="post">
+        <label for="username">Username</label>
+        <input placeholder="Enter username here" class="white-text" id="username" name="username" type="text" />
+        <label for="password">Password</label>
+        <input placeholder="password" class="white-text" id="password" name="password" type="password" />
+        <button class="white black-text btn waves-effect waves-light login-button" type="submit" name="action">Log In
+            <i class="material-icons right"></i>
+        </button>
+    </form>
+
+
+
+
+
+</div>
 
 
 <nav th:replace="fragments/footer :: footer" />
