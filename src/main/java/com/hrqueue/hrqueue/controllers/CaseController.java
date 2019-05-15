@@ -38,4 +38,10 @@ public class CaseController {
     public String deleteCase() {
         return "cases/cases";
     }
+
+    @GetMapping("/reports")
+
+    public String viewReports() {
+        return "cases/reports";
+    }
 }
