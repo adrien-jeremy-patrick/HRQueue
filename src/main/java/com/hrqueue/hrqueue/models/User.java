@@ -47,6 +47,16 @@ public class User {
         this.admin = admin;
     }
 
+    public User(User copy) {
+        id = copy.id;
+        firstName = copy.firstName;
+        lastName = copy.lastName;
+        username = copy.username;
+        password = copy.password;
+        admin = copy.admin;
+        cases = copy.cases;
+    }
+
     public User() {
     }
 
@@ -105,4 +115,6 @@ public class User {
     public void setCases(List<Case> cases) {
         this.cases = cases;
     }
+
+
 }
