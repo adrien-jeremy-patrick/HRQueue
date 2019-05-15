@@ -47,6 +47,8 @@ public class CaseController {
         Calendar cal = Calendar.getInstance();
         Date now = cal.getTime();
 
+        System.out.println(cases.getDepartment().getDepartment());
+        System.out.println(cases.getCategory().getCategory());
 
 
         cases.setCreated_at(now);

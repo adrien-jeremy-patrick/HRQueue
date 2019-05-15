@@ -1,5 +1,8 @@
 package com.hrqueue.hrqueue;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class generators {
 
     public static String FirstNameGeneator() {
@@ -14,6 +17,12 @@ public class generators {
         return first[index];
     }
 
+    public static Date dategenerator() {
+        Calendar cal = Calendar.getInstance();
+        Date newDate = cal.getTime();
+        return newDate;
+    }
+
     public static int randomWithRange(int min, int max) {
         int range = (max - min) + 1;
         return (int)(Math.random() * range) + min;
@@ -23,7 +32,7 @@ public class generators {
     public static void main(String[] args) {
 
         for (int i = 0; i <=1000;i++){
-            System.out.println(FirstNameGeneator() + " " + LastNameGeneator());
+            System.out.println(FirstNameGeneator() + " " + LastNameGeneator() + " " + dategenerator());
         }
 
     }
