@@ -42,11 +42,6 @@ public class UserController {
 
     }
 
-//    @GetMapping("/rep-admin-login")
-//
-//    public String showAdminDash() {
-//        return "users/login";
-//    }
 
     @GetMapping("/rep-admin-dashboard")
 

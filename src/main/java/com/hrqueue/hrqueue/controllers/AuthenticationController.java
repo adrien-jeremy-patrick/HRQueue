@@ -11,10 +11,11 @@ public class AuthenticationController {
         return "users/login";
     }
 
-
-    public static void main(String[] args) {
-        System.out.println();
+    @GetMapping("/rep-admin-logout")
+    public String showLogoutMessage() {
+        return "users/logout";
     }
+
 
 }
 
