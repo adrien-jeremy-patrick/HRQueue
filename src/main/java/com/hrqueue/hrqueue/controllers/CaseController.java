@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Calendar;
@@ -63,16 +64,26 @@ public class CaseController {
     }
 
 
-    @GetMapping("/case{id}")
+    @GetMapping("/case/{id}")
 
     public String editCase() {
         return "cases/case";
     }
 
-    @GetMapping("/case{id}/delete")
+    @GetMapping("/case/{id}/delete")
+    public String deleteCase(@PathVariable long id) {
+        caseRepo.delete(id);
+        return "redirect:/rep-admin-dashboard";
+    }
 
-    public String deleteCase() {
-        return "cases/cases";
+    @GetMapping("/case/{id}/assign")
+    public String assignCase(@PathVariable long id) {
+       Case assign = caseRepo.findById(id);
+       Calendar cal = Calendar.getInstance();
+       Date now = cal.getTime();
+       assign.setCase_open(now);
+       caseRepo.save(assign);
+        return "redirect:/rep-admin-dashboard";
     }
 
     @GetMapping("/reports")
