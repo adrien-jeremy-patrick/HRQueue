@@ -17,6 +17,9 @@ public class Category {
         this.category = category;
     }
 
+    public Category() {
+    }
+
     public long getId() {
         return id;
     }
