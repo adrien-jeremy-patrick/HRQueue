@@ -1,8 +1,13 @@
 package com.hrqueue.hrqueue.controllers;
 
+import com.hrqueue.hrqueue.models.Case;
+import com.hrqueue.hrqueue.models.User;
 import com.hrqueue.hrqueue.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -13,22 +18,39 @@ public class UserController {
         this.usersRepo = usersRepo;
     }
 
-    @GetMapping("/rep-dashboard")
-
-    public String showRepDash() {
-        return "reps/rep-dashboard";
-    }
-
-    @GetMapping("/admin-dashboard")
+    @GetMapping("/rep-admin-login")
 
     public String showAdminDash() {
-        return "reps/admin-dashboard";
+        return "users/login";
+    }
+
+    @GetMapping("/rep-admin-dashboard")
+
+    public String showRepDash() {
+        return "users/rep-admin-dashboard";
     }
 
     @GetMapping("/user/{id}/edit")
 
     public String showUserEdit() {
-        return "reps/user-edit";
+        return "users/user-edit";
+    }
+
+    @GetMapping("/create-user")
+
+    public String createUser(Model model) {
+
+        model.addAttribute("user",new User());
+
+        return "users/user-create";
+    }
+
+    @PostMapping("/create-user")
+
+    public String createUser(@ModelAttribute User users) {
+
+        usersRepo.save(users);
+        return "redirect:/login";
     }
 
 
