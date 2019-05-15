@@ -1,6 +1,7 @@
 USE hrqueue_db;
 
 
+
 INSERT INTO categories (category)
 VALUES
 ('Beneficiaries'),
