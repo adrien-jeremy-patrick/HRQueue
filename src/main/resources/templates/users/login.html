@@ -21,10 +21,10 @@
 
     <form class="white-text login-form" th:action="@{/login}" method="post">
         <label for="username">Username</label>
-        <input placeholder="Enter username here" class="white-text" id="username" name="username" type="text" />
+        <input placeholder="Enter username here" id="username" name="username" type="text" />
         <label for="password">Password</label>
-        <input placeholder="password" class="white-text" id="password" name="password" type="password" />
-        <button class="white black-text btn waves-effect waves-light login-button" type="submit" name="action">Log In
+        <input placeholder="password" id="password" name="password" type="password" />
+        <button type="submit" name="action">Log In
             <i class="material-icons right"></i>
         </button>
     </form>
