@@ -16,6 +16,21 @@
     <br/>
     <label>Phone</label>
     <input id="customer_phone" th:field="${case.customer_phone}"/>
+
+    <br/>
+    <label for="department">Department</label>
+    <select id="department" th:field="${case.department}">
+        <option th:type="hidden" th:each="department : ${allDepartment}" th:value="${department.getId()}" >
+            <span th:text="${department.department}"></span>
+        </option>
+    </select>
+    <br/>
+    <label for="category">Category</label>
+    <select id="category" th:field="${case.category}">
+        <option th:type="hidden" th:each="category : ${allCategory}" th:value="${category.getId()}">
+            <span th:text="${category.category}"></span>
+        </option>
+    </select>
     <br/>
     <label>Comment</label>
     <textarea id="customer_comment" th:field="${case.customer_comment}"/>
