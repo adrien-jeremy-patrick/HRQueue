@@ -1,25 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head></head>
 <body>
 
 <nav th:fragment="myNav" class="nav-custom">
-    <div class="left-div">
 
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/create-case">Create Case</a></li>
-            <li><a href="/customer-queue">Customer Queue</a></li>
-            <li><a href="/rep-admin-login">Rep/Admin Login</a></li>
-            <li><a href="/reports">Reports</a></li>
-            <li><a href="/user/{id}/edit">My Profile</a></li>
-            <li><a href="/user/{id}/edit">Rep Profiles</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/create-user">Create User</a></li>
-            <li><a href="/rep-admin-dashboard">Rep/Admin Dashboard</a></li>
-        </ul>
+    <div sec:authorize="isAuthenticated()">
+        <div class="left-div">
+            <h3>You are viewing the rep and admin navbar</h3>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/create-case">Create Case</a></li>
+                <li><a href="/customer-queue">Customer Queue</a></li>
+                <li><a href="/reports">Reports</a></li>
+                <li><a href="/user/{id}/edit">My Profile</a></li>
+                <li><a href="/user/{id}/edit">Rep Profiles</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/create-user">Create User</a></li>
+                <li><a href="/rep-admin-dashboard">Rep/Admin Dashboard</a></li>
+                <li>
+                    <form th:action="@{/logout}" th:method="post">
+                        <button>Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+
+
+
     </div>
 
+    <div sec:authorize="isAnonymous()">
+
+        <div class="left-div">
+            <h3>You are viewing the guest navbar</h3>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/create-case">Create Case</a></li>
+                <li><a href="/customer-queue">Customer Queue</a></li>
+                <li><a href="/rep-admin-login">Rep/Admin Login</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+    </div>
 </nav>
 </body>
 </html>
