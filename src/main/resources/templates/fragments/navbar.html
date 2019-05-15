@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head></head>
 <body>
 
@@ -8,13 +7,14 @@
     <div class="left-div">
 
         <ul>
-            <li>Home</li>
-            <li>Customer Queue</li>
-            <li>Rep Login</li>
-            <li>Reports</li>
-            <li>My Profile</li>
-            <li>Rep Profiles</li>
-            <li>About Us</li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/customer-queue">Customer Queue</a></li>
+            <li><a href="/rep-admin-login">Rep/Admin Login</a></li>
+            <li><a href="/customer-queue">Customer Queue</a></li>
+            <li><a href="/reports">Reports</a></li>
+            <li><a href="/user/{id}/edit">My Profile</a></li>
+            <li><a href="/user/{id}/edit">Rep Profiles</a></li>
+            <li><a href="/about">About</a></li>
         </ul>
 
     </div>

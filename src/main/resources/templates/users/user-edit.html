@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: head">
     <meta charset="UTF-8" />
-    <title>User-Edit</title>
+    <title>Home</title>
 </head>
 <body>
+<nav th:replace="fragments/navbar :: myNav" />
 
-<h1>This is where the the rep or admin can edit profiles</h1>
+edit the user
+
+<nav th:replace="fragments/footer :: footer" />
 
 </body>
 </html>
