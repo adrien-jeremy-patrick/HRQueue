@@ -7,6 +7,20 @@
 <body>
 
 <h1>Create a case</h1>
-
+<form th:method="post" th:object="${case}" th:action="@{/create-case}">
+    <label>Name</label>
+    <input id="customer_name"  th:field="${case.customer_name}"/>
+    <br/>
+    <label>E-mail</label>
+    <input id="customer_email" th:field="${case.customer_email}"/>
+    <br/>
+    <label>Phone</label>
+    <input id="customer_phone" th:field="${case.customer_phone}"/>
+    <br/>
+    <label>Comment</label>
+    <textarea id="customer_comment" th:field="${case.customer_comment}"/>
+    <br/>
+    <button>Submit</button>
+</form>
 </body>
 </html>

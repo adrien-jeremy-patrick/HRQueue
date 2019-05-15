@@ -8,6 +8,7 @@ import java.util.List;
 @Table(name = "cases")
 public class Case {
 
+
     @Id
     @GeneratedValue
     private long id;
