@@ -1,2 +1,2 @@
-BUILD_COMMAND='./mvnw package'
+BUILD_COMMAND=‘./mvnw package’
 JAR_FILE=target/hrqueue-0.0.1-SNAPSHOT.jar
