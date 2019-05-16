@@ -1,9 +1,11 @@
 package com.hrqueue.hrqueue.controllers;
 
 import com.hrqueue.hrqueue.models.Case;
+import com.hrqueue.hrqueue.models.User;
 import com.hrqueue.hrqueue.repositories.CaseRepository;
 import com.hrqueue.hrqueue.repositories.CategoryRepository;
 import com.hrqueue.hrqueue.repositories.DepartmentRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -82,6 +84,8 @@ public class CaseController {
        Calendar cal = Calendar.getInstance();
        Date now = cal.getTime();
        assign.setCase_open(now);
+       User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+       assign.setWriter(loggedInUser);
        caseRepo.save(assign);
         return "redirect:/rep-admin-dashboard";
     }
