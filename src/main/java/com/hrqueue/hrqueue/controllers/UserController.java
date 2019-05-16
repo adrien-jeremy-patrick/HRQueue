@@ -48,6 +48,7 @@ public class UserController {
     public String showRepDash(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+//        model.addAttribute("allCases", caseRepository.findAllByCase_openIsNull());
         model.addAttribute("allCases", caseRepository.findAll());
         model.addAttribute("user", loggedInUser);
         return "users/rep-admin-dashboard";
