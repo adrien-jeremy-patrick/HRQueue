@@ -1,1 +1,9 @@
-console.log("hello");
+(function(){
+    "use strict";
+
+    console.log("ready");
+
+
+
+
+})();
