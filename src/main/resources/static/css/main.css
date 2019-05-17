@@ -135,6 +135,22 @@
         padding-bottom: 20px;
     }
 
+    /*-------------------------------------------------------------------------*/
+    /*----------------------------------CUSTOMER-QUEUE-------------------------*/
+    /*-------------------------------------------------------------------------*/
+
+    .customer-queue-wrapper {
+        text-align: center;
+    }
+
+    .customer-queue-wrapper span
+    {
+        margin: 5px 30px;
+    }
+    .est-wait-time {
+        color: red;
+    }
+
 
     /*-------------------------------------------------------------------------*/
     /*----------------------------------REPORTS PAGE---------------------------*/
@@ -183,6 +199,18 @@
         font-size: 50px;
         line-height: 44px;
     }
+
+    /*-------------------------------------------------------------------------*/
+    /*----------------------------------CUSTOMER-QUEUE-------------------------*/
+    /*-------------------------------------------------------------------------*/
+
+    .customer-queue-wrapper span
+    {
+        margin: 5px 40px;
+    }
+
+
+
 
 }
 
@@ -256,10 +284,6 @@
     /*----------------------------------CUSTOMER-QUEUE-------------------------*/
     /*-------------------------------------------------------------------------*/
 
-    .customer-queue-wrapper {
-        text-align: center;
-
-    }
 
 
 
@@ -279,8 +303,8 @@
 
     @media
     only screen
-    and (max-width: 760px), (min-device-width: 768px)
-    and (max-device-width: 1024px)  {
+    and (max-width: 650px), (min-device-width: 650px)
+    and (max-device-width: 700px)  {
 
         /* Force table to not be like tables anymore */
         table, thead, tbody, th, td, tr {
