@@ -14,7 +14,7 @@ public class Case {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id")
     private User writer;
 
     @OneToOne
@@ -27,10 +27,10 @@ public class Case {
     private Date created_at;
 
     @Column
-    private Date case_open;
+    private Date caseOpen;
 
     @Column
-    private Date case_closed;
+    private Date caseClosed;
 
     @Column(nullable = false)
     private String customer_name;
@@ -52,8 +52,8 @@ public class Case {
         this.category = category;
         this.department = department;
         this.created_at = created_at;
-        this.case_open = case_open;
-        this.case_closed = case_closed;
+        this.caseOpen = case_open;
+        this.caseClosed = case_closed;
         this.customer_name = customer_name;
         this.customer_email = customer_email;
         this.customer_phone = customer_phone;
@@ -80,6 +80,10 @@ public class Case {
         this.writer = writer;
     }
 
+//    public void setWriter(){
+//        this.writer = null;
+//    }
+
     public Category getCategory() {
         return category;
     }
@@ -105,19 +109,19 @@ public class Case {
     }
 
     public Date getCase_open() {
-        return case_open;
+        return caseOpen;
     }
 
     public void setCase_open(Date case_open) {
-        this.case_open = case_open;
+        this.caseOpen = case_open;
     }
 
     public Date getCase_closed() {
-        return case_closed;
+        return caseClosed;
     }
 
     public void setCase_closed(Date case_closed) {
-        this.case_closed = case_closed;
+        this.caseClosed = case_closed;
     }
 
     public String getCustomer_name() {

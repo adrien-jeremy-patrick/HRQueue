@@ -47,18 +47,15 @@ public class UserController {
     @GetMapping("/rep-admin-dashboard")
     public String showRepDash(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-//        model.addAttribute("allCases", caseRepository.findAllByCase_openIsNull());
-        model.addAttribute("allCases", caseRepository.findAll());
-        model.addAttribute("user", loggedInUser);
+        model.addAttribute("allCases", caseRepository.findByCaseOpenIsNull());
+        model.addAttribute("user", userRepository.findById(loggedInUser.getId()));
+        model.addAttribute("closedCases",caseRepository.findByCaseClosedIsNotNull());
         return "users/rep-admin-dashboard";
     }
 
     @GetMapping("/user/{id}/edit")
-
     public String showUserEdit() {
         return "users/user-edit";
-
     }
 
 
