@@ -48,11 +48,6 @@ public class CaseController {
         //Setting TIMESTAMP for case
         Calendar cal = Calendar.getInstance();
         Date now = cal.getTime();
-
-        System.out.println(cases.getDepartment().getDepartment());
-        System.out.println(cases.getCategory().getCategory());
-
-
         cases.setCreated_at(now);
         caseRepo.save(cases);
         return "redirect:/customer-queue";
