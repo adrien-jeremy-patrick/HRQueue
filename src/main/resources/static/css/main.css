@@ -26,7 +26,6 @@
         background-color: white;
     }
 
-
     .nav-div {
         background-color: var(--color5);
         height: 175px;
@@ -34,6 +33,9 @@
         position: fixed;
         z-index: 20;
         bottom: 0;
+    }
+    .navbar-link {
+        color: white;
     }
 
     .body-div {
@@ -147,14 +149,21 @@
 
 }
 
-
-
 @media only screen and (min-width: 600px) {
     body {
         height: 1800px;
     }
     .nav-div {
         height: 200px;
+    }
+    .about-us {
+        text-align: right;
+        padding-right: 20px;
+        font-size: 20px;
+        text-shadow: 5px 8px 13px black;
+        position: absolute;
+        bottom: 4px;
+        right: 28px;
     }
     .intro-message h1 {
         max-width: 500px;
@@ -194,22 +203,27 @@
         background-color: white;
         margin-left: 30%;
     }
+
     .message-wrapper {
         width: 60%;
         margin: 30px auto 135px auto;
         background-image: linear-gradient(to bottom right, #f3f1f2, white);
     }
+
     .message-wrapper h1 {
         font-size: 79px;
         top: -52px;
         left: -86px;
     }
+
     .message-wrapper p {
         font-size: 20px;
     }
+
     .intro-message {
         margin: 10px auto 160px auto;
     }
+
     .intro-message h1 {
         max-width: 800px;
         font-size: 142px;
@@ -218,10 +232,12 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+
     .intro-message h3 {
         font-style: italic;
         margin: 5px;
     }
+
     .land-page-description {
         position: absolute;
         bottom: 40px;
@@ -229,13 +245,90 @@
         font-size: 67px;
         line-height: 60px;
     }
-    .about-us a {
+
+    .about-us {
         position: absolute;
         bottom: 25px;
         left: 92px;
     }
 
+    /*-------------------------------------------------------------------------*/
+    /*----------------------------------CUSTOMER-QUEUE-------------------------*/
+    /*-------------------------------------------------------------------------*/
+
+    .customer-queue-wrapper {
+        text-align: center;
+
+    }
+
+
 
 
 }
+
+
+
+
+
+/*-------------------------------------------------------------------------*/
+/*----------------------------------TABLES!!!!!!---------------------------*/
+/*-------------------------------------------------------------------------*/
+
+
+
+
+    @media
+    only screen
+    and (max-width: 760px), (min-device-width: 768px)
+    and (max-device-width: 1024px)  {
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        tr {
+            margin: 0 0 1rem 0;
+        }
+
+        tr:nth-child(odd) {
+            background: #ccc;
+        }
+
+        td {
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+        td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 0;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+
+        /*
+        Label the data
+    You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+        */
+        td:nth-of-type(1):before { content: "Name"; }
+        td:nth-of-type(2):before { content: "Department"; }
+        td:nth-of-type(3):before { content: "Sign-in Time"; }
+        td:nth-of-type(4):before { content: "Est. Wait Time"; }
+    }
+
 
