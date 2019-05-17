@@ -6,4 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface  CaseRepository extends CrudRepository<Case, Long> {
 
+    Case findById(long id);
+
+
 }
