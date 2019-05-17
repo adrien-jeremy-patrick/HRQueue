@@ -56,7 +56,7 @@ public class CaseController {
 
         cases.setCreated_at(now);
         caseRepo.save(cases);
-        return "redirect:/cases";
+        return "redirect:/customer-queue";
     }
 
     @GetMapping("/customer-queue")

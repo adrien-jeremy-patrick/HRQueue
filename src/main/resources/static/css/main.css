@@ -1,58 +1,241 @@
 
 
+@media only screen and (min-width: 200px) {
 
 
+    /*-------------------------------------------------------------------------*/
+    /*-----------------------BODY CSS AND VARIABLE DECLARATION-----------------*/
+    /*-------------------------------------------------------------------------*/
+    body {
 
-/*-------------------------------------------------------------------------*/
-/*-----------------------BODY CSS AND VARIABLE DECLARATION-----------------*/
-/*-------------------------------------------------------------------------*/
+        --color1: #F5F3F4;
+        --color2: #789BA5;
+        --color3: #ECC919;
+        --color4: #323830;
+        --color5: #263B65;
+        --color6: #ae9524;
+        --color7: #8C487E;
+        --color8: #359FEE;
+        --color9: #DB4B3F;
 
-body {
+        margin: 0 auto;
+        padding: 0;
+        width: 100%;
+        font-family: 'Roboto', sans-serif;
+        /*background-color: var(--color5);*/
+        background-color: white;
+    }
 
-    --color1: #F5F3F4;
-    --color2: #789BA5;
-    --color3: #ECC919;
-    --color4: #323830;
-    --color5: #263B65;
-    --color6: #ae9524;
-    --color7: #8C487E;
-    --color8: #359FEE;
-    --color9: #DB4B3F;
 
-    margin: 0 auto;
-    padding: 0;
-    width: 100%;
-    font-family: 'Roboto', sans-serif;
+    .nav-div {
+        background-color: var(--color5);
+        height: 175px;
+        width: 100%;
+        position: fixed;
+        z-index: 20;
+        bottom: 0;
+    }
+
+    .body-div {
+        height: 1400px;
+        width: 90%;
+        margin: 0 auto;
+        background-color: white;
+    }
+
+
+    /*-------------------------------------------------------------------------*/
+    /*--------------------------/INDEX (LANDING PAGE)--------------------------*/
+    /*-------------------------------------------------------------------------*/
+
+    .landing-page-wrapper {
+        width: 100%;
+        margin: 0 auto;
+        /*background-color: var(--color5);*/
+        background-color: white;
+        color: var(--color1);
+    }
+    .intro-message {
+        width: 100%;
+        text-align: center;
+        margin: 0 auto 95px auto;
+    }
+    .intro-message h1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 45px;
+        color: var(--color8);
+        padding-top: 50px;
+        line-height: 42px;
+        max-width: 300px;
+        margin: 0 auto;
+        padding-bottom: 20px;
+        border-bottom: 4px solid var(--color5);
+    }
+    .intro-message h3 {
+        padding-top: 10px;
+        color: black;
+    }
+    .message-wrapper {
+        position: relative;
+        background-color: var(--color1);
+        margin: 110px auto;
+
+    }
+    .message-wrapper h1 {
+        font-size: 55px;
+        margin: 0;
+        position: absolute;
+        top: -35px;
+        left: 4px;
+        /*color: var(--color1);*/
+        color: black;
+    }
+    .message-wrapper p {
+        padding: 50px 10px 10px 10px;
+        color: black;
+    }
+    .landing-page-button {
+        margin: 0 auto;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+    .landing-page-button a {
+        font-size: 24px;
+        padding: 10px;
+        color: white;
+        display: inline-block;
+        background-color: var(--color8);
+        border-radius: 3px;
+        text-decoration: none;
+        margin: 10px;
+    }
+    .land-page-description {
+        font-family: 'Poppins', sans-serif;
+        font-size: 25px;
+        line-height: 33px;
+        padding-left: 35px;
+        z-index: 10;
+        width: 80%;
+        margin-top: 2vh;
+        font-weight: bolder;
+        color: var(--color3);
+        text-shadow: 1px 7px 14px black;
+    }
+    .about-us {
+        text-align: right;
+        padding-right: 20px;
+        font-size: 20px;
+        text-shadow: 5px 8px 13px black;
+    }
+    .about-us a {
+        text-decoration: none;
+        color: white;
+        padding-bottom: 20px;
+    }
+
+
+    /*-------------------------------------------------------------------------*/
+    /*----------------------------------REPORTS PAGE---------------------------*/
+    /*-------------------------------------------------------------------------*/
+    .quick-reports {
+        width: 90%;
+        margin: 10px;
+        height: 50vm;
+        background-color: var(--color4);
+        color: white;
+    }
+
 }
 
 
-.left-div {
-    background-color: var(--color2);
-    height: 100vh;
-    width: 30%;
-    float: left;
-    overflow: auto;
-    z-index: 20;
+
+@media only screen and (min-width: 600px) {
+    body {
+        height: 1800px;
+    }
+    .nav-div {
+        height: 200px;
+    }
+    .intro-message h1 {
+        max-width: 500px;
+        font-size: 80px;
+        line-height: 69px;
+    }
+    .message-wrapper h1 {
+        font-size: 85px;
+        top: -54px;
+        left: 11px;
+    }
+    .message-wrapper p {
+        padding: 80px 10px 10px 10px;
+        font-size: 30px;
+    }
+    .land-page-description {
+        font-size: 50px;
+        line-height: 44px;
+    }
+
 }
 
-.right-div {
-    background-color: var(--color1);
-    height: 100vh;
-    width: 70%;
-    float: left;
-    text-align: center;
-}
+@media only screen and (min-width: 1000px) {
+
+    .nav-div {
+        height: 100vh;
+        width: 30%;
+        position: fixed;
+        z-index: 20;
+        bottom: 0;
+        float: left;
+        background: -webkit-linear-gradient(#22345a, #233f66);
+    }
+
+    .body-div {
+        width: 70%;
+        background-color: white;
+        margin-left: 30%;
+    }
+    .message-wrapper {
+        width: 60%;
+        margin: 30px auto 135px auto;
+        background-image: linear-gradient(to bottom right, #f3f1f2, white);
+    }
+    .message-wrapper h1 {
+        font-size: 79px;
+        top: -52px;
+        left: -86px;
+    }
+    .message-wrapper p {
+        font-size: 20px;
+    }
+    .intro-message {
+        margin: 10px auto 160px auto;
+    }
+    .intro-message h1 {
+        max-width: 800px;
+        font-size: 142px;
+        line-height: 121px;
+        background: -webkit-linear-gradient(#2e95eb, #60b2eb);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .intro-message h3 {
+        font-style: italic;
+        margin: 5px;
+    }
+    .land-page-description {
+        position: absolute;
+        bottom: 40px;
+        left: -7px;
+        font-size: 67px;
+        line-height: 60px;
+    }
+    .about-us a {
+        position: absolute;
+        bottom: 25px;
+        left: 92px;
+    }
 
 
-/*-------------------------------------------------------------------------*/
-/*----------------------------------REPORTS PAGE---------------------------*/
-/*-------------------------------------------------------------------------*/
 
-.quick-reports {
-    width: 90%;
-    margin: 10px;
-    height: 50vm;
-    background-color: var(--color4);
-    color: white;
 }
 

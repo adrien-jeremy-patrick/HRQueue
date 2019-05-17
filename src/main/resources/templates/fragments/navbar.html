@@ -6,7 +6,7 @@
 <nav th:fragment="myNav" class="nav-custom">
 
     <div sec:authorize="isAuthenticated()">
-        <div class="left-div">
+        <div class="nav-div">
             <h3>You are viewing the rep and admin navbar</h3>
             <ul>
                 <li><a href="/">Home</a></li>
@@ -31,7 +31,7 @@
 
     <div sec:authorize="isAnonymous()">
 
-        <div class="left-div">
+        <div class="nav-div">
             <h3>You are viewing the guest navbar</h3>
             <ul>
                 <li><a href="/">Home</a></li>

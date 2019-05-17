@@ -6,9 +6,53 @@
     <div th:fragment="head(title)">
         <meta charset="UTF-8" />
         <title th:text="${title}"></title>
+        <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poppins:900|Roboto" rel="stylesheet">-->
         <link href="https://fonts.googleapis.com/css?family=Stylish" rel="stylesheet"/>
         <link rel="stylesheet" href="/static/css/main.css" th:href="@{/css/main.css}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1" />
 
+
+
+        <!--ALL JAVASCRIPT GOES HERE BOYS-->
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+
+            (function(){
+                    "use strict";
+
+                console.log("hello!");
+
+                // let mobileNav = $('.left-div');
+
+                $('.nav-div').css({
+                    'color': 'black'
+                });
+
+                let leftDiv = document.getElementsByClassName('nav-div');
+
+                leftDiv.style.color = 'black';
+
+
+
+                $('.intro-message h1').mouseenter(function(){
+                    $(this).css({
+                        'letter-spacing': '3px'
+                    })
+                }).mouseleave(function(){
+                    $(this).css({
+                        'letter-spacing': '1px'
+                    })
+
+
+
+                })
+
+            })();
+
+
+        </script>
     </div>
 
 </description>
