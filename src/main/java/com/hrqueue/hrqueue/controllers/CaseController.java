@@ -35,7 +35,6 @@ public class CaseController {
         return "cases/cases";
     }
 
-
     @GetMapping("/create-case")
     public String CreateCase(Model model) {
         model.addAttribute("case",new Case());
@@ -56,14 +55,32 @@ public class CaseController {
 
         cases.setCreated_at(now);
         caseRepo.save(cases);
-        return "redirect:/cases";
+        return "redirect:/customer-queue";
     }
+
+
+
+
+
+
+
+
 
     @GetMapping("/customer-queue")
 
-    public String viewCustQueue() {
+
+    public String viewCustQueue(Model model) {
+        model.addAttribute("allCases", caseRepo.findAll());
         return "cases/customer-queue";
     }
+
+
+
+
+
+
+
+
 
 
     @GetMapping("/case/{id}")
