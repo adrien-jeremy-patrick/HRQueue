@@ -108,4 +108,36 @@ public class CaseController {
     }
 
 
+    @GetMapping("/case/{id}/unassign")
+    public String unAssignCase(@PathVariable long id){
+        Case unassign = caseRepo.findById(id);
+        unassign.setWriter(null);
+        unassign.setCase_open(null);
+        caseRepo.save(unassign);
+        return "redirect:/rep-admin-dashboard";
+    }
+
+    @GetMapping("/case/{id}/complete")
+    public String complete(@PathVariable long id){
+        Case complete = caseRepo.findById(id);
+        Calendar cal = Calendar.getInstance();
+        Date now = cal.getTime();
+        complete.setCase_closed(now);
+        caseRepo.save(complete);
+        return "redirect:/rep-admin-dashboard";
+    }
+
+    @GetMapping("/case/{id}/open")
+    public String open(@PathVariable long id){
+        Case open = caseRepo.findById(id);
+        open.setCase_closed(null);
+        open.setCase_open(null);
+        open.setWriter(null);
+        caseRepo.save(open);
+        return "redirect:/rep-admin-dashboard";
+    }
+
+    @GetMapping("/reports")
+
+
 }

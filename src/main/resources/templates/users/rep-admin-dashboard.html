@@ -31,7 +31,7 @@
                 <td th:text="${case.department.getDepartment()}"></td>
                 <td th:text="${case.category.getCategory()}"></td>
                 <td th:text="${case.created_at}"></td>
-                <td><a th:href="@{'/case/' + ${case.getId()} + '/delete'}"><button>Delete</button></a></td>
+                <td><a  th:href="@{'/case/' + ${case.getId()} + '/delete'}"><button>Delete</button></a></td>
                 <td><a th:href="@{'/case/' + ${case.getId()} + '/assign'}"><button>Assign</button></a></td>
             </tr>
         </table>
@@ -47,13 +47,35 @@
                 <th>Delete</th>
                 <th>Unassign</th>
             </tr>
-            <tr th:each="case : ${allCases}">
+            <tr th:each="case : ${user.getCases()}">
                 <td th:text="${case.customer_name}"></td>
                 <td th:text="${case.department.getDepartment()}"></td>
                 <td th:text="${case.category.getCategory()}"></td>
                 <td th:text="${case.created_at}"></td>
                 <td><a th:href="@{'/case/' + ${case.getId()} + '/delete'}"><button>Delete</button></a></td>
-                <td><a th:href="@{''}"><button>Unassign</button></a></td>
+                <td><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></td>
+                <td><a th:href="@{'/case/' + ${case.getId()} + '/complete'}"><button>Complete</button></a></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h1>Closed Cases</h1>
+        <table>
+            <tr>
+                <th>Customer Name</th>
+                <th>Department</th>
+                <th>Category</th>
+                <th>Sign In Time</th>
+                <th>Delete</th>
+                <th>Open</th>
+            </tr>
+            <tr th:each="case : ${closedCases}">
+                <td th:text="${case.customer_name}"></td>
+                <td th:text="${case.department.getDepartment()}"></td>
+                <td th:text="${case.category.getCategory()}"></td>
+                <td th:text="${case.created_at}"></td>
+                <td><a th:href="@{'/case/' + ${case.getId()} + '/delete'}"><button>Delete</button></a></td>
+                <td><a th:href="@{'/case/' + ${case.getId()} + '/open'}"><button>Open</button></a></td>
             </tr>
         </table>
     </div>
