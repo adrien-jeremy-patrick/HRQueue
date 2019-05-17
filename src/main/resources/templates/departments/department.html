@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: head">
+    <meta charset="UTF-8" />
+    <title>Home</title>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: myNav" />
+
+
+<div class="right-div">
+    <h1>Department Edit</h1>
+
+    <h3>Add Department</h3>
+    <form th:method="post" th:object="${department}" th:action="@{/departments}">
+        <label>Department Name: </label>
+        <input id="department_name"  th:field="${department.department}"/>
+        <br/>
+        <button>Submit</button>
+    </form>
+
+    <br/>
+    <br/>
+
+
+
+
+    <h3>Delete Department</h3>
+    <form th:method="post" th:object="${department}" th:action="@{/departments/delete}">
+    <label for="departmentDelete">Department</label>
+    <select id="departmentDelete" th:field="${department.department}">
+        <option th:type="hidden" th:each="department : ${alDepartments}" th:value="${department.getId()}" >
+            <span th:text="${department.department}"></span>
+        </option>
+    </select>
+        <button>Delete</button>
+    </form>
+    <br/>
+
+</div>
+
+<nav th:replace="fragments/footer :: footer" />
+
+</body>
+</html>

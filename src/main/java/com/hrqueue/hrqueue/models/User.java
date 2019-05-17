@@ -23,7 +23,6 @@ public class User {
     @Column(nullable = false, columnDefinition = "text")
     private String password;
 
-
     @Column (nullable = false)
     private boolean admin;
 
