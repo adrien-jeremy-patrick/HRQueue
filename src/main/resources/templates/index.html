@@ -5,11 +5,50 @@
     <title>Home</title>
 </head>
 <body>
-<nav th:replace="fragments/navbar :: myNav" />
-
-this is the landing page
 
 
-<nav th:replace="fragments/footer :: footer" />
+<div class="landing-page-wrapper">
+    <div class="nav-div">
+        <div class="logo">
+        </div>
+        <p class="land-page-description">A virtual waiting room for HR reps and costumers</p>
+        <h4 class="about-us"><a href="/about">Find out more<i class="fas fa-arrow-right"></i></a></h4>
+    </div>
+    <div class="body-div">
+        <div class="intro-message">
+            <h1>Welcome to HRQueue.</h1>
+            <h3>How can we help today?</h3>
+        </div>
+        <div class="message-wrapper terminal-wrapper">
+            <i class="fas fa-id-card-alt"></i>
+            <h1>Customer</h1>
+            <p>If you are a customer requesting assistance from an HRQueue HR Rep, click here.</p>
+            <div class="landing-page-button">
+                <a href="/create-case">Create Case</a>
+            </div>
+        </div>
+        <div class="message-wrapper sign-in-wrapper">
+            <i class="fas fa-user-shield"></i>
+            <h1>HR Rep</h1>
+            <p>If you are an HRQueue HR Rep or HR Admin, sign in here.</p>
+            <div class="landing-page-button">
+                <a href="/rep-admin-login">Sign in</a>
+            </div>
+        </div>
+        <div class="message-wrapper display-queue-wrapper">
+            <i class="far fa-clock"></i>
+            <h1>Queue</h1>
+            <p>To see the current HRQueue and your estimated waiting time, click here. </p>
+            <div class="landing-page-button">
+                <a href="/customer-queue">Queue</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="fragments/footer :: footer" />
+
 </body>
 </html>
