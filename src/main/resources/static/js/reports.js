@@ -14,6 +14,5 @@ $(document).ready( function () {
             { "mData": "customer_phone" }
         ]
     })
-    
 });
 

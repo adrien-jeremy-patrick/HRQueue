@@ -107,9 +107,5 @@ public class CaseController {
         return "redirect:/rep-admin-dashboard";
     }
 
-    @GetMapping("/reports")
 
-    public String viewReports() {
-        return "cases/reports";
-    }
 }
