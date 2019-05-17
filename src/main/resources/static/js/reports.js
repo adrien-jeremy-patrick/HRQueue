@@ -1,6 +1,7 @@
 $(document).ready( function () {
+
     var table = $('#CasesTable').DataTable({
-        "sAjaxSource": "/cases",
+        "sAjaxSource": "/reports-cases",
         "sAjaxDataProp": "",
         "order": [[ 0, "asc" ]],
         "aoColumns": [
@@ -11,7 +12,8 @@ $(document).ready( function () {
             { "mData": "customer_comment" },
             { "mData": "customer_email" },
             { "mData": "customer_name" },
-            { "mData": "customer_phone" }
+            { "mData": "customer_phone" },
+
         ]
     })
 });
