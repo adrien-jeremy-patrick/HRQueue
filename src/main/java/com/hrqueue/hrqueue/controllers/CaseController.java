@@ -138,6 +138,9 @@ public class CaseController {
     }
 
     @GetMapping("/reports")
+    public String reports(){
+        return "cases/reports";
+    }
 
 
 }
