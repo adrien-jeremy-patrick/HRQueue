@@ -1,6 +1,7 @@
 $(document).ready( function () {
 
     var table = $('#CasesTable').DataTable({
+
         "sAjaxSource": "/reports-cases",
         "sAjaxDataProp": "",
         "order": [[ 0, "asc" ]],
@@ -15,6 +16,13 @@ $(document).ready( function () {
             { "mData": "customer_phone" },
 
         ]
-    })
+    });
+
+
+
+
+
 });
+
+
 
