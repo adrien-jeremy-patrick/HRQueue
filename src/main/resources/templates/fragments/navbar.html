@@ -5,43 +5,50 @@
 
 <nav th:fragment="myNav" class="nav-custom">
 
-    <div sec:authorize="isAuthenticated()">
-        <div class="nav-div">
-            <h3>You are viewing the rep and admin navbar</h3>
-            <ul>
-                <li><a href="/" class="navbar-link">Home</a></li>
-                <li><a href="/create-case" class="navbar-link">Create Case</a></li>
-                <li><a href="/customer-queue" class="navbar-link">Customer Queue</a></li>
-                <li><a href="/reports" class="navbar-link">Reports</a></li>
-                <li><a href="/user/{id}/edit" class="navbar-link">My Profile</a></li>
-                <li><a href="/user/{id}/edit" class="navbar-link">Rep Profiles</a></li>
-                <li><a href="/about" class="navbar-link">About</a></li>
-                <li><a href="/create-user" class="navbar-link">Create User</a></li>
-                <li><a href="/rep-admin-dashboard" class="navbar-link">Rep/Admin Dashboard</a></li>
-                <li>
-                    <form th:action="@{/logout}" th:method="post">
-                        <button>Logout</button>
-                    </form>
-                </li>
-            </ul>
+    <div class="menu-icon"><img th:src="@{/images/menu-icon.svg}"/></div>
+    <div class="x-icon"><img width="100%" th:src="@{/images/x-circle.svg}"/></div>
+
+
+        <div sec:authorize="isAuthenticated()">
+            <div class="nav-div">
+                <div class="extended-nav">
+                    <ul>
+                        <li><a href="/" class="navbar-link">Home</a></li>
+                        <li><a href="/create-case" class="navbar-link">Create Case</a></li>
+                        <li><a href="/customer-queue" class="navbar-link">Customer Queue</a></li>
+                        <li><a href="/reports" class="navbar-link">Reports</a></li>
+                        <li><a href="/user/{id}/edit" class="navbar-link">My Profile</a></li>
+                        <li><a href="/user/{id}/edit" class="navbar-link">Rep Profiles</a></li>
+                        <li><a href="/about" class="navbar-link">About</a></li>
+                        <li><a href="/create-user" class="navbar-link">Create User</a></li>
+                        <li><a href="/rep-admin-dashboard" class="navbar-link">Rep/Admin Dashboard</a></li>
+                        <li>
+                            <form th:action="@{/logout}" th:method="post">
+                                <button>Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
         </div>
 
+        <div sec:authorize="isAnonymous()">
 
-    </div>
-
-    <div sec:authorize="isAnonymous()">
-
-        <div class="nav-div">
-            <h3>You are viewing the guest navbar</h3>
-            <ul>
-                <li><a href="/" class="navbar-link">Home</a></li>
-                <li><a href="/create-case" class="navbar-link">Create Case</a></li>
-                <li><a href="/customer-queue" class="navbar-link">Customer Queue</a></li>
-                <li><a href="/rep-admin-login" class="navbar-link">Rep/Admin Login</a></li>
-                <li><a href="/about" class="navbar-link">About</a></li>
-            </ul>
+            <div class="nav-div">
+                <div class="extended-nav">
+                    <ul>
+                        <li><a href="/" class="navbar-link">Home</a></li>
+                        <li><a href="/create-case" class="navbar-link">Create Case</a></li>
+                        <li><a href="/customer-queue" class="navbar-link">Customer Queue</a></li>
+                        <li><a href="/rep-admin-login" class="navbar-link">Rep/Admin Login</a></li>
+                        <li><a href="/about" class="navbar-link">About</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
+
 </nav>
 </body>
 </html>
