@@ -205,9 +205,42 @@
     }
 
     /*-------------------------------------------------------------------------*/
+    /*----------------------------------EACH PAGE'S HEADER---------------------*/
+    /*-------------------------------------------------------------------------*/
+
+    .page-header {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 300px;
+        margin-bottom: 100px;
+        color: var(--color9);
+        /*color: white;*/
+        text-shadow: 1px 1px 9px black;
+    }
+
+
+    .page-header h1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 70px;
+        line-height: 54px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 215px 0 0 0;
+    }
+
+
+
+
+    /*-------------------------------------------------------------------------*/
     /*----------------------------------CUSTOMER-QUEUE-------------------------*/
     /*-------------------------------------------------------------------------*/
 
+
+    .customer-queue-header {
+        background-image: url("../images/sands-of-time.jpg");
+
+    }
     .customer-queue-wrapper {
         text-align: center;
     }
@@ -216,8 +249,35 @@
     {
         margin: 5px 30px;
     }
+
     .est-wait-time {
         color: red;
+    }
+
+
+    /*-------------------------------------------------------------------------*/
+    /*----------------------------------REP/ADMIN LOGIN------------------------*/
+    /*-------------------------------------------------------------------------*/
+
+
+    .rep-admin-login-header {
+        background-image: url("../images/hr-queue-2.jpeg");
+    }
+
+
+
+
+    /*-------------------------------------------------------------------------*/
+    /*----------------------------------CREATE CASE PAGE-----------------------*/
+    /*-------------------------------------------------------------------------*/
+
+
+
+
+
+
+    .create-case-header {
+        background-image: url("../images/hr-queue-8.jpeg");
     }
 
 
@@ -317,7 +377,10 @@
         z-index: 20;
         bottom: 0;
         float: left;
-        background: -webkit-linear-gradient(#22345a, #233f66);
+        /*background: -webkit-linear-gradient(#22345a, #233f66);*/
+    }
+    .extended-nav {
+        display: block;
     }
     .menu-icon,
     .x-icon {
@@ -333,8 +396,8 @@
 
     .message-wrapper {
         width: 60%;
-        margin: 30px auto 135px auto;
-        background-image: linear-gradient(to bottom right, #f3f1f2, white);
+        margin: 100px auto 135px auto;
+        /*background-image: linear-gradient(to bottom right, #f3f1f2, white);*/
     }
 
     .message-wrapper h1 {
@@ -349,34 +412,49 @@
 
     .intro-message {
         margin: 10px auto 160px auto;
+        position: absolute;
+        left: -185px;
+        top: 9px;
+        width: 100%;
+        z-index: 50;
     }
 
     .intro-message h1 {
-        max-width: 800px;
-        font-size: 142px;
-        line-height: 121px;
-        background: -webkit-linear-gradient(#2e95eb, #60b2eb);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        max-width: 700px;
+        width: 100%;
+        font-size: 125px;
+        line-height: 100px;
+        color: var(--color8);
+        text-shadow: 1px 2px 3px black;
+        border-bottom: 8px solid var(--color9);
     }
-
     .intro-message h3 {
+        text-align: right;
         font-style: italic;
         margin: 5px;
+        padding-right: 23%;
     }
 
     .land-page-description {
         position: absolute;
         bottom: 40px;
-        left: -7px;
-        font-size: 67px;
-        line-height: 60px;
+        left: 26px;
+        font-size: 45px;
+        line-height: 44px;
+    }
+    .landing-page-image-1 {
+       width: 70%;
+        margin-left: 30%;
+        height: 75vh;
     }
 
     .about-us {
         position: absolute;
-        bottom: 25px;
-        left: 92px;
+        bottom: -30px;
+        right: 15px;
+    }
+    .about-us a {
+        font-size: 12px;
     }
 
     /*-------------------------------------------------------------------------*/
@@ -384,6 +462,19 @@
     /*-------------------------------------------------------------------------*/
 
 
+
+
+
+}
+
+@media only screen and (min-width: 1500px) {
+    .intro-message {
+        text-align: center;
+        position: absolute;
+        top: -4px;
+        width: 50%;
+        left: 94px;
+    }
 
 
 
