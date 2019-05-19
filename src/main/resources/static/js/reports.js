@@ -2,8 +2,8 @@ $(document).ready( function () {
 
     var table = $('#CasesTable').DataTable({
 
-        "processing": true,
-        "serverSide": true,
+        // "processing": true,
+        // "serverSide": true,
         "ajax": {
             "url": "/reports-cases",
             "dataSrc": function ( json ) {
