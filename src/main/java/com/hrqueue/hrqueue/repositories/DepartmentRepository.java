@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface  DepartmentRepository extends CrudRepository<Department, Long> {
 
+    Iterable<Department> findAll();
 
 
 }

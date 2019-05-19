@@ -83,6 +83,11 @@
             <artifactId>nekohtml</artifactId>
             <version>1.9.21</version><!--$NO-MVN-MAN-VER$ -->
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>25.0</version>
+        </dependency>
     </dependencies>
 
 
