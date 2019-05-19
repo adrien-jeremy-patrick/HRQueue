@@ -8,16 +8,48 @@ $(document).ready( function () {
             "url": "/reports-cases",
             "dataSrc": function ( json ) {
                 var return_data = new Array();
+                var date_created_at;
+                var date_case_closed;
+                var date_case_open;
                 for(var i=0;i< json.length; i++){
 
-                    var date_created_at = new Date(json[i].created_at);
-                    date_created_at.toString();
 
-                    var date_case_closed = new Date(json[i].case_closed);
-                    date_created_at.toString();
 
-                    var date_case_open = new Date(json[i].case_open);
-                    date_created_at.toString();
+                        if (json[i].case_open === null && json[i].case_closed === null) {
+
+                            date_case_open = "Not Assigned";
+
+                            date_case_closed = "N/A";
+
+                            date_created_at = new Date(json[i].created_at);
+
+                        } else if(json[i].case_open === null && json[i].case_closed !== null){
+
+                            date_case_open = "Not Assigned";
+
+                            date_created_at = new Date(json[i].created_at);
+
+                            date_case_closed = new Date(json[i].case_closed);
+
+                        } else if(json[i].case_open !== null && json[i].case_closed === null){
+
+                            date_case_closed = "Under Review";
+
+                            date_created_at = new Date(json[i].created_at);
+
+                            date_case_open = new Date(json[i].case_open);
+
+                        } else{
+
+                            date_case_closed = new Date(json[i].case_closed);
+
+                            date_case_open = new Date(json[i].case_open);
+
+                            date_created_at = new Date(json[i].created_at);
+                        }
+
+
+
 
 
                     return_data.push({
