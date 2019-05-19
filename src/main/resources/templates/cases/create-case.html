@@ -9,7 +9,7 @@
 
 
 <div class="body-div">
-    <h1>Create a case</h1>
+    <div class="page-header create-case-header"><h1>Submit Case</h1></div>
     <form th:method="post" th:object="${case}" th:action="@{/create-case}">
         <label>Name</label>
         <input id="customer_name"  th:field="${case.customer_name}"/>
