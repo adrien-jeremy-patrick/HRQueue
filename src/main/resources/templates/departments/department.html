@@ -8,13 +8,13 @@
 <nav th:replace="fragments/navbar :: myNav" />
 
 
-<div class="right-div">
+<div class="body-div">
     <h1>Department Edit</h1>
 
     <h3>Add Department</h3>
     <form th:method="post" th:object="${department}" th:action="@{/departments}">
         <label>Department Name: </label>
-        <input id="department_name"  th:field="${department.department}"/>
+        <input id="department"  th:field="*{department}"/>
         <br/>
         <button>Submit</button>
     </form>
@@ -24,18 +24,20 @@
 
 
 
+    <div>
 
-    <h3>Delete Department</h3>
-    <form th:method="post" th:object="${department}" th:action="@{/departments/delete}">
-    <label for="departmentDelete">Department</label>
-    <select id="departmentDelete" th:field="${department.department}">
-        <option th:type="hidden" th:each="department : ${alDepartments}" th:value="${department.getId()}" >
-            <span th:text="${department.department}"></span>
-        </option>
-    </select>
-        <button>Delete</button>
-    </form>
-    <br/>
+    <h3>Edit Department</h3>
+        <table>
+            <tr>
+                <th>Department</th>
+            </tr>
+            <tr th:each="department : ${allDepartments}">
+            <td th:text="${department}"></td>
+            </tr>
+        </table>
+
+    </div>
+
 
 </div>
 
