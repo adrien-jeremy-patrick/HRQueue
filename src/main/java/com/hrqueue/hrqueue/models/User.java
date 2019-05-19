@@ -1,5 +1,8 @@
 package com.hrqueue.hrqueue.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -26,7 +29,9 @@ public class User {
     @Column (nullable = false)
     private boolean admin;
 
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "writer")
+    @JsonIgnore
     private List<Case> cases;
 
     public User(String firstName, String lastName, String username, String password, boolean admin, List<Case> cases) {

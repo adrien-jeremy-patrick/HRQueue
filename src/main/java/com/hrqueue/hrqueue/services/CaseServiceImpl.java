@@ -15,6 +15,8 @@ public class CaseServiceImpl implements CaseService {
 
     @Override
     public List<Case> getAllCases() {
+
+
         return caseRepository.findAll();
     }
 
