@@ -21,31 +21,32 @@ $(document).ready( function () {
 
                             date_case_closed = "N/A";
 
-                            date_created_at = new Date(json[i].created_at);
+                            date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g,"");
+
 
                         } else if(json[i].case_open === null && json[i].case_closed !== null){
 
                             date_case_open = "Not Assigned";
 
-                            date_created_at = new Date(json[i].created_at);
+                            date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g,"");
 
-                            date_case_closed = new Date(json[i].case_closed);
+                            date_case_closed = new Date(json[i].case_closed).toString().replace(/GMT.*/g,"");
 
                         } else if(json[i].case_open !== null && json[i].case_closed === null){
 
                             date_case_closed = "Under Review";
 
-                            date_created_at = new Date(json[i].created_at);
+                            date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g,"");
 
-                            date_case_open = new Date(json[i].case_open);
+                            date_case_open = new Date(json[i].case_open).toString().replace(/GMT.*/g,"");
 
                         } else{
 
-                            date_case_closed = new Date(json[i].case_closed);
+                            date_case_closed = new Date(json[i].case_closed).toString().replace(/GMT.*/g,"");
 
-                            date_case_open = new Date(json[i].case_open);
+                            date_case_open = new Date(json[i].case_open).toString().replace(/GMT.*/g,"");
 
-                            date_created_at = new Date(json[i].created_at);
+                            date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g,"");
                         }
 
 
