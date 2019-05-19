@@ -28,8 +28,8 @@
             </tr>
             <tr th:each="case : ${allCases}">
                 <td th:text="${case.customer_name}"></td>
-                <td th:text="${case.department.getDepartment()}"></td>
-                <td th:text="${case.category.getCategory()}"></td>
+                <!--<td th:text="${case.department.getDepartment()}"></td>-->
+                <!--<td th:text="${case.category.getCategory()}"></td>-->
                 <td th:text="${case.created_at}"></td>
                 <td><a  th:href="@{'/case/' + ${case.getId()} + '/delete'}"><button>Delete</button></a></td>
                 <td><a th:href="@{'/case/' + ${case.getId()} + '/assign'}"><button>Assign</button></a></td>
