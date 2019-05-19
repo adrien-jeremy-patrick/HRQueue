@@ -18,7 +18,9 @@ public class CaseRestController {
 
     @GetMapping("/reports-cases")
     public List<Case> getAllCases(){
+
         return caseService.getAllCases();
+
     }
     @GetMapping("/reports/{id}")
     public Case getCaseById(@PathVariable("id") long id){
