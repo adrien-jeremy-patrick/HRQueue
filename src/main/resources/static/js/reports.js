@@ -37,7 +37,7 @@ $(document).ready(function () {
 
 
 
-                    } else if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment === "") {
+                    } else if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment !== "") {
 
                         customer_wait_time = "Case Not Assigned";
 
@@ -72,22 +72,25 @@ $(document).ready(function () {
                         customer_wait_time = dhm(customer_wait_time);
 
 
-                    }
+                    } else if(json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment !== ""){
 
-                    else if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment !== "") {
+                        resolve_time = "Under Review";
 
-                        customer_wait_time = "Case Not Assigned";
+                        date_created_at = json[i].created_at;
 
-                        resolve_time = "N/A";
+                        date_case_open = json[i].case_open;
 
                         customer_comment = json[i].customer_comment;
 
-                        writer = "No Representative associated with this case";
+                        writer = json[i].writer.username;
+
+                        customer_wait_time = date_case_open - date_created_at;
 
                         date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
 
-
-                    } else if (json[i].case_open !== null && json[i].case_closed !== null && json[i].customer_comment !== "") {
+                        customer_wait_time = dhm(customer_wait_time);
+                    }
+                    else if (json[i].case_open !== null && json[i].case_closed !== null && json[i].customer_comment !== "") {
 
                         date_created_at = json[i].created_at;
 
