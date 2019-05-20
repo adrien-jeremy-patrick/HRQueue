@@ -23,7 +23,6 @@
         --color13: #1C182F;
 
         margin: 0 auto;
-        height: 1500px;
         padding: 0;
         width: 100%;
         font-family: 'Roboto', sans-serif;
@@ -247,7 +246,7 @@
 
     .customer-queue-wrapper span
     {
-        margin: 5px 30px;
+        margin: 5px 40px;
     }
 
     .est-wait-time {
@@ -262,6 +261,10 @@
 
     .rep-admin-login-header {
         background-image: url("../images/hr-queue-2.jpeg");
+    }
+    .invalid-username-password {
+        color: red;
+        font-size: 80px;
     }
 
 
@@ -306,7 +309,7 @@
 
 @media only screen and (min-width: 600px) {
     body {
-        height: 1800px;
+        /*height: 1800px;*/
     }
     .nav-div {
         height: 100px;
@@ -345,14 +348,7 @@
         height: 407px;
     }
 
-    /*-------------------------------------------------------------------------*/
-    /*----------------------------------CUSTOMER-QUEUE-------------------------*/
-    /*-------------------------------------------------------------------------*/
 
-    .customer-queue-wrapper span
-    {
-        margin: 5px 40px;
-    }
 
 
 
