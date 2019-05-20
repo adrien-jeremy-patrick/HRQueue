@@ -10,10 +10,7 @@ import com.hrqueue.hrqueue.repositories.DepartmentRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -46,13 +43,19 @@ public class CaseController {
         int sizeofDepartments = 0;
         int sizeofCategories = 0;
         for (Department department : departments) {
-            sizeofDepartments = (int)department.getId();
+            sizeofDepartments++;
         }
         for(Category category : categories){
-            sizeofCategories = (int)category.getId();
+            sizeofCategories++;
         }
+//        String[] numbers = new String[sizeofDepartments];
+//        for (Department department : departments){
+//            int index = (int) department.getId()-1;
+//            numbers[index] = department.getDepartment();
+//        }
 
-        System.out.println(sizeofCategories);
+//        Arrays.sort(numbers);
+
 
         if (sizeofDepartments == 0) {
             Department d1 = new Department("Animal Care Services");
@@ -181,12 +184,21 @@ public class CaseController {
     }
 
     @PostMapping("/create-case")
-    public String CreateCase(@ModelAttribute Case cases){
+    public String CreateCase(@ModelAttribute Case cases, @RequestParam(name = "department") String departments){
         //Setting TIMESTAMP for case
         Calendar cal = Calendar.getInstance();
         Date now = cal.getTime();
         cases.setCreated_at(now);
-        caseRepo.save(cases);
+//        Department department = departmentRepo.findByDepartment(departments);
+//
+//        System.out.println(department.getId());
+//        System.out.println(department.getDepartment());
+
+        System.out.println(departments);
+
+
+//        cases.setDepartment(department);
+//        caseRepo.save(cases);
         return "redirect:/customer-queue";
     }
 

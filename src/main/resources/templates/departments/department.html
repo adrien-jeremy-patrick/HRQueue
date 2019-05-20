@@ -30,9 +30,11 @@
         <table>
             <tr>
                 <th>Department</th>
+                <th>Delete</th>
             </tr>
             <tr th:each="department : ${allDepartments}">
-            <td th:text="${department}"></td>
+                <td th:text="${department.department}"></td>
+                <td><a th:href="@{'/departments/' + ${department.department} + '/delete'}"><button>Delete</button></a></td>
             </tr>
         </table>
 
