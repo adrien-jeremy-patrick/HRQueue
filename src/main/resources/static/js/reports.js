@@ -1,9 +1,11 @@
 $(document).ready( function () {
 
-    var table = $('#CasesTable').DataTable({
+   $('#CasesTable').dataTable({
 
-        // "processing": true,
-        // "serverSide": true,
+        "scrollY":        "200px",
+        "scrollCollapse": true,
+        "scrollX": true,
+       // "AutoWidth": false,
         "ajax": {
             "url": "/reports-cases",
             "dataSrc": function ( json ) {
