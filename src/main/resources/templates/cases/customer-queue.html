@@ -25,7 +25,7 @@
             <tbody role="rowgroup" th:each="case : ${allCases}">
             <tr role="row">
                 <td role="call"><span th:text="${case.getCustomer_name()}"></span></td>
-                <td role="call"><span th:text="${case.department.getDepartment()}"></span></td>
+                <!--<td role="call"><span th:text="${case.department.getDepartment()}"></span></td>-->
                 <td role="call"><span th:text="${case.getCreated_at()}"></span></td>
                 <td class="est-wait-time" role="call">wait time</td>
             </tr>
