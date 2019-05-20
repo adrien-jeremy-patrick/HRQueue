@@ -8,27 +8,29 @@
 <nav th:replace="fragments/navbar :: myNav" />
 
 <div class="body-div">
-    <h1>Create a new user</h1>
-    <form th:method="post" th:object="${user}" th:action="@{/create-user}">
-        <label>First Name</label>
-        <input id="first_name"  th:field="${user.firstName}"/>
-        <br/>
-        <label>Last Name</label>
-        <input id="last_name" th:field="${user.lastName}"/>
-        <br/>
-        <label>Username</label>
-        <input id="username" th:field="${user.username}"/>
-        <br/>
-        <label>Password</label>
-        <input type="password" id="password" th:field="${user.password}"/>
-        <br/>
-        <label>User Privileges:</label>
-        <br/>
-        Admin <input type="radio" id="isAdmin" value="true" th:field="${user.admin}"/><br/>
-        Representative <input type="radio" id="noAdmin" value="false" th:field="${user.admin}"/><br/>
-        <br/>
-        <button>Submit</button>
-    </form>
+    <div class="create-user-wrapper">
+        <h1>Create a new user</h1>
+        <form th:method="post" th:object="${user}" th:action="@{/create-user}">
+            <label>First Name</label>
+            <input required="required" id="first_name"  th:field="${user.firstName}"/>
+            <br/>
+            <label>Last Name</label>
+            <input required="required" id="last_name" th:field="${user.lastName}"/>
+            <br/>
+            <label>Username</label>
+            <input required="required" id="username" th:field="${user.username}"/>
+            <br/>
+            <label>Password</label>
+            <input required="required" type="password" id="password" th:field="${user.password}"/>
+            <br/>
+            <label>User Privileges:</label>
+            <br/>
+            Admin <input type="radio" id="isAdmin" value="true" th:field="${user.admin}"/><br/>
+            Representative <input type="radio" id="noAdmin" value="false" th:field="${user.admin}"/><br/>
+            <br/>
+            <button>Submit</button>
+        </form>
+    </div>
 
 
 

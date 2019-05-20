@@ -1,8 +1,10 @@
 package com.hrqueue.hrqueue.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +40,7 @@ public class Case {
     private String customer_name;
 
     @Column(nullable = false)
+    @NotNull(message = "error.title.notnull")
     private String customer_email;
 
     @Column(nullable = false)
