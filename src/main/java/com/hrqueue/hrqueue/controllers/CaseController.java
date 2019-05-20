@@ -184,7 +184,7 @@ public class CaseController {
     }
 
     @PostMapping("/create-case")
-    public String CreateCase(@ModelAttribute Case cases, @RequestParam(name = "department") String departments){
+    public String CreateCase(@ModelAttribute Case cases){
         //Setting TIMESTAMP for case
         Calendar cal = Calendar.getInstance();
         Date now = cal.getTime();
@@ -194,11 +194,9 @@ public class CaseController {
 //        System.out.println(department.getId());
 //        System.out.println(department.getDepartment());
 
-        System.out.println(departments);
 
 
-//        cases.setDepartment(department);
-//        caseRepo.save(cases);
+        caseRepo.save(cases);
         return "redirect:/customer-queue";
     }
 
