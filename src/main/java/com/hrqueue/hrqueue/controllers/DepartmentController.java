@@ -15,8 +15,6 @@ public class DepartmentController {
     private final DepartmentRepository departmentRepo;
 
     public DepartmentController(DepartmentRepository departmentRepo){
-
-
         this.departmentRepo = departmentRepo;
     }
 

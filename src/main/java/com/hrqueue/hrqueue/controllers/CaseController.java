@@ -161,7 +161,7 @@ public class CaseController {
             categoryRepo.save(c10);
             Category c11 = new Category("Leave");
             categoryRepo.save(c11);
-            Category c12 = new Category("Medical/Dental/Vision/Pharmacy");
+            Category c12 = new Category("Medical Dental Vision Pharmacy");
             categoryRepo.save(c12);
             Category c13 = new Category("Other");
             categoryRepo.save(c13);
