@@ -25,11 +25,8 @@ public class UserController {
     }
 
     @GetMapping("/create-user")
-
     public String createUser(Model model) {
-
         model.addAttribute("user", new User());
-
         return "users/user-create";
     }
 
@@ -38,6 +35,9 @@ public class UserController {
     public String createUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
+
+
+
         userRepository.save(user);
         return "redirect:/login";
 
