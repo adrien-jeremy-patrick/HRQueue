@@ -27,7 +27,7 @@ public class LandingPageController {
         if (sizeofArray == 0) {
             String password = passwordEncoder.encode("admin");
             System.out.println(password);
-            User admin = new User("admin","admin","admin",password,true);
+            User admin = new User("admin","admin","admin","admin",true);
             userRepository.save(admin);
         }
         return "index";
