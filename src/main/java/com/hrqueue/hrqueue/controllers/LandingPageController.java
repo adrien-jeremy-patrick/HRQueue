@@ -30,8 +30,6 @@ public class LandingPageController {
             User admin = new User("admin","admin","admin",password,true);
             userRepository.save(admin);
         }
-
-
         return "index";
     }
 }

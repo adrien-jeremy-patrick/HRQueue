@@ -8,5 +8,7 @@ public interface  DepartmentRepository extends CrudRepository<Department, Long> 
 
     Iterable<Department> findAll();
 
+    Department findByDepartment(String id);
+
 
 }

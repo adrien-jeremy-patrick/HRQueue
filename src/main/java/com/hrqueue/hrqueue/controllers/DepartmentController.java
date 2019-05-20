@@ -5,10 +5,9 @@ import com.hrqueue.hrqueue.repositories.DepartmentRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Arrays;
 
 @Controller
 public class DepartmentController {
@@ -28,18 +27,24 @@ public class DepartmentController {
         ///finding the size of the iterable
         int sizeofArray = 0;
         for (Department department : departments) {
-            sizeofArray = (int)department.getId();
+            sizeofArray++;
         }
 
-        String[] numbers = new String[sizeofArray];
-        for (Department department : departments){
-            int index = (int) department.getId()-1;
-            numbers[index] = department.getDepartment();
-        }
-        Arrays.sort(numbers);
+        System.out.println(sizeofArray);
+
+//        String[] things = new String[sizeofArray];
+//        for (Department department : departments){
+//            int index = (int) department.getId()-1;
+//            if (department.getDepartment() != null) {
+//            things[index] = department.getDepartment();}
+//        }
+//
+//        for (String thing : things) {
+//            System.out.println(thing);
+//        }
 
         model.addAttribute("department", new Department());
-        model.addAttribute("allDepartments", numbers);
+        model.addAttribute("allDepartments", departmentRepo.findAll());
 
 
 
@@ -50,17 +55,20 @@ public class DepartmentController {
 
     @PostMapping("/departments")
     public String departments(@RequestParam(name = "department") String departments){
-        Department department = new Department();
-        department.setDepartment(departments);
-        departmentRepo.save(department);
+        if (departments != "") {
+            Department department = new Department();
+            department.setDepartment(departments);
+            departmentRepo.save(department);
+        }
         return "redirect:/departments";
     }
 
-//    @PostMapping("/departments/delete")
-//    public String departments (@ModelAttribute Department departments){
-////        System.out.println(departments.getDepartment());
-//        return "redirect:/departments";
-//    }
+    @GetMapping("/departments/{department}/delete")
+    public String deleteDepartment(@PathVariable String department){
+       Department deleteDepartment = departmentRepo.findByDepartment(department);
+        departmentRepo.delete(deleteDepartment.getId());
+        return "redirect:/departments";
+    }
 
 
 }
