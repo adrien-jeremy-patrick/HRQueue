@@ -15,6 +15,9 @@ $(document).ready(function () {
                 var resolve_time;
                 var customer_wait_time;
                 var customer_comment;
+                var writer;
+
+
                 for (var i = 0; i < json.length; i++) {
 
 
@@ -28,11 +31,29 @@ $(document).ready(function () {
 
                         customer_comment = "No comments provided";
 
+                        writer = "No Representative associated with this case";
+
                         date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
 
 
 
-                    } else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment === "") {
+                    } else if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment === "") {
+
+                        customer_wait_time = "Case Not Assigned";
+
+                        resolve_time = "N/A";
+
+                        customer_comment = "No comments provided";
+
+                        writer = "No Representative associated with this case";
+
+                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+
+
+
+                    }
+
+                    else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment === "") {
 
                         resolve_time = "Under Review";
 
@@ -41,6 +62,8 @@ $(document).ready(function () {
                         date_case_open = json[i].case_open;
 
                         customer_comment = "No comments provided";
+
+                        writer = json[i].writer.username;
 
                         customer_wait_time = date_case_open - date_created_at;
 
@@ -59,6 +82,8 @@ $(document).ready(function () {
 
                         customer_comment = json[i].customer_comment;
 
+                        writer = "No Representative associated with this case";
+
                         date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
 
 
@@ -71,6 +96,8 @@ $(document).ready(function () {
                         date_case_open = json[i].case_open;
 
                         date_case_closed = json[i].case_closed;
+
+                        writer = json[i].writer.username;
 
                         customer_wait_time = date_case_open - date_created_at;
 
@@ -90,12 +117,12 @@ $(document).ready(function () {
 
                         'case_closed': json[i].case_closed,
                         'case_open': json[i].case_open,
+                        'writer': writer,
 
                         'created_at': date_created_at,
                         'customer_name': json[i].customer_name,
-                        'user_id': json[i].user_id,
-                        'department_id': json[i].department_id,
-                        'category_id': json[i].category_id,
+                        'department': json[i].department.department,
+                        'category': json[i].category.category,
                         'customer_comment': customer_comment,
                         'customer_wait_time': customer_wait_time,
                         'resolve_time': resolve_time
@@ -111,9 +138,9 @@ $(document).ready(function () {
         "columns": [
             {"data": "created_at"},
             {"data": "customer_name"},
-            {"data": "user_id"},
-            {"data": "department_id"},
-            {"data": "category_id"},
+            {"data": "writer"},
+            {"data": "department"},
+            {"data": "category"},
             {"data": "customer_comment"},
             {"data": "customer_wait_time"},
             {"data": "resolve_time"},
