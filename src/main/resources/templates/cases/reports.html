@@ -12,6 +12,19 @@
     <link rel="stylesheet" href="/static/css/main.css" th:href="@{/css/main.css}"/>
 </head>
 
+<style>
+
+
+    th, td { white-space: nowrap; }
+    div.dataTables_wrapper {
+        margin: 0 auto;
+    }
+
+    div.container {
+        width: 60%;
+    }
+</style>
+
 
 <body>
 <nav th:replace="fragments/navbar :: myNav" />
@@ -19,33 +32,34 @@
 <div class="body-div">
 
     <h1>Employees Table</h1>
-    <table id="CasesTable" class="display">
+    <table id="CasesTable" class="display" >
 
         <!-- Header Table -->
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Case Closed</th>
-            <th>Case Open</th>
-            <th>Created At</th>
-            <th>Customer Comment</th>
-            <th>Customer Email</th>
-            <th>Customer Name</th>
-            <th>Customer Phone</th>
+            <th>Customer Case Submission Date</th>
+            <th>Customer</th>
+            <th>Representative</th>
+            <th>Department</th>
+            <th>Category</th>
+            <th>Customer/Rep Comments</th>
+            <th>Customer Wait Time</th>
+            <th>Resolve Time</th>
 
         </tr>
         </thead>
         <!-- Footer Table -->
         <tfoot>
         <tr>
-            <th>Id</th>
-            <th>Case Closed</th>
-            <th>Case Open</th>
-            <th>Created At</th>
-            <th>Customer Comment</th>
-            <th>Customer Email</th>
-            <th>Customer Name</th>
-            <th>Customer Phone</th>
+            <th>Customer Case Submission Date</th>
+            <th>Customer</th>
+            <th>Representative</th>
+            <th>Department</th>
+            <th>Category</th>
+            <th>Customer/Rep Comments</th>
+            <th>Customer Wait Time</th>
+            <th>Resolve Time</th>
+
         </tr>
         </tfoot>
     </table>
