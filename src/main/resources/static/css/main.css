@@ -23,7 +23,6 @@
         --color13: #1C182F;
 
         margin: 0 auto;
-        height: 1500px;
         padding: 0;
         width: 100%;
         font-family: 'Roboto', sans-serif;
@@ -45,7 +44,7 @@
     }
     .extended-nav li {
         list-style-type: none;
-        padding: 5px 20px;
+        padding: 7px 20px;
     }
     .extended-nav a {
         font-size: 30px;
@@ -53,10 +52,18 @@
         text-transform: uppercase;
     }
     .extended-nav button {
-        font-size: 30px;
+        font-size: 35px;
         text-decoration: none;
         text-transform: uppercase;
         color: white;
+        background-color: var(--color13);
+        border: none;
+    }
+    .extended-nav a:hover,
+    .extended-nav button:hover
+    {
+        color: var(--color8);
+
     }
     .navbar-link {
         color: white;
@@ -243,11 +250,13 @@
     }
     .customer-queue-wrapper {
         text-align: center;
+        width: 80%;
+        margin: 0 auto;
     }
 
     .customer-queue-wrapper span
     {
-        margin: 5px 30px;
+        margin: 5px 40px;
     }
 
     .est-wait-time {
@@ -260,24 +269,57 @@
     /*-------------------------------------------------------------------------*/
 
 
+    .login-wrapper {
+        text-align: center;
+        width: 80%;
+        margin: 0 auto;
+    }
     .rep-admin-login-header {
         background-image: url("../images/hr-queue-2.jpeg");
     }
+    .invalid-username-password {
+        color: red;
+    }
+    .logout-success {
+        color: green;
+    }
 
 
+    /*-------------------------------------------------------------------------*/
+    /*--------------------------------REP/ADMIN DASHBOARD----------------------*/
+    /*-------------------------------------------------------------------------*/
+
+    .dashboard-wrapper {
+        text-align: center;
+        width: 80%;
+        margin: 0 auto;
+    }
 
 
     /*-------------------------------------------------------------------------*/
     /*----------------------------------CREATE CASE PAGE-----------------------*/
     /*-------------------------------------------------------------------------*/
-
-
-
-
-
-
+    .create-case-wrapper {
+        text-align: center;
+        width: 80%;
+        margin: 0 auto;
+    }
     .create-case-header {
         background-image: url("../images/hr-queue-8.jpeg");
+    }
+    #name-error-message,
+    #email-error-message,
+    #phone-error-message {
+        color: red;
+    }
+
+    /*-------------------------------------------------------------------------*/
+    /*----------------------------------CREATE USER PAGE-----------------------*/
+    /*-------------------------------------------------------------------------*/
+    .create-user-wrapper {
+        text-align: center;
+        width: 80%;
+        margin: 0 auto;
     }
 
 
@@ -291,6 +333,25 @@
         background-color: var(--color4);
         color: white;
     }
+
+    /*-------------------------------------------------------------------------*/
+    /*----------------------------------ABOUT US PAGE--------------------------*/
+    /*-------------------------------------------------------------------------*/
+
+    .about-us-1 {
+        width: 100%;
+        height: 100vh;
+        background-image: url("../images/Image from iOS.jpg");
+        background-size: 70%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+
+
+
+
+
 
 }
 
@@ -306,7 +367,7 @@
 
 @media only screen and (min-width: 600px) {
     body {
-        height: 1800px;
+        /*height: 1800px;*/
     }
     .nav-div {
         height: 100px;
@@ -345,14 +406,7 @@
         height: 407px;
     }
 
-    /*-------------------------------------------------------------------------*/
-    /*----------------------------------CUSTOMER-QUEUE-------------------------*/
-    /*-------------------------------------------------------------------------*/
 
-    .customer-queue-wrapper span
-    {
-        margin: 5px 40px;
-    }
 
 
 

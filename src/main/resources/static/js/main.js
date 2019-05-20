@@ -1,7 +1,7 @@
 (function(){
     "use strict";
 
-    console.log("ready");
+    console.log("main.js ready");
 
 
     //This is the logic for the mobile navbar-------
@@ -81,8 +81,4 @@
 
 
     });
-
-
-
-
 })();

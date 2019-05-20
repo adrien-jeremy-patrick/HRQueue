@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AuthenticationController {
 
-    @GetMapping("/rep-admin-login")
+    @GetMapping("/login")
     public String showLoginForm() {
         return "users/login";
     }
 
-    @GetMapping("/rep-admin-logout")
+    @GetMapping("/logout")
     public String showLogoutMessage() {
         return "users/logout";
     }
