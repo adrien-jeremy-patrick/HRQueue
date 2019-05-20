@@ -20,18 +20,19 @@ $(document).ready(function () {
 
 
 
-                    if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment === null) {
+                    if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment === "") {
 
                         customer_wait_time = "Case Not Assigned";
 
                         resolve_time = "N/A";
 
-                        customer_comment = "No comment provided";
+                        customer_comment = "No comments provided";
 
                         date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
 
 
-                    } else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment === null) {
+
+                    } else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment === "") {
 
                         resolve_time = "Under Review";
 
@@ -39,7 +40,7 @@ $(document).ready(function () {
 
                         date_case_open = json[i].case_open;
 
-                        customer_comment = "No comment provided";
+                        customer_comment = "No comments provided";
 
                         customer_wait_time = date_case_open - date_created_at;
 
@@ -48,28 +49,9 @@ $(document).ready(function () {
                         customer_wait_time = dhm(customer_wait_time);
 
 
-                    } else if(json[i].case_open === null && json[i].case_closed !== null && json[i].customer_comment === null) {
-
-                        date_created_at = json[i].created_at;
-
-                        date_case_open = json[i].case_open;
-
-                        date_case_closed = json[i].case_closed;
-
-                        customer_comment = "No comment provided";
-
-                        customer_wait_time = date_case_open - date_created_at;
-
-                        resolve_time = date_case_closed - date_case_open;
-
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
-
-                        customer_wait_time = dhm(customer_wait_time);
-
-                        resolve_time = dhm(resolve_time);
                     }
 
-                    else if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment !== null) {
+                    else if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment !== "") {
 
                         customer_wait_time = "Case Not Assigned";
 
@@ -80,24 +62,7 @@ $(document).ready(function () {
                         date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
 
 
-                    } else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment !== null ) {
-
-                        resolve_time = "Under Review";
-
-                        customer_comment = json[i].customer_comment;
-
-                        date_created_at = json[i].created_at;
-
-                        date_case_open = json[i].case_open;
-
-                        customer_wait_time = date_case_open - date_created_at;
-
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
-
-                        customer_wait_time = dhm(customer_wait_time);
-
-
-                    } else if(json[i].case_open === null && json[i].case_closed !== null && json[i].customer_comment !== null) {
+                    } else if (json[i].case_open !== null && json[i].case_closed !== null && json[i].customer_comment !== "") {
 
                         date_created_at = json[i].created_at;
 
@@ -116,55 +81,8 @@ $(document).ready(function () {
                         customer_wait_time = dhm(customer_wait_time);
 
                         resolve_time = dhm(resolve_time);
-                    }
-
-                    else if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment === null) {
-
-                        customer_wait_time = "Case Not Assigned";
-
-                        resolve_time = "N/A";
-
-                        customer_comment = "No comment provided";
-
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
 
 
-                    } else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment === null ) {
-
-                        resolve_time = "Under Review";
-
-                        customer_comment = "No comment provided";
-
-                        date_created_at = json[i].created_at;
-
-                        date_case_open = json[i].case_open;
-
-                        customer_wait_time = date_case_open - date_created_at;
-
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
-
-                        customer_wait_time = dhm(customer_wait_time);
-
-
-                    } else if(json[i].case_open === null && json[i].case_closed !== null && json[i].customer_comment === null) {
-
-                        date_created_at = json[i].created_at;
-
-                        customer_comment = "No comment provided";
-
-                        date_case_open = json[i].case_open;
-
-                        date_case_closed = json[i].case_closed;
-
-                        customer_wait_time = date_case_open - date_created_at;
-
-                        resolve_time = date_case_closed - date_case_open;
-
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
-
-                        customer_wait_time = dhm(customer_wait_time);
-
-                        resolve_time = dhm(resolve_time);
                     }
 
 
@@ -178,7 +96,7 @@ $(document).ready(function () {
                         'user_id': json[i].user_id,
                         'department_id': json[i].department_id,
                         'category_id': json[i].category_id,
-                        'customer_comment': json[i].customer_comment,
+                        'customer_comment': customer_comment,
                         'customer_wait_time': customer_wait_time,
                         'resolve_time': resolve_time
 
