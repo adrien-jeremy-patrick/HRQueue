@@ -22,32 +22,26 @@ public class DepartmentController {
 
     @GetMapping("/departments")
     public String departments(Model model) {
-        String loggedInStatus;
-
-
-
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        System.out.println(loggedInUser);
-
-
-        ///Turning find all departments into an Iterable to be able to use
-        Iterable<Department> departments = departmentRepo.findAll();
-        ///finding the size of the iterable
-        int sizeofArray = 0;
-        for (Department department : departments) {
-            sizeofArray++;
-        }
-
-        System.out.println(sizeofArray);
-
-        if (loggedInUser.isAdmin() == true){
-            loggedInStatus = "departments/department";
-        } else {
+        String loggedInStatus = "";
+        if (SecurityContextHolder.getContext().getAuthentication().getName().equalsIgnoreCase("anonymousUser")){
             loggedInStatus = "redirect:/";
+        } else {
+                    User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                        if (loggedInUser.isAdmin() == true){
+                            loggedInStatus = "departments/department";
+                        } else {
+                            loggedInStatus = "redirect:/";
+                        }
         }
-
-
+//        ///Turning find all departments into an Iterable to be able to use
+//        Iterable<Department> departments = departmentRepo.findAll();
+//        ///finding the size of the iterable
+//        int sizeofArray = 0;
+//        for (Department department : departments) {
+//            sizeofArray++;
+//        }
+//
+//        System.out.println(sizeofArray);
         model.addAttribute("department", new Department());
         model.addAttribute("allDepartments", departmentRepo.findAll());
         return loggedInStatus;
