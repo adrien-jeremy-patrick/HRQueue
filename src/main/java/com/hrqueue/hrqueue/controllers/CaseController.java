@@ -185,8 +185,7 @@ public class CaseController {
         model.addAttribute("allCategory", categoryRepo.findAll());
         //        See which user is logged in for navbar
 
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("user", userRepo.findById(loggedInUser.getId()));
+
         return "cases/create-case";
     }
 
@@ -219,8 +218,6 @@ public class CaseController {
 
 
     public String viewCustQueue(Model model) {
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("user", userRepo.findById(loggedInUser.getId()));
         model.addAttribute("allCases", caseRepo.findAll());
         return "cases/customer-queue";
     }
