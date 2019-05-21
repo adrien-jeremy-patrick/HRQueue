@@ -297,9 +297,6 @@ $(document).ready(function () {
                             }
 
 
-                            casesResolvedPerDay = 0;
-                            totalNumberOfCasesResolved = 0;
-
                             if (currentDate(n)) {
 
                                 casesCreatedToday++;
