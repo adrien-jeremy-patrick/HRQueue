@@ -165,7 +165,7 @@ $(document).ready(function () {
                 var return_data = new Array();
 
                 var dayCounter = 0;
-                var twentyFourHoursinMilliseconds = '86400000';
+
 
 
                 var total_Wait_Time = 0;
@@ -178,10 +178,23 @@ $(document).ready(function () {
                 var avg_resolve_Time;
                 var date_case_close;
                 var resolve_Time;
-                var milliSeconds_Resolve_Time;
 
                 var casesResolved = 0;
+                var casesCreatedToday = 0;
+                var totalNumberOfCasesCreated=0;
+                var totalNumberofCasesResolved=0;
 
+
+                if(json.length === 0){
+
+                    avg_Wait_Time = 'N/A';
+                    avg_resolve_Time = 'N/A';
+                    casesResolved = 0;
+                    casesCreatedToday = 0;
+                    totalNumberOfCasesCreated = 0;
+                    totalNumberofCasesResolved = 0;
+
+                }
 
                 for(var i = 0; i < json.length; i++){
 
@@ -205,8 +218,18 @@ $(document).ready(function () {
 
                         avg_Wait_Time = total_Wait_Time/dayCounter;
 
+
                         avg_Wait_Time = dhm(avg_Wait_Time);
 
+
+
+                        //Cases Created Today
+
+                        if(currentDate(n)) {
+
+                            casesCreatedToday++;
+
+                        }
 
 
 
@@ -240,26 +263,23 @@ $(document).ready(function () {
 
                         avg_resolve_Time = total_Resolve_Time/dayCounter;
 
-                        milliSeconds_Resolve_Time = total_Resolve_Time/dayCounter;
 
                         avg_resolve_Time = dhm(avg_resolve_Time);
 
                         //Cases Resolved Per Day
 
-                        if(milliSeconds_Resolve_Time <= twentyFourHoursinMilliseconds){
 
                             casesResolved++;
-
-                        }
 
 
                     } else{
 
-
                         avg_Wait_Time = 'N/A';
                         avg_resolve_Time = 'N/A';
                         casesResolved = 0;
-
+                        casesCreatedToday = 0;
+                        totalNumberOfCasesCreated = 0;
+                        totalNumberofCasesResolved = 0;
 
                     }
 
@@ -274,9 +294,9 @@ $(document).ready(function () {
                     'Avg_Customer_Wait_Time_per_Case': avg_Wait_Time,
                     'Avg_Resolve_Time_per_Case': avg_resolve_Time,
                     'Cases_Resolved_per_Day': casesResolved,
-                    'Cases_Created_Today': avg_Wait_Time,
-                    'Total_#_of_Cases_Created': avg_Wait_Time,
-                    'Total_#_of_Cases_Resolved': avg_Wait_Time
+                    'Cases_Created_Today': casesCreatedToday,
+                    'Total_#_of_Cases_Created': totalNumberOfCasesCreated,
+                    'Total_#_of_Cases_Resolved': totalNumberofCasesResolved
 
                 });
 
@@ -319,6 +339,47 @@ $(document).ready(function () {
         }
         return [d, pad(h), pad(m)].join(':');
     }
+
+    var d = new Date();
+    var n = d.getDay();
+
+
+    function currentDate(n){
+
+        if(n === 0){
+
+            return "Sunday";
+
+        }else if(n ===1){
+
+            return "Monday";
+
+        }else if(n ===2){
+
+            return "Tuesday";
+
+        }else if(n ===3){
+
+            return "Wednesday";
+
+        }else if(n ===4){
+
+            return "Thursday";
+
+        }else if(n ===5){
+
+            return "Friday";
+
+        }else if(n ===6){
+
+            return "Saturday";
+
+        }
+
+
+    }
+
+
 
 
 });
