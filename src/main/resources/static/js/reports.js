@@ -342,7 +342,30 @@ $(document).ready(function () {
             {"data": "Total_#_of_Cases_Resolved"}
 
 
-        ]
+        ],
+
+        'initComplete': function () {
+            this.api().columns().every(function() {
+                var column = this;
+                var th = $("#sorting").eq(column.index());
+                var select = $('<select><option value="">' + th.text() + '</option></select>')
+                    .on('change', function() {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val());
+
+                        column.search(val ? '^' + val + '$' : '', true, false)
+                            .draw();
+                    });
+                $(th).replaceWith($("<th>", {html: select}));
+
+                console.log(select);
+
+                column.data().unique().sort().each(function(d, j) {
+                    $(select).append('<option value="' + d + '">' + d + '</option>')
+                });
+            });
+        }
+
     });
 
 
