@@ -5,7 +5,13 @@
     <title>Home</title>
 </head>
 <body>
-<nav th:replace="fragments/navbar :: myNav" />
+<div th:if="${user.isAdmin()}==true">
+    <nav th:replace="fragments/admin-navbar :: admin-navbar" />
+</div>
+
+<div th:if="${user.isAdmin()}==false">
+    <nav th:replace="fragments/rep-navbar :: rep-navbar" />
+</div>
 
 
 <div class="about-us-1"></div>
