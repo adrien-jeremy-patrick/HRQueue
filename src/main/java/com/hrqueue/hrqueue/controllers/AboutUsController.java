@@ -20,12 +20,7 @@ public class AboutUsController {
 
     @GetMapping("/about")
 
-    public String about(Model model) {
-
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("user", userRepo.findById(loggedInUser.getId()));
-
-
+    public String about() {
         return "about";
     }
 }
