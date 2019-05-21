@@ -6,9 +6,27 @@
     <title>Home</title>
 </head>
 <body>
-<nav th:replace="fragments/navbar :: myNav" />
+<div th:if="${user.isAdmin()}==true">
+    <nav th:replace="fragments/admin-navbar :: admin-navbar" />
+</div>
 
-edit the user
+<div th:if="${user.isAdmin()}==false">
+    <nav th:replace="fragments/rep-navbar :: rep-navbar" />
+</div>
+
+
+<div class="body-div">
+    view profile
+</div>
+
+
+
+
+
+
+
+
+
 
 <nav th:replace="fragments/footer :: footer" />
 

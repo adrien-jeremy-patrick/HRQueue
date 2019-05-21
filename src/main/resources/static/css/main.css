@@ -59,6 +59,11 @@
         background-color: var(--color13);
         border: none;
     }
+    .extended-nav p {
+        font-size: 25px;
+        color: var(--color9);
+
+    }
     .extended-nav a:hover,
     .extended-nav button:hover
     {

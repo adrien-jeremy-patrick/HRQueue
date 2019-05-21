@@ -7,6 +7,7 @@ import com.hrqueue.hrqueue.models.User;
 import com.hrqueue.hrqueue.repositories.CaseRepository;
 import com.hrqueue.hrqueue.repositories.CategoryRepository;
 import com.hrqueue.hrqueue.repositories.DepartmentRepository;
+import com.hrqueue.hrqueue.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +22,13 @@ public class CaseController {
     private final CaseRepository caseRepo;
     private final DepartmentRepository departmentRepo;
     private final CategoryRepository categoryRepo;
+    private final UserRepository userRepo;
 
-    public CaseController(CaseRepository caseRepo, DepartmentRepository departmentRepo,CategoryRepository categoryRepo) {
+    public CaseController(CaseRepository caseRepo, DepartmentRepository departmentRepo,CategoryRepository categoryRepo, UserRepository userRepo) {
         this.caseRepo = caseRepo;
         this.departmentRepo = departmentRepo;
         this.categoryRepo = categoryRepo;
+        this.userRepo = userRepo;
     }
 
     @GetMapping("/cases")
@@ -180,11 +183,15 @@ public class CaseController {
         model.addAttribute("case",new Case());
         model.addAttribute("allDepartment", departmentRepo.findAll());
         model.addAttribute("allCategory", categoryRepo.findAll());
+        //        See which user is logged in for navbar
+
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", userRepo.findById(loggedInUser.getId()));
         return "cases/create-case";
     }
 
     @PostMapping("/create-case")
-    public String CreateCase(@ModelAttribute Case cases){
+    public String CreateCase(@ModelAttribute Case cases, Model model){
         //Setting TIMESTAMP for case
         Calendar cal = Calendar.getInstance();
         Date now = cal.getTime();
@@ -195,7 +202,7 @@ public class CaseController {
 //        System.out.println(department.getDepartment());
 
 
-
+//        save case
         caseRepo.save(cases);
         return "redirect:/customer-queue";
     }
@@ -212,6 +219,8 @@ public class CaseController {
 
 
     public String viewCustQueue(Model model) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", userRepo.findById(loggedInUser.getId()));
         model.addAttribute("allCases", caseRepo.findAll());
         return "cases/customer-queue";
     }

@@ -24,6 +24,8 @@ public class UserController {
         this.caseRepository = caseRepository;
     }
 
+
+
     @GetMapping("/create-user")
     public String createUser(Model model) {
         model.addAttribute("user", new User());
@@ -54,7 +56,9 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}/edit")
-    public String showUserEdit() {
+    public String showUserEdit(Model model) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", userRepository.findById(loggedInUser.getId()));
         return "users/user-edit";
     }
 
