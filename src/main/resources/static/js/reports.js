@@ -151,6 +151,154 @@ $(document).ready(function () {
         ]
     });
 
+    $('#performanceTable').dataTable({
+
+        "scrollY": "200px",
+        "scrollCollapse": true,
+        "scrollX": true,
+        "ajax": {
+            "url": "/reports-cases",
+            "dataSrc": function (json) {
+
+
+
+                var return_data = new Array();
+
+                var dayCounter = 0;
+                var twentyFourHoursinMilliseconds = '86400000';
+
+
+                var total_Wait_Time = 0;
+                var avg_Wait_Time;
+                var date_case_open;
+                var date_created_at;
+                var customer_wait_time;
+
+                var total_Resolve_Time = 0;
+                var avg_resolve_Time;
+                var date_case_close;
+                var resolve_Time;
+                var milliSeconds_Resolve_Time;
+
+                var casesResolved = 0;
+
+
+                for(var i = 0; i < json.length; i++){
+
+
+                    //Ignore if case has not been assigned.
+
+                    if(json[i].case_open !== null && json[i].case_closed === null) {
+
+                        dayCounter++;
+
+
+                        //Avg Wait Time
+
+                        date_created_at = json[i].created_at;
+                        date_case_open = json[i].case_open;
+
+                        customer_wait_time = date_case_open - date_created_at;
+
+                        total_Wait_Time += customer_wait_time;
+
+
+                        avg_Wait_Time = total_Wait_Time/dayCounter;
+
+                        avg_Wait_Time = dhm(avg_Wait_Time);
+
+
+
+
+                    }else if(json[i].case_open !== null && json[i].case_closed !== null){
+
+
+                        dayCounter++;
+
+                        //Avg Wait Time
+
+
+                        date_created_at = json[i].created_at;
+                        date_case_open = json[i].case_open;
+
+                        customer_wait_time = date_case_open - date_created_at;
+
+                        total_Wait_Time += customer_wait_time;
+
+
+                        avg_Wait_Time = total_Wait_Time/dayCounter;
+
+                        avg_Wait_Time = dhm(avg_Wait_Time);
+
+                        //Avg Resolve Time;
+
+                        date_case_close = json[i].case_closed;
+
+                        resolve_Time = date_case_close - date_case_open;
+
+                        total_Resolve_Time += resolve_Time;
+
+                        avg_resolve_Time = total_Resolve_Time/dayCounter;
+
+                        milliSeconds_Resolve_Time = total_Resolve_Time/dayCounter;
+
+                        avg_resolve_Time = dhm(avg_resolve_Time);
+
+                        //Cases Resolved Per Day
+
+                        if(milliSeconds_Resolve_Time <= twentyFourHoursinMilliseconds){
+
+                            casesResolved++;
+
+                        }
+
+
+                    } else{
+
+
+                        avg_Wait_Time = 'N/A';
+                        avg_resolve_Time = 'N/A';
+                        casesResolved = 0;
+
+
+                    }
+
+
+
+                }
+
+
+                return_data.push({
+
+                    'Sorting_Drop_Down': "All",
+                    'Avg_Customer_Wait_Time_per_Case': avg_Wait_Time,
+                    'Avg_Resolve_Time_per_Case': avg_resolve_Time,
+                    'Cases_Resolved_per_Day': casesResolved,
+                    'Cases_Created_Today': avg_Wait_Time,
+                    'Total_#_of_Cases_Created': avg_Wait_Time,
+                    'Total_#_of_Cases_Resolved': avg_Wait_Time
+
+                });
+
+                return return_data;
+            }
+
+        },
+        "sAjaxDataProp": "",
+        "order": [[0, "asc"]],
+        "columns": [
+            {"data": "Sorting_Drop_Down"},
+            {"data": "Avg_Customer_Wait_Time_per_Case"},
+            {"data": "Avg_Resolve_Time_per_Case"},
+            {"data": "Cases_Resolved_per_Day"},
+            {"data": "Cases_Created_Today"},
+            {"data": "Total_#_of_Cases_Created"},
+            {"data": "Total_#_of_Cases_Resolved"}
+
+
+        ]
+    });
+
 
     function dhm(t) {
         var cd = 24 * 60 * 60 * 1000,
