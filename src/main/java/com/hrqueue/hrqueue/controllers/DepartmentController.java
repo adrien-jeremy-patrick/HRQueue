@@ -1,7 +1,9 @@
 package com.hrqueue.hrqueue.controllers;
 
 import com.hrqueue.hrqueue.models.Department;
+import com.hrqueue.hrqueue.models.User;
 import com.hrqueue.hrqueue.repositories.DepartmentRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,15 @@ public class DepartmentController {
 
     @GetMapping("/departments")
     public String departments(Model model) {
+        String loggedInStatus;
+
+
+
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        System.out.println(loggedInUser);
+
+
         ///Turning find all departments into an Iterable to be able to use
         Iterable<Department> departments = departmentRepo.findAll();
         ///finding the size of the iterable
@@ -30,25 +41,16 @@ public class DepartmentController {
 
         System.out.println(sizeofArray);
 
-//        String[] things = new String[sizeofArray];
-//        for (Department department : departments){
-//            int index = (int) department.getId()-1;
-//            if (department.getDepartment() != null) {
-//            things[index] = department.getDepartment();}
-//        }
-//
-//        for (String thing : things) {
-//            System.out.println(thing);
-//        }
+        if (loggedInUser.isAdmin() == true){
+            loggedInStatus = "departments/department";
+        } else {
+            loggedInStatus = "redirect:/";
+        }
+
 
         model.addAttribute("department", new Department());
         model.addAttribute("allDepartments", departmentRepo.findAll());
-
-
-
-
-
-        return "departments/department";
+        return loggedInStatus;
     }
 
     @PostMapping("/departments")
