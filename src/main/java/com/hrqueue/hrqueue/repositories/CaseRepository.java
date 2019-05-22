@@ -11,8 +11,10 @@ public interface  CaseRepository extends JpaRepository<Case, Long> {
 
     Case findById(long id);
 
+
     List<Case> findByCaseOpenIsNull();
     List<Case> findByCaseClosedIsNotNull();
+    List<Case> findByCaseClosedIsNotNullAndWriterId(long id);
 
 
 
