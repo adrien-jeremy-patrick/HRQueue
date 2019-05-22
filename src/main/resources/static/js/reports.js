@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
     $('#CasesTable').dataTable({
 
         "scrollY": "200px",
@@ -21,8 +22,6 @@ $(document).ready(function () {
                 for (var i = 0; i < json.length; i++) {
 
 
-
-
                     if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment === "") {
 
                         customer_wait_time = "Case Not Assigned";
@@ -34,7 +33,6 @@ $(document).ready(function () {
                         writer = "No Representative associated with this case";
 
                         date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
-
 
 
                     } else if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment !== "") {
@@ -50,10 +48,7 @@ $(document).ready(function () {
                         date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
 
 
-
-                    }
-
-                    else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment === "") {
+                    } else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment === "") {
 
                         resolve_time = "Under Review";
 
@@ -72,7 +67,7 @@ $(document).ready(function () {
                         customer_wait_time = dhm(customer_wait_time);
 
 
-                    } else if(json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment !== ""){
+                    } else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment !== "") {
 
                         resolve_time = "Under Review";
 
@@ -89,8 +84,7 @@ $(document).ready(function () {
                         date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
 
                         customer_wait_time = dhm(customer_wait_time);
-                    }
-                    else if (json[i].case_open !== null && json[i].case_closed !== null && json[i].customer_comment !== "") {
+                    } else if (json[i].case_open !== null && json[i].case_closed !== null && json[i].customer_comment !== "") {
 
                         date_created_at = json[i].created_at;
 
@@ -151,6 +145,226 @@ $(document).ready(function () {
         ]
     });
 
+    $('#performanceTable').dataTable({
+
+        "scrollY": "200px",
+        "scrollCollapse": true,
+        "scrollX": true,
+        "ajax": {
+            "url": "/reports-cases",
+            "dataSrc": function (json) {
+
+
+                var return_data = new Array();
+
+                var counter = 0;
+
+                var total_Wait_Time = 0;
+                var avg_Wait_Time;
+                var date_case_open;
+                var date_created_at;
+                var customer_wait_time;
+
+                var total_Resolve_Time = 0;
+                var avg_resolve_Time;
+                var date_case_close;
+                var resolve_Time;
+
+                var casesResolvedPerDay = 0;
+                var casesCreatedToday = 0;
+                var totalNumberOfCasesCreated = 0;
+                var totalNumberOfCasesResolved = 0;
+
+
+
+
+
+                if (json.length === 0) {
+
+                    avg_Wait_Time = 'N/A';
+                    avg_resolve_Time = 'N/A';
+                    casesResolvedPerDay = 0;
+                    casesCreatedToday = 0;
+                    totalNumberOfCasesCreated = 0;
+                    totalNumberOfCasesResolved = 0;
+
+                } else {
+
+                    for (var i = 0; i < json.length; i++) {
+
+
+                        // console.log(moment(json[i].created_at).format("MM/DD/YYYY"));
+
+                        //Ignore if case has not been assigned.
+
+                        if (json[i].case_open !== null && json[i].case_closed === null) {
+
+                            counter++;
+                            totalNumberOfCasesCreated++;
+
+                            //Avg Wait Time
+
+                            date_created_at = json[i].created_at;
+                            date_case_open = json[i].case_open;
+                            customer_wait_time = date_case_open - date_created_at;
+                            total_Wait_Time += customer_wait_time;
+                            avg_Wait_Time = total_Wait_Time / counter;
+                            avg_Wait_Time = dhm(avg_Wait_Time);
+                            avg_resolve_Time = 'N/A';
+
+                            //Cases Created Today
+
+
+
+                            if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
+
+                                console.log('hi');
+                                casesCreatedToday++;
+
+
+                            }
+
+
+                        } else if (json[i].case_open !== null && json[i].case_closed !== null) {
+
+
+                            counter++;
+                            totalNumberOfCasesResolved++;
+                            totalNumberOfCasesCreated++;
+
+
+                            //Avg Wait Time
+
+
+                            date_created_at = json[i].created_at;
+                            date_case_open = json[i].case_open;
+                            customer_wait_time = date_case_open - date_created_at;
+                            total_Wait_Time += customer_wait_time;
+                            avg_Wait_Time = total_Wait_Time / counter;
+                            avg_Wait_Time = dhm(avg_Wait_Time);
+
+
+                            //Avg Resolve Time;
+
+                            date_case_close = json[i].case_closed;
+                            resolve_Time = date_case_close - date_case_open;
+                            total_Resolve_Time += resolve_Time;
+                            avg_resolve_Time = total_Resolve_Time / counter;
+                            avg_resolve_Time = dhm(avg_resolve_Time);
+
+                            //Cases Resolved Per Day
+
+                            var timeline;
+                            var days;
+                            var todayResolvedDay = new Date();
+
+
+                            timeline = todayResolvedDay - json[0].created_at;
+                            days = (timeline / (1000 * 60 * 60 * 24));
+                            var roundedDays = Math.round(days);
+
+
+                            if (roundedDays === 0) {
+
+                                casesResolvedPerDay = 0;
+
+                            } else {
+
+                                casesResolvedPerDay = totalNumberOfCasesResolved / roundedDays;
+
+                            }
+
+
+                            if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
+
+                                console.log('hi');
+                                casesCreatedToday++;
+
+
+                            }
+
+
+                        } else if (json[i].case_open === null && json[i].case_closed === null) {
+
+                            totalNumberOfCasesCreated++;
+
+
+                            if (counter === 0) {
+                                avg_Wait_Time = 'N/A';
+                                avg_resolve_Time = 'N/A';
+                            }
+
+                            if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
+
+                                casesCreatedToday++;
+
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+
+                return_data.push({
+
+                    'Sorting_Drop_Down': "All",
+                    'Avg_Customer_Wait_Time_per_Case': avg_Wait_Time,
+                    'Avg_Resolve_Time_per_Case': avg_resolve_Time,
+                    'Cases_Created_Today': casesCreatedToday,
+                    'Total_#_of_Cases_Created': totalNumberOfCasesCreated,
+                    'Cases_Resolved_per_Day': casesResolvedPerDay,
+                    'Total_#_of_Cases_Resolved': totalNumberOfCasesResolved
+
+
+                });
+
+                return return_data;
+            }
+
+        },
+        "sAjaxDataProp": "",
+        "order": [[0, "asc"]],
+        "columns": [
+            {"data": "Sorting_Drop_Down"},
+            {"data": "Avg_Customer_Wait_Time_per_Case"},
+            {"data": "Avg_Resolve_Time_per_Case"},
+            {"data": "Cases_Created_Today"},
+            {"data": "Total_#_of_Cases_Created"},
+            {"data": "Cases_Resolved_per_Day"},
+            {"data": "Total_#_of_Cases_Resolved"}
+
+
+        ],
+
+        'initComplete': function () {
+            this.api().columns().every(function () {
+                var column = this;
+                var th = $("#sorting").eq(column.index());
+                var select = $('<select><option value="">' + th.text() + '</option></select>')
+                    .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val());
+
+                        column.search(val ? '^' + val + '$' : '', true, false)
+                            .draw();
+                    });
+                $(th).replaceWith($("<th>", {html: select}));
+
+                // console.log(select);
+
+                column.data().unique().sort().each(function (d, j) {
+                    $(select).append('<option value="' + d + '">' + d + '</option>')
+                });
+            });
+        }
+
+    });
+
+
+
 
     function dhm(t) {
         var cd = 24 * 60 * 60 * 1000,
@@ -171,6 +385,34 @@ $(document).ready(function () {
         }
         return [d, pad(h), pad(m)].join(':');
     }
+
+
+
+    function today() {
+
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = mm + '/' + dd + '/' + yyyy;
+
+        return today;
+
+    }
+
+
+
+
 
 
 });
