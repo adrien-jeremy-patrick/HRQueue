@@ -296,7 +296,6 @@ $(document).ready(function () {
 
                             if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
 
-                                console.log('hi');
                                 casesCreatedToday++;
 
 
