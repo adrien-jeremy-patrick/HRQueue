@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
     $('#CasesTable').dataTable({
 
         "scrollY": "200px",
@@ -21,8 +22,6 @@ $(document).ready(function () {
                 for (var i = 0; i < json.length; i++) {
 
 
-
-
                     if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment === "") {
 
                         customer_wait_time = "Case Not Assigned";
@@ -34,7 +33,6 @@ $(document).ready(function () {
                         writer = "No Representative associated with this case";
 
                         date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
-
 
 
                     } else if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment !== "") {
@@ -50,10 +48,7 @@ $(document).ready(function () {
                         date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
 
 
-
-                    }
-
-                    else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment === "") {
+                    } else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment === "") {
 
                         resolve_time = "Under Review";
 
@@ -72,7 +67,7 @@ $(document).ready(function () {
                         customer_wait_time = dhm(customer_wait_time);
 
 
-                    } else if(json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment !== ""){
+                    } else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment !== "") {
 
                         resolve_time = "Under Review";
 
@@ -89,8 +84,7 @@ $(document).ready(function () {
                         date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
 
                         customer_wait_time = dhm(customer_wait_time);
-                    }
-                    else if (json[i].case_open !== null && json[i].case_closed !== null && json[i].customer_comment !== "") {
+                    } else if (json[i].case_open !== null && json[i].case_closed !== null && json[i].customer_comment !== "") {
 
                         date_created_at = json[i].created_at;
 
@@ -161,7 +155,6 @@ $(document).ready(function () {
             "dataSrc": function (json) {
 
 
-
                 var return_data = new Array();
 
                 var counter = 0;
@@ -179,11 +172,14 @@ $(document).ready(function () {
 
                 var casesResolvedPerDay = 0;
                 var casesCreatedToday = 0;
-                var totalNumberOfCasesCreated=0;
+                var totalNumberOfCasesCreated = 0;
                 var totalNumberOfCasesResolved = 0;
 
 
-                if(json.length === 0){
+
+
+
+                if (json.length === 0) {
 
                     avg_Wait_Time = 'N/A';
                     avg_resolve_Time = 'N/A';
@@ -197,6 +193,7 @@ $(document).ready(function () {
                     for (var i = 0; i < json.length; i++) {
 
 
+                        // console.log(moment(json[i].created_at).format("MM/DD/YYYY"));
 
                         //Ignore if case has not been assigned.
 
@@ -215,15 +212,17 @@ $(document).ready(function () {
                             avg_Wait_Time = dhm(avg_Wait_Time);
                             avg_resolve_Time = 'N/A';
 
-
                             //Cases Created Today
 
-                            if (currentDate(n)) {
 
+
+                            if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
+
+                                console.log('hi');
                                 casesCreatedToday++;
 
-                            }
 
+                            }
 
 
                         } else if (json[i].case_open !== null && json[i].case_closed !== null) {
@@ -257,49 +256,49 @@ $(document).ready(function () {
 
                             var timeline;
                             var days;
-                            var today = new Date();
+                            var todayResolvedDay = new Date();
 
 
-                            timeline = today - json[0].created_at;
-                            days = (timeline / (1000*60*60*24));
-                            console.log(days);
+                            timeline = todayResolvedDay - json[0].created_at;
+                            days = (timeline / (1000 * 60 * 60 * 24));
                             var roundedDays = Math.round(days);
 
 
-                            if(roundedDays === 0){
+                            if (roundedDays === 0) {
 
                                 casesResolvedPerDay = 0;
 
-                            }else {
+                            } else {
 
                                 casesResolvedPerDay = totalNumberOfCasesResolved / roundedDays;
 
                             }
 
 
-                            //Cases Created Today
+                            if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
 
-                            if (currentDate(n)) {
-
+                                console.log('hi');
                                 casesCreatedToday++;
+
 
                             }
 
 
-                        } else if(json[i].case_open === null && json[i].case_closed === null){
+                        } else if (json[i].case_open === null && json[i].case_closed === null) {
 
                             totalNumberOfCasesCreated++;
 
 
-                            if(counter === 0){
+                            if (counter === 0) {
                                 avg_Wait_Time = 'N/A';
                                 avg_resolve_Time = 'N/A';
                             }
 
+                            if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
 
-                            if (currentDate(n)) {
-
+                                console.log('hi');
                                 casesCreatedToday++;
+
 
                             }
 
@@ -342,11 +341,11 @@ $(document).ready(function () {
         ],
 
         'initComplete': function () {
-            this.api().columns().every(function() {
+            this.api().columns().every(function () {
                 var column = this;
                 var th = $("#sorting").eq(column.index());
                 var select = $('<select><option value="">' + th.text() + '</option></select>')
-                    .on('change', function() {
+                    .on('change', function () {
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val());
 
@@ -355,15 +354,17 @@ $(document).ready(function () {
                     });
                 $(th).replaceWith($("<th>", {html: select}));
 
-                console.log(select);
+                // console.log(select);
 
-                column.data().unique().sort().each(function(d, j) {
+                column.data().unique().sort().each(function (d, j) {
                     $(select).append('<option value="' + d + '">' + d + '</option>')
                 });
             });
         }
 
     });
+
+
 
 
     function dhm(t) {
@@ -386,44 +387,31 @@ $(document).ready(function () {
         return [d, pad(h), pad(m)].join(':');
     }
 
-    var d = new Date();
-    var n = d.getDay();
 
 
-    function currentDate(n){
+    function today() {
 
-        if(n === 0){
 
-            return "Sunday";
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
 
-        }else if(n ===1){
-
-            return "Monday";
-
-        }else if(n ===2){
-
-            return "Tuesday";
-
-        }else if(n ===3){
-
-            return "Wednesday";
-
-        }else if(n ===4){
-
-            return "Thursday";
-
-        }else if(n ===5){
-
-            return "Friday";
-
-        }else if(n ===6){
-
-            return "Saturday";
-
+        if (dd < 10) {
+            dd = '0' + dd
         }
 
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = mm + '/' + dd + '/' + yyyy;
+
+        return today;
 
     }
+
+
 
 
 
