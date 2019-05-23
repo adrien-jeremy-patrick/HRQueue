@@ -27,6 +27,10 @@ public class CommentController {
     @GetMapping("/case/{id}/comment")
     public String comments(Model model, @PathVariable long id) {
         Case commentCase = caseRepo.findById(id);
+        Calendar cal = Calendar.getInstance();
+        Date now = cal.getTime();
+        System.out.println(now);
+//        System.out.println(cal.add(Calendar.DAY_OF_MONTH, -5));
         model.addAttribute("commentObject", new Comment());
         model.addAttribute("case",commentCase);
         model.addAttribute("caseComments", commentRepo.findAllByCasesId(id));
@@ -45,8 +49,6 @@ public class CommentController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         comment.setWriter(loggedInUser);
         commentRepo.save(comment);
-        System.out.println(comments);
-        System.out.println(id);
         return "redirect:/case/"+id+"/comment";
     }
 
