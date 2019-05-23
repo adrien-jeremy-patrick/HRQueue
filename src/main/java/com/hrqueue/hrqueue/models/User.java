@@ -1,7 +1,6 @@
 package com.hrqueue.hrqueue.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,7 +22,7 @@ public class User {
     @Column(nullable = false)
     private String username;
 
-    @Column(nullable = false, columnDefinition = "text")
+    @Column(columnDefinition = "text")
     private String password;
 
     @Column (nullable = false)
