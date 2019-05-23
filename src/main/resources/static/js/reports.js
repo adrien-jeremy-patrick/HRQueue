@@ -312,6 +312,44 @@ $(document).ready(function () {
                     chart.draw(data, options);
                 }
 
+                google.charts.load("current", {packages:["corechart"]});
+                google.charts.setOnLoadCallback(chartCasesCreated);
+
+                function chartCasesCreated() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Cases Created', 'Cases today & per day'],
+                        ['# of Cases Created Today',     casesCreatedToday],
+                        ['Avg. Cases Created Per Day',      casesCreatedPerDay],
+                    ]);
+
+                    var options = {
+                        title: 'Cases Created Performance',
+                        pieHole: 0.4,
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('donutchartCasesCreated'));
+                    chart.draw(data, options);
+                }
+
+                google.charts.load("current", {packages:["corechart"]});
+                google.charts.setOnLoadCallback(chartCasesResolved);
+
+                function chartCasesResolved() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Cases Resolved', 'Cases today & per day'],
+                        ['# of Cases Resolved Today',     casesResolvedToday],
+                        ['Avg. Cases Resolved Per Day',      casesResolvedPerDay],
+                    ]);
+
+                    var options = {
+                        title: 'Cases Resolved Performance',
+                        pieHole: 0.4,
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('donutchartCasesResolved'));
+                    chart.draw(data, options);
+                }
+
 
                 // var sortingItems = ['All', 'Category', 'Department', 'Representatives, Time'];
 
@@ -391,6 +429,7 @@ $(document).ready(function () {
                 var customer_wait_time;
                 var customer_comment;
                 var writer;
+                var case_completion_time;
 
 
                 for (var i = 0; i < json.length; i++) {
@@ -401,6 +440,8 @@ $(document).ready(function () {
                         customer_wait_time = "Case Not Assigned";
 
                         resolve_time = "N/A";
+
+                        case_completion_time = 'N/A';
 
                         customer_comment = "No comments provided";
 
@@ -415,6 +456,8 @@ $(document).ready(function () {
 
                         resolve_time = "N/A";
 
+                        case_completion_time = "N/A";
+
                         customer_comment = "No comments provided";
 
                         writer = "No Representative associated with this case";
@@ -425,6 +468,8 @@ $(document).ready(function () {
                     } else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment === "") {
 
                         resolve_time = "Under Review";
+
+                        case_completion_time = "N/A";
 
                         date_created_at = json[i].created_at;
 
@@ -444,6 +489,8 @@ $(document).ready(function () {
                     } else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment !== "") {
 
                         resolve_time = "Under Review";
+
+                        case_completion_time = "N/A";
 
                         date_created_at = json[i].created_at;
 
@@ -474,12 +521,43 @@ $(document).ready(function () {
 
                         resolve_time = date_case_closed - date_case_open;
 
+                        case_completion_time = customer_wait_time + resolve_time;
+
                         date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+
+                        case_completion_time = dhm(case_completion_time);
 
                         customer_wait_time = dhm(customer_wait_time);
 
                         resolve_time = dhm(resolve_time);
 
+
+                    }else{
+
+
+                        date_created_at = json[i].created_at;
+
+                        customer_comment = "No comments provided";
+
+                        date_case_open = json[i].case_open;
+
+                        date_case_closed = json[i].case_closed;
+
+                        writer = json[i].writer.username;
+
+                        customer_wait_time = date_case_open - date_created_at;
+
+                        resolve_time = date_case_closed - date_case_open;
+
+                        case_completion_time = customer_wait_time + resolve_time;
+
+                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+
+                        case_completion_time = dhm(case_completion_time);
+
+                        customer_wait_time = dhm(customer_wait_time);
+
+                        resolve_time = dhm(resolve_time);
 
                     }
 
@@ -489,15 +567,16 @@ $(document).ready(function () {
                         'case_closed': json[i].case_closed,
                         'case_open': json[i].case_open,
                         'writer': writer,
-
                         'created_at': date_created_at,
+
                         'customer_name': json[i].customer_name,
                         'department': json[i].department.department,
                         'category': json[i].category.category,
                         'customer_comment': customer_comment,
                         'reps-admins_comments' : 'test',
                         'customer_wait_time': customer_wait_time,
-                        'resolve_time': resolve_time
+                        'resolve_time': resolve_time,
+                        'case_completion_time': case_completion_time
 
                     })
                 }
@@ -517,6 +596,7 @@ $(document).ready(function () {
             {"data": "reps-admins_comments"},
             {"data": "customer_wait_time"},
             {"data": "resolve_time"},
+            {"data": "case_completion_time"}
 
         ]
     });
