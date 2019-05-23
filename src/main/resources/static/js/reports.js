@@ -1,33 +1,7 @@
 $(document).ready(function () {
 
-    google.charts.load('current', {'packages':['bar']});
-    google.charts.setOnLoadCallback(timeMetrics);
 
-    function timeMetrics() {
-        var data = new google.visualization.arrayToDataTable([
-            ['Time Metrics', 'Days:Hours:Minutes'],
-            ["Avg. Customer Wait Time per Case", 44],
-            ["Avg. Resolve Time per Case", 44]
-        ]);
 
-        var options = {
-            title: 'Time Metrics',
-            width: 900,
-            legend: { position: 'none' },
-            chart: { title: 'Time Metrics',
-                subtitle: 'Performances by Time' },
-            bars: 'horizontal', // Required for Material Bar Charts.
-            axes: {
-                x: {
-                    0: { side: 'bottom', label: 'Days:Hours:Minutes'} // Top x-axis.
-                }
-            },
-            bar: { groupWidth: "90%" }
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('BarCharts'));
-        chart.draw(data, options);
-    };
 
 
     $('#performanceTable').dataTable({
@@ -59,6 +33,9 @@ $(document).ready(function () {
                 var casesCreatedToday = 0;
                 var totalNumberOfCasesCreated = 0;
                 var totalNumberOfCasesResolved = 0;
+
+                var parsedResolveTime;
+                var parsedWaitTime;
 
 
 
@@ -93,6 +70,7 @@ $(document).ready(function () {
                             date_case_open = json[i].case_open;
                             customer_wait_time = date_case_open - date_created_at;
                             total_Wait_Time += customer_wait_time;
+                            parsedWaitTime = total_Wait_Time/ counter;
                             avg_Wait_Time = total_Wait_Time / counter;
                             avg_Wait_Time = dhm(avg_Wait_Time);
                             avg_resolve_Time = 'N/A';
@@ -125,6 +103,7 @@ $(document).ready(function () {
                             date_case_open = json[i].case_open;
                             customer_wait_time = date_case_open - date_created_at;
                             total_Wait_Time += customer_wait_time;
+                            parsedWaitTime = total_Wait_Time/ counter;
                             avg_Wait_Time = total_Wait_Time / counter;
                             avg_Wait_Time = dhm(avg_Wait_Time);
 
@@ -135,6 +114,7 @@ $(document).ready(function () {
                             resolve_Time = date_case_close - date_case_open;
                             total_Resolve_Time += resolve_Time;
                             avg_resolve_Time = total_Resolve_Time / counter;
+                            parsedResolveTime = total_Resolve_Time/ counter;
                             avg_resolve_Time = dhm(avg_resolve_Time);
 
                             //Cases Resolved Per Day
@@ -190,6 +170,68 @@ $(document).ready(function () {
 
                     }
 
+                }
+
+
+                google.charts.load('current', {'packages':['bar']});
+                google.charts.setOnLoadCallback(timeMetrics);
+
+                function timeMetrics() {
+                    var data = new google.visualization.arrayToDataTable([
+                        ['Time Metrics', 'Hours'],
+                        ["Avg. Customer Wait Time per Case", parsedWaitTime / (1000 * 60 * 60)],
+                        ["Avg. Resolve Time per Case", parsedResolveTime / (1000 * 60 * 60)]
+                    ]);
+
+                    var options = {
+                        title: 'Time Metrics',
+                        width: 900,
+                        legend: { position: 'none' },
+                        chart: { title: 'Time Metrics',
+                            subtitle: 'Performances by Time' },
+                        bars: 'horizontal', // Required for Material Bar Charts.
+                        axes: {
+                            x: {
+                                0: { side: 'top', label: 'Days:Hours:Minutes'} // Top x-axis.
+                            }
+                        },
+
+                        bar: { groupWidth: "90%" }
+                    };
+
+                    var chart = new google.charts.Bar(document.getElementById('BarCharts'));
+                    chart.draw(data, options);
+                };
+
+                google.charts.load('current', {packages: ['corechart', 'bar']});
+                google.charts.setOnLoadCallback(drawBasic);
+
+                function drawBasic() {
+
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', '# Total');
+                    data.addColumn('number', '#');
+
+                    data.addRows([
+                        [{v:'# of Cases Created', f: 'Total Number of Cases Created'}, totalNumberOfCasesCreated],
+                        [{v: '# of Cases Resolved', f: 'Total Number of Cases Resolved'}, totalNumberOfCasesResolved],
+
+                    ]);
+
+                    var options = {
+                        title: 'Cases Created & Resolved',
+                        hAxis: {
+                            title: 'Cases Number Metrics',
+                        },
+                        vAxis: {
+                            title: 'Number'
+                        }
+                    };
+
+                    var chart = new google.visualization.ColumnChart(
+                        document.getElementById('chart_div'));
+
+                    chart.draw(data, options);
                 }
 
 
