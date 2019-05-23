@@ -121,6 +121,7 @@ $(document).ready(function () {
                         'department': json[i].department.department,
                         'category': json[i].category.category,
                         'customer_comment': customer_comment,
+                        'reps-admins_comments' : 'test',
                         'customer_wait_time': customer_wait_time,
                         'resolve_time': resolve_time
 
@@ -139,6 +140,7 @@ $(document).ready(function () {
             {"data": "department"},
             {"data": "category"},
             {"data": "customer_comment"},
+            {"data": "reps-admins_comments"},
             {"data": "customer_wait_time"},
             {"data": "resolve_time"},
 
@@ -308,9 +310,13 @@ $(document).ready(function () {
                 }
 
 
+                // var sortingItems = ['All', 'Category', 'Department', 'Representatives'];
+
+
+
                 return_data.push({
 
-                    'Sorting_Drop_Down': "All",
+                    'Sorting_Drop_Down': 'All',
                     'Avg_Customer_Wait_Time_per_Case': avg_Wait_Time,
                     'Avg_Resolve_Time_per_Case': avg_resolve_Time,
                     'Cases_Created_Today': casesCreatedToday,
@@ -353,7 +359,6 @@ $(document).ready(function () {
                     });
                 $(th).replaceWith($("<th>", {html: select}));
 
-                // console.log(select);
 
                 column.data().unique().sort().each(function (d, j) {
                     $(select).append('<option value="' + d + '">' + d + '</option>')
