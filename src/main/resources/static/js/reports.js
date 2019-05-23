@@ -53,8 +53,6 @@ $(document).ready(function () {
                      casesCreatedToday = 0;
                      totalNumberOfCasesCreated = 0;
                      totalNumberOfCasesResolved = 0;
-                     total_Wait_Time = 0;
-                    total_Resolve_Time = 0;
 
                 } else {
 
