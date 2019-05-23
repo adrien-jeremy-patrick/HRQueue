@@ -28,6 +28,9 @@ $(document).ready(function () {
                 var avg_resolve_Time;
                 var date_case_close;
                 var resolve_Time;
+                var case_completed_time;
+                var total_case_completed_time = 0;
+                var avg_complete_time;
 
                 var casesResolvedPerDay = 0;
                 var casesResolvedToday = 0;
@@ -39,6 +42,7 @@ $(document).ready(function () {
 
                 var parsedResolveTime;
                 var parsedWaitTime;
+                var parsedCaseCompleteTime;
 
 
                 if (json.length === 0) {
@@ -67,14 +71,16 @@ $(document).ready(function () {
 
                             //Avg Wait Time
 
-                            date_created_at = json[i].created_at;
-                            date_case_open = json[i].case_open;
-                            customer_wait_time = date_case_open - date_created_at;
-                            total_Wait_Time += customer_wait_time;
-                            parsedWaitTime = total_Wait_Time/ counter;
-                            avg_Wait_Time = total_Wait_Time / counter;
-                            avg_Wait_Time = dhm(avg_Wait_Time);
+                            // date_created_at = json[i].created_at;
+                            // date_case_open = json[i].case_open;
+                            // customer_wait_time = date_case_open - date_created_at;
+                            // total_Wait_Time += customer_wait_time;
+                            // parsedWaitTime = total_Wait_Time/ counter;
+                            // avg_Wait_Time = total_Wait_Time / counter;
+                            // avg_Wait_Time = dhm(avg_Wait_Time);
+                            avg_Wait_Time = 'N/A';
                             avg_resolve_Time = 'N/A';
+                            avg_complete_time = 'N/A';
 
 
                             //Cases Created Per Day
@@ -105,6 +111,8 @@ $(document).ready(function () {
                             //Cases Created Today
 
                             if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
+
+                                console.log('hi');
 
                                 casesCreatedToday++;
 
@@ -163,6 +171,15 @@ $(document).ready(function () {
                             parsedResolveTime = total_Resolve_Time/ counter;
                             avg_resolve_Time = dhm(avg_resolve_Time);
 
+
+                            //Avg time for Case Completion Time;
+
+                            case_completed_time = date_case_close - date_created_at;
+                            total_case_completed_time += case_completed_time;
+                            avg_complete_time = total_case_completed_time / counter;
+                            parsedCaseCompleteTime = total_case_completed_time/ counter;
+                            avg_complete_time = dhm(avg_complete_time);
+
                             //Cases Resolved Per Day
 
 
@@ -186,7 +203,7 @@ $(document).ready(function () {
                             //Cases Created Today
 
                             if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
-
+                                console.log('hi');
                                 casesCreatedToday++;
 
 
@@ -197,6 +214,7 @@ $(document).ready(function () {
                             if (moment(json[i].case_closed).format("MM/DD/YYYY") === today()) {
 
                                 casesResolvedToday++;
+                                console.log(casesResolvedToday);
 
 
                             }
@@ -231,12 +249,13 @@ $(document).ready(function () {
                             if (counter === 0) {
                                 avg_Wait_Time = 'N/A';
                                 avg_resolve_Time = 'N/A';
+                                avg_resolve_Time = 'N/A';
                             }
 
                             //Cases Created Today
 
                             if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
-
+                                console.log('hi');
                                 casesCreatedToday++;
 
 
@@ -256,7 +275,8 @@ $(document).ready(function () {
                     var data = new google.visualization.arrayToDataTable([
                         ['Time Metrics', 'Hours'],
                         ["Avg. Customer Wait Time per Case", parsedWaitTime / (1000 * 60 * 60)],
-                        ["Avg. Resolve Time per Case", parsedResolveTime / (1000 * 60 * 60)]
+                        ["Avg. Resolve Time per Case", parsedResolveTime / (1000 * 60 * 60)],
+                        ["Avg. Case Completion Time per Case", parsedCaseCompleteTime / (1000 * 60 * 60)]
                     ]);
 
                     var options = {
@@ -358,6 +378,7 @@ $(document).ready(function () {
                     'Sorting_Drop_Down': 'All',
                     'Avg_Customer_Wait_Time_per_Case': avg_Wait_Time,
                     'Avg_Resolve_Time_per_Case': avg_resolve_Time,
+                    'Avg_Case_Completion_Time_Per_Case': avg_complete_time,
                     'Cases_Created_Today': casesCreatedToday,
                     'Cases_Created_per_Day': casesCreatedPerDay,
                     'Cases_Resolved_Today': casesResolvedToday,
@@ -378,6 +399,7 @@ $(document).ready(function () {
             {"data": "Sorting_Drop_Down"},
             {"data": "Avg_Customer_Wait_Time_per_Case"},
             {"data": "Avg_Resolve_Time_per_Case"},
+            {"data": "Avg_Case_Completion_Time_Per_Case"},
             {"data": "Cases_Created_Today"},
             {"data": "Cases_Created_per_Day"},
             {"data": "Cases_Resolved_Today"},
@@ -456,7 +478,7 @@ $(document).ready(function () {
 
                         case_completion_time = "N/A";
 
-                        customer_comment = "No comments provided";
+                        customer_comment = json[i].customer_comment;
 
                         writer = "No Representative associated with this case";
 
@@ -503,6 +525,7 @@ $(document).ready(function () {
                         date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
 
                         customer_wait_time = dhm(customer_wait_time);
+
                     } else if (json[i].case_open !== null && json[i].case_closed !== null && json[i].customer_comment !== "") {
 
                         date_created_at = json[i].created_at;
@@ -530,7 +553,7 @@ $(document).ready(function () {
                         resolve_time = dhm(resolve_time);
 
 
-                    }else{
+                    }else if(json[i].case_open !== null && json[i].case_closed !== null && json[i].customer_comment === ""){
 
 
                         date_created_at = json[i].created_at;
@@ -643,7 +666,6 @@ $(document).ready(function () {
         return today;
 
     }
-
 
 
 
