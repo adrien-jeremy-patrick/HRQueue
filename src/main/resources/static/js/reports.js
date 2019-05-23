@@ -88,7 +88,10 @@ $(document).ready(function () {
 
                             timeline = todaysDate - json[0].created_at;
                             days = (timeline / (1000 * 60 * 60 * 24));
+                            console.log(days);
                             var roundedDays = Math.round(days);
+
+                            console.log(roundedDays);
 
 
                             if (roundedDays === 0) {
