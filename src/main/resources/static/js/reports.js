@@ -30,34 +30,37 @@ $(document).ready(function () {
                 var resolve_Time;
 
                 var casesResolvedPerDay = 0;
+                var casesResolvedToday = 0;
+                var casesCreatedPerDay = 0;
                 var casesCreatedToday = 0;
                 var totalNumberOfCasesCreated = 0;
                 var totalNumberOfCasesResolved = 0;
 
+
                 var parsedResolveTime;
                 var parsedWaitTime;
-
-
-
 
 
                 if (json.length === 0) {
 
                     avg_Wait_Time = 'N/A';
                     avg_resolve_Time = 'N/A';
-                    casesResolvedPerDay = 0;
-                    casesCreatedToday = 0;
-                    totalNumberOfCasesCreated = 0;
-                    totalNumberOfCasesResolved = 0;
+
+
+                     casesResolvedPerDay = 0;
+                     casesResolvedToday = 0;
+                     casesCreatedPerDay = 0;
+                     casesCreatedToday = 0;
+                     totalNumberOfCasesCreated = 0;
+                     totalNumberOfCasesResolved = 0;
+                     total_Wait_Time = 0;
+                    total_Resolve_Time = 0;
 
                 } else {
 
                     for (var i = 0; i < json.length; i++) {
 
 
-                        // console.log(moment(json[i].created_at).format("MM/DD/YYYY"));
-
-                        //Ignore if case has not been assigned.
 
                         if (json[i].case_open !== null && json[i].case_closed === null) {
 
@@ -75,17 +78,38 @@ $(document).ready(function () {
                             avg_Wait_Time = dhm(avg_Wait_Time);
                             avg_resolve_Time = 'N/A';
 
+
+                            //Cases Created Per Day
+
+                            var timeline;
+                            var days;
+                            var todaysDate = new Date();
+
+
+                            timeline = todaysDate - json[0].created_at;
+                            days = (timeline / (1000 * 60 * 60 * 24));
+                            var roundedDays = Math.round(days);
+
+
+                            if (roundedDays === 0) {
+
+                                casesCreatedPerDay = 0;
+
+                            } else {
+
+                                casesCreatedPerDay = totalNumberOfCasesCreated / roundedDays;
+
+                            }
+
                             //Cases Created Today
-
-
 
                             if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
 
-                                console.log('hi');
                                 casesCreatedToday++;
 
 
                             }
+
 
 
                         } else if (json[i].case_open !== null && json[i].case_closed !== null) {
@@ -107,6 +131,27 @@ $(document).ready(function () {
                             avg_Wait_Time = total_Wait_Time / counter;
                             avg_Wait_Time = dhm(avg_Wait_Time);
 
+                            //Cases Created Per Day
+
+
+                             todaysDate = new Date();
+
+
+                            timeline = todaysDate - json[0].created_at;
+                            days = (timeline / (1000 * 60 * 60 * 24));
+                             roundedDays = Math.round(days);
+
+
+                            if (roundedDays === 0) {
+
+                                casesCreatedPerDay = 0;
+
+                            } else {
+
+                                casesCreatedPerDay = totalNumberOfCasesCreated / roundedDays;
+
+                            }
+
 
                             //Avg Resolve Time;
 
@@ -119,14 +164,12 @@ $(document).ready(function () {
 
                             //Cases Resolved Per Day
 
-                            var timeline;
-                            var days;
-                            var todayResolvedDay = new Date();
 
+                            var todaysDate = new Date();
 
-                            timeline = todayResolvedDay - json[0].created_at;
+                            timeline = todaysDate - json[0].created_at;
                             days = (timeline / (1000 * 60 * 60 * 24));
-                            var roundedDays = Math.round(days);
+                             roundedDays = Math.round(days);
 
 
                             if (roundedDays === 0) {
@@ -139,11 +182,20 @@ $(document).ready(function () {
 
                             }
 
+                            //Cases Created Today
 
                             if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
 
-                                console.log('hi');
                                 casesCreatedToday++;
+
+
+                            }
+
+                            //Cases Resolved Today
+
+                            if (moment(json[i].case_closed).format("MM/DD/YYYY") === today()) {
+
+                                casesResolvedToday++;
 
 
                             }
@@ -153,11 +205,34 @@ $(document).ready(function () {
 
                             totalNumberOfCasesCreated++;
 
+                            //Cases Created Per Day
+
+
+                            todaysDate = new Date();
+
+
+                            timeline = todaysDate - json[0].created_at;
+                            days = (timeline / (1000 * 60 * 60 * 24));
+                            roundedDays = Math.round(days);
+
+
+                            if (roundedDays === 0) {
+
+                                casesCreatedPerDay = 0;
+
+                            } else {
+
+                                casesCreatedPerDay = totalNumberOfCasesCreated / roundedDays;
+
+                            }
+
 
                             if (counter === 0) {
                                 avg_Wait_Time = 'N/A';
                                 avg_resolve_Time = 'N/A';
                             }
+
+                            //Cases Created Today
 
                             if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
 
@@ -204,9 +279,9 @@ $(document).ready(function () {
                 };
 
                 google.charts.load('current', {packages: ['corechart', 'bar']});
-                google.charts.setOnLoadCallback(drawBasic);
+                google.charts.setOnLoadCallback(totalNumber);
 
-                function drawBasic() {
+                function totalNumber() {
 
                     var data = new google.visualization.DataTable();
                     data.addColumn('string', '# Total');
@@ -245,8 +320,10 @@ $(document).ready(function () {
                     'Avg_Customer_Wait_Time_per_Case': avg_Wait_Time,
                     'Avg_Resolve_Time_per_Case': avg_resolve_Time,
                     'Cases_Created_Today': casesCreatedToday,
-                    'Total_#_of_Cases_Created': totalNumberOfCasesCreated,
+                    'Cases_Created_per_Day': casesCreatedPerDay,
+                    'Cases_Resolved_Today': casesResolvedToday,
                     'Cases_Resolved_per_Day': casesResolvedPerDay,
+                    'Total_#_of_Cases_Created': totalNumberOfCasesCreated,
                     'Total_#_of_Cases_Resolved': totalNumberOfCasesResolved
 
 
@@ -263,8 +340,10 @@ $(document).ready(function () {
             {"data": "Avg_Customer_Wait_Time_per_Case"},
             {"data": "Avg_Resolve_Time_per_Case"},
             {"data": "Cases_Created_Today"},
-            {"data": "Total_#_of_Cases_Created"},
+            {"data": "Cases_Created_per_Day"},
+            {"data": "Cases_Resolved_Today"},
             {"data": "Cases_Resolved_per_Day"},
+            {"data": "Total_#_of_Cases_Created"},
             {"data": "Total_#_of_Cases_Resolved"}
 
 
