@@ -62,7 +62,7 @@
                         <td th:text="${case.category.category}"></td>
                         <td th:text="${case.created_at}"></td>
                         <span th:if="${user.isAdmin()}">
-                            <td><a th:href="@{'/case/' + ${case.getId()} + '/delete'}"><button>Delete</button></a></td>
+                            <td><a th:href="@{'/case/' + ${case.getId()} + '/delete'}"><button id="delete-button">Delete</button></a></td>
                         </span>
                         <td><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></td>
                         <td><a th:href="@{'/case/' + ${case.getId()} + '/complete'}"><button>Complete</button></a></td>

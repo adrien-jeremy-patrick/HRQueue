@@ -391,11 +391,11 @@
         margin: 0 auto;
         padding-top: 20px;
     }
-    #the-process {
+    .the-process {
         width: 100%;
         background-color: var(--color8);
     }
-    #the-process h1 {
+    .the-process h1 {
         margin: 0;
         font-size: 45px!important;
         top: -29px!important;
@@ -446,12 +446,12 @@
         background-image: url("../images/aboutus-pat2.jpg");
     }
 
-    #the-team {
+    .the-team {
         margin-top: 200px;
         width: 100%;
         background-color: var(--color9);
     }
-    #the-team h1 {
+    .the-team h1 {
         font-size: 45px;
         top: -31px;
     }
@@ -519,7 +519,7 @@
         font-size: 8vw;
         line-height: 42px;
     }
-    #the-process h1 {
+    .the-process h1 {
         margin: 0;
         font-size: 62px!important;
         top: -39px!important;

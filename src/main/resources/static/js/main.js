@@ -77,8 +77,13 @@
         }, 700);
 
         $('.extended-nav').fadeOut();
-
-
-
     });
+
+//    Delete button confirm function
+
+    $('#delete-button').on('click', function(){
+        console.log("delete button clicked")
+    })
+
+
 })();
