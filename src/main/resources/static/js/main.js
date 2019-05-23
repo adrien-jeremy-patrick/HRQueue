@@ -81,7 +81,7 @@
 
 //    Delete button confirm function
 
-    $('#delete-button').on('click', function(){
+    $('.delete-button').on('click', function(){
         console.log("delete button clicked")
     })
 
