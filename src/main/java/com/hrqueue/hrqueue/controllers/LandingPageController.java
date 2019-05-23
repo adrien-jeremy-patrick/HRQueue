@@ -25,10 +25,23 @@ public class LandingPageController {
         }
 
         if (sizeofArray == 0) {
-            String password = passwordEncoder.encode("admin");
-            System.out.println(password);
-            User admin = new User("admin","admin","admin",password,true);
+//            User admin = new User("","","",,);
+            String adminPassword = passwordEncoder.encode("admin");
+            String repPassword = passwordEncoder.encode("rep");
+            String michaelPassword = passwordEncoder.encode("michael");
+            String karenPassword = passwordEncoder.encode("karen");
+            String pamPassword = passwordEncoder.encode("pam");
+            User admin = new User("admin","admin","admin",adminPassword,true);
+            User rep = new User("rep","rep","rep",repPassword,false);
+            User michael = new User("Michael","Scott","michael",michaelPassword,false);
+            User Karen = new User("Karen","Filippelli","karen",karenPassword,false);
+            User Pam = new User("Pam","Halpert","pam",pamPassword,false);
             userRepository.save(admin);
+            userRepository.save(rep);
+            userRepository.save(michael);
+            userRepository.save(Karen);
+            userRepository.save(Pam);
+
         }
         return "index";
     }

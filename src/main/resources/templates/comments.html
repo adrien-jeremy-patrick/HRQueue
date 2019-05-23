@@ -11,6 +11,8 @@
     <div class="dashboard-wrapper">
     <h1>Comments</h1>
     </div>
+    <span><a th:href="@{'/rep-admin-dashboard'}"><h6>Dashboard</h6></a></span>
+
 <div>
     <h2 th:text="${case.customer_name}"></h2>
     <h3 th:text="${case.department.department}"></h3>
@@ -41,6 +43,6 @@
 </div>
 </div>
 
-<nav th:replace="fragments/footer :: footer" />
+<nav th:replace="fragments/footer :: footer" />s
 </body>
 </html>
