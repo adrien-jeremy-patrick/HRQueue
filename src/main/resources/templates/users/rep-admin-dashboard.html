@@ -102,17 +102,17 @@
                     <td th:text="${case.customer_name}"></td>
                     <td th:text="${case.department.department}"></td>
                     <td th:text="${case.category.category}"></td>
-                    <span th:if="${user.isAdmin()}">
-                        <span th:if="${case.case_closed != null}">
-                            <td>Complete</td>
-                        </span>
-                        <span th:if="${case.case_open != null && case.case_closed == null}">
-                            <td>Working</td>
-                        </span>
-                        <span th:if="${case.case_open == null}">
-                            <td>Open</td>
-                        </span>
-                    </span>
+                    <!--<span th:if="${user.isAdmin()}">-->
+                        <!--<span th:if="${case.case_closed != null}">-->
+                            <!--<td>Complete</td>-->
+                        <!--</span>-->
+                        <!--<span th:if="${case.case_open != null && case.case_closed == null}">-->
+                            <!--<td>Working</td>-->
+                        <!--</span>-->
+                        <!--<span th:if="${case.case_open == null}">-->
+                            <!--<td>Open</td>-->
+                        <!--</span>-->
+                    <!--</span>-->
                     <span th:if="${user.isAdmin() != true}"><td th:text="${case.case_closed}"></td></span>
                     <span th:if="${user.isAdmin()}">
                         <span th:if="${case.writer == null}">
