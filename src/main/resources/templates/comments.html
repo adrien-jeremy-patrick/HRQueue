@@ -20,7 +20,7 @@
 <div>
 <form th:method="post" th:object="${commentObject}" th:action="@{'/comment/'+${case.id}+'/create'}">
     <label>Comment:</label>
-    <input id="comment" th:field="*{comment}"/>
+    <input required="required" id="comment" th:field="*{comment}"/>
     <br/>
     <button>Submit</button>
 </form>
