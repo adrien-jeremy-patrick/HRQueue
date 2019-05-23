@@ -25,7 +25,6 @@ public class UserController {
     }
 
 
-
     @GetMapping("/create-user")
     public String createUser(Model model) {
         model.addAttribute("user", new User());
@@ -33,13 +32,9 @@ public class UserController {
     }
 
     @PostMapping("/create-user")
-
     public String createUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
-
-
-
         userRepository.save(user);
         return "redirect:/login";
 
@@ -51,20 +46,24 @@ public class UserController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("allCases", caseRepository.findByCaseOpenIsNull());
         model.addAttribute("user", userRepository.findById(loggedInUser.getId()));
-        model.addAttribute("closedCases",caseRepository.findByCaseClosedIsNotNull());
-        return "users/rep-admin-dashboard";
-    }
 
-    @GetMapping("/user/{id}/edit")
-    public String showUserEdit(Model model) {
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("user", userRepository.findById(loggedInUser.getId()));
-        return "users/user-edit";
-    }
+        if (loggedInUser.isAdmin()) {
+            System.out.println(true);
+            model.addAttribute("closedCases", caseRepository.findAll());
+        } else {
+            System.out.println(false);
+            model.addAttribute("closedCases", caseRepository.findByCaseClosedIsNotNullAndWriterId(loggedInUser.getId()));
+        }
 
+            return "users/rep-admin-dashboard";
+        }
 
-
-
+        @GetMapping("/user/{id}/edit")
+        public String showUserEdit (Model model){
+            User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", userRepository.findById(loggedInUser.getId()));
+            return "users/user-edit";
+        }
 
 
 

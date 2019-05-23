@@ -1,12 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: head">
     <meta charset="UTF-8" />
     <title>Comments</title>
 </head>
 <body>
+<nav th:replace="fragments/admin-navbar :: admin-navbar" />
 
-<h1>Comments</h1>
+<div class="body-div">
+    <div class="dashboard-wrapper">
+    <h1>Comments</h1>
+    </div>
+<div>
+    <h2 th:text="${case.customer_name}"></h2>
+    <h3 th:text="${case.department.department}"></h3>
+    <h3 th:text="${case.category.category}"></h3>
+    <p th:text="'Customer Comments: ' + ${case.customer_comment}"></p>
+</div>
+<div>
+<form th:method="post" th:object="${commentObject}" th:action="@{'/comment/'+${case.id}+'/create'}">
+    <label>Comment:</label>
+    <input required="required" id="comment" th:field="*{comment}"/>
+    <br/>
+    <button>Submit</button>
+</form>
+</div>
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th scope="col">Comment</th>
+            <th scope="col">Time</th>
+            <th scope="cole">User</th>
+        </tr>
+        <tr th:each=" comment : ${caseComments}">
+            <td th:text="${comment.comment}"></td>
+            <td th:text="${comment.commentStamp}"></td>
+            <td th:text="${comment.writer.username}"></td>
+        </tr>
+    </table>
+</div>
+</div>
 
+<nav th:replace="fragments/footer :: footer" />
 </body>
 </html>

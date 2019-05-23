@@ -21,9 +21,17 @@ public class Comment {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User writer;
 
-    public Comment(String comment, Date commentStamp) {
+    @OneToOne
+    private Case cases;
+
+    public Comment(){
+    }
+
+    public Comment(String comment, Date commentStamp, User writer, Case cases) {
         this.comment = comment;
         this.commentStamp = commentStamp;
+        this.writer = writer;
+        this.cases = cases;
     }
 
     public long getId() {
@@ -48,5 +56,21 @@ public class Comment {
 
     public void setCommentStamp(Date commentStamp) {
         this.commentStamp = commentStamp;
+    }
+
+    public User getWriter() {
+        return writer;
+    }
+
+    public void setWriter(User writer) {
+        this.writer = writer;
+    }
+
+    public Case getCases() {
+        return cases;
+    }
+
+    public void setCases(Case cases) {
+        this.cases = cases;
     }
 }

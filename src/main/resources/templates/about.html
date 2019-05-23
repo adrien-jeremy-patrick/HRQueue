@@ -5,11 +5,26 @@
     <title>Home</title>
 </head>
 <body>
-<nav th:replace="fragments/admin-navbar :: admin-navbar" />
 
 
-<div class="about-us-1"></div>
+<!--<div class="about-us-1"></div>-->
 
+<div class="about-us-wrapper">
+
+    <div class="about-us-header">
+        <h6><a href="/">Go back home</a></h6>
+        <h1>HRQueue</h1>
+        <div class="process-team"><a href="#">The Process</a><a href="#">The Team</a></div>
+    </div>
+    <div class="the-process message-wrapper">
+        <h1>The Process</h1>
+        <p>about</p>
+
+    </div>
+    <div class="the-team message-wrapper">
+
+    </div>
+</div>
 
 
 <footer th:replace="fragments/footer :: footer" />
