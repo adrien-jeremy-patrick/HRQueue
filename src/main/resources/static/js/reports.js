@@ -466,6 +466,7 @@ $(document).ready(function () {
         "scrollX": true,
         "ajax": {
             "url": "/reports-cases",
+
             "dataSrc": function (json) {
                 var return_data = new Array();
                 var date_created_at;
@@ -490,7 +491,7 @@ $(document).ready(function () {
 
                         writer = "No Representative associated with this case";
 
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+                        date_created_at = formatDate(json[i].created_at);
 
 
                     } else if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment !== "") {
@@ -504,7 +505,7 @@ $(document).ready(function () {
 
                         writer = "No Representative associated with this case";
 
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+                        date_created_at = formatDate(json[i].created_at);
 
 
                     } else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment === "") {
@@ -521,7 +522,7 @@ $(document).ready(function () {
 
                         customer_wait_time = date_case_open - date_created_at;
 
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+                        date_created_at = formatDate(json[i].created_at);
 
                         customer_wait_time = dhm(customer_wait_time);
 
@@ -540,7 +541,7 @@ $(document).ready(function () {
 
                         customer_wait_time = date_case_open - date_created_at;
 
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+                        date_created_at = formatDate(json[i].created_at);
 
                         customer_wait_time = dhm(customer_wait_time);
 
@@ -560,7 +561,7 @@ $(document).ready(function () {
 
                         resolve_time = date_case_closed - date_case_open;
 
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+                        date_created_at = formatDate(json[i].created_at);
 
                         customer_wait_time = dhm(customer_wait_time);
 
@@ -584,7 +585,7 @@ $(document).ready(function () {
 
                         resolve_time = date_case_closed - date_case_open;
 
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+                        date_created_at = formatDate(json[i].created_at);
 
                         customer_wait_time = dhm(customer_wait_time);
 
@@ -677,6 +678,18 @@ $(document).ready(function () {
 
         return today;
 
+    }
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [year, month, day].join('/');
     }
 
 
