@@ -114,11 +114,11 @@
                             <!--<td>Open</td>-->
                         <!--</div>-->
                     <!--</div>-->
-                    <span th:if="${user.isAdmin() != true}"><td th:text="${case.case_closed}"></td></span>
-                    <span th:if="${user.isAdmin()}">
-                        <span th:if="${case.writer == null}">
-                        <td>Open</td>
-                        </div>
+                    <!--<span th:if="${user.isAdmin() != true}"><td th:text="${case.case_closed}"></td></span>-->
+                    <!--<span th:if="${user.isAdmin()}">-->
+                        <!--<span th:if="${case.writer == null}">-->
+                        <!--<td>Open</td>-->
+                        <!--</div>-->
                         <div th:if="${case.writer != null}">
                         <td th:text="${case.writer.username}"></td>
                         </div>
