@@ -53,12 +53,15 @@ $(document).ready(function () {
 
                     avg_Wait_Time = 'N/A';
                     avg_resolve_Time = 'N/A';
+                    avg_complete_time = 'N/A';
 
 
                      casesResolvedPerDay = 0;
-                     casesResolvedToday = 0;
                      casesCreatedPerDay = 0;
+
                      casesCreatedToday = 0;
+                     casesResolvedToday = 0;
+
                      totalNumberOfCasesCreated = 0;
                      totalNumberOfCasesResolved = 0;
 
@@ -183,10 +186,10 @@ $(document).ready(function () {
 
                             // Avg time for Case Completion Time
 
-                            // case_completed_time = json[i].case_closed - json[i].created_at;
-                            // total_case_completed_time += case_completed_time;
+                            case_completed_time = json[i].case_closed - json[i].created_at;
+                            total_case_completed_time += case_completed_time;
                             // avg_complete_time = total_case_completed_time / counter;
-                            // parsedCaseCompleteTime = total_case_completed_time/ counter;
+                            parsedCaseCompleteTime = total_case_completed_time/ counter;
 
                             avg_complete_time = avg_wait_Time_For_Completed + avg_resolved_Time_For_Completed;
 
@@ -262,7 +265,7 @@ $(document).ready(function () {
                             if (counter === 0) {
                                 avg_Wait_Time = 'N/A';
                                 avg_resolve_Time = 'N/A';
-                                avg_resolve_Time = 'N/A';
+                                avg_complete_time = 'N/A';
                             }
 
                             //Cases Created Today
