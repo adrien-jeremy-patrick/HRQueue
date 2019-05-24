@@ -103,6 +103,7 @@
                     <td th:text="${case.department.department}"></td>
                     <td th:text="${case.category.category}"></td>
                     <!--<div th:if="${user.isAdmin()}">-->
+
                         <!--<div th:if="${case.case_closed != null && case.case_open != null && case.created_at != null}">-->
                             <!--<td>Complete</td>-->
                         <!--</div>-->
@@ -117,16 +118,16 @@
                     <span th:if="${user.isAdmin()}">
                         <span th:if="${case.writer == null}">
                         <td>Open</td>
-                        </span>
-                        <span th:if="${case.writer != null}">
+                        </div>
+                        <div th:if="${case.writer != null}">
                         <td th:text="${case.writer.username}"></td>
-                        </span>
-                    </span>
-                    <span th:if="${case.writer != null}">
-                        <span th:if="${case.case_closed == null}">
-                            <span th:if="${user.isAdmin()}"><td><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></td></span>
-                        </span>
-                        <span th:if="${case.case_closed != null}">
+                        </div>
+                    </div>
+                    <div th:if="${case.writer != null}">
+                        <div th:if="${case.case_closed == null}">
+                            <div th:if="${user.isAdmin()}"><td><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></td></div>
+                        </div>
+                        <div th:if="${case.case_closed != null}">
                             <td>Complete</td>
                         </span>
                     </span>
