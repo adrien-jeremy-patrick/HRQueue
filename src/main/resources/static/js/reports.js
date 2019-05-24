@@ -24,6 +24,10 @@ $(document).ready(function () {
                 var date_created_at;
                 var customer_wait_time;
 
+                var avg_wait_Time_For_Completed;
+                var avg_resolved_Time_For_Completed;
+
+
                 var total_Resolve_Time = 0;
                 var avg_resolve_Time;
                 var date_case_close;
@@ -71,6 +75,8 @@ $(document).ready(function () {
 
                             //Avg Wait Time
 
+                            //ONLY COUNTING THE AVG WAIT TIME Of the CASES That Have been RESOLVED/COMPLETED!!
+
                             // date_created_at = json[i].created_at;
                             // date_case_open = json[i].case_open;
                             // customer_wait_time = date_case_open - date_created_at;
@@ -92,10 +98,8 @@ $(document).ready(function () {
 
                             timeline = todaysDate - json[0].created_at;
                             days = (timeline / (1000 * 60 * 60 * 24));
-                            console.log(days);
                             var roundedDays = Math.round(days);
 
-                            console.log(roundedDays);
 
 
                             if (roundedDays === 0) {
@@ -106,15 +110,13 @@ $(document).ready(function () {
 
                                 casesCreatedPerDay = totalNumberOfCasesCreated / roundedDays;
 
-                                casesCreatedPerDay = parseFloat(casesCreatedPerDay.toFixed(1));
+                                casesCreatedPerDay = Math.round(parseFloat(casesCreatedPerDay));
 
                             }
 
                             //Cases Created Today
 
                             if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
-
-                                console.log('hi');
 
                                 casesCreatedToday++;
 
@@ -139,7 +141,9 @@ $(document).ready(function () {
                             customer_wait_time = date_case_open - date_created_at;
                             total_Wait_Time += customer_wait_time;
                             parsedWaitTime = total_Wait_Time/ counter;
-                            avg_Wait_Time = total_Wait_Time / counter;
+                            avg_Wait_Time = Math.floor(total_Wait_Time / counter);
+                            avg_wait_Time_For_Completed =  Math.floor(total_Wait_Time / counter);
+
                             avg_Wait_Time = dhm(avg_Wait_Time);
 
                             //Cases Created Per Day
@@ -160,30 +164,34 @@ $(document).ready(function () {
                             } else {
 
                                 casesCreatedPerDay = totalNumberOfCasesCreated / roundedDays;
-                                casesCreatedPerDay = parseFloat(casesCreatedPerDay.toFixed(1));
+                                casesCreatedPerDay = Math.round(parseFloat(casesCreatedPerDay));
 
                             }
 
 
                             //Avg Resolve Time;
 
-                            console.log(counter);
 
                             date_case_close = json[i].case_closed;
                             resolve_Time = date_case_close - date_case_open;
                             total_Resolve_Time += resolve_Time;
-                            avg_resolve_Time = total_Resolve_Time / counter;
+                            avg_resolve_Time = Math.floor(total_Resolve_Time / counter);
+                            avg_resolved_Time_For_Completed = Math.floor(total_Resolve_Time / counter);
                             parsedResolveTime = total_Resolve_Time/ counter;
                             avg_resolve_Time = dhm(avg_resolve_Time);
 
 
-                            //Avg time for Case Completion Time;
+                            // Avg time for Case Completion Time
 
-                            case_completed_time = date_case_close - date_created_at;
-                            total_case_completed_time += case_completed_time;
-                            avg_complete_time = total_case_completed_time / counter;
-                            parsedCaseCompleteTime = total_case_completed_time/ counter;
+                            // case_completed_time = json[i].case_closed - json[i].created_at;
+                            // total_case_completed_time += case_completed_time;
+                            // avg_complete_time = total_case_completed_time / counter;
+                            // parsedCaseCompleteTime = total_case_completed_time/ counter;
+
+                            avg_complete_time = avg_wait_Time_For_Completed + avg_resolved_Time_For_Completed;
+
                             avg_complete_time = dhm(avg_complete_time);
+
 
                             //Cases Resolved Per Day
 
@@ -202,14 +210,13 @@ $(document).ready(function () {
                             } else {
 
                                 casesResolvedPerDay = totalNumberOfCasesResolved / roundedDays;
-                                casesResolvedPerDay = parseFloat(casesResolvedPerDay.toFixed(1));
+                                casesResolvedPerDay = Math.round(parseFloat(casesResolvedPerDay));
 
                             }
 
                             //Cases Created Today
 
                             if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
-                                console.log('hi');
                                 casesCreatedToday++;
 
 
@@ -220,7 +227,6 @@ $(document).ready(function () {
                             if (moment(json[i].case_closed).format("MM/DD/YYYY") === today()) {
 
                                 casesResolvedToday++;
-                                console.log(casesResolvedToday);
 
 
                             }
@@ -248,7 +254,7 @@ $(document).ready(function () {
                             } else {
 
                                 casesCreatedPerDay = totalNumberOfCasesCreated / roundedDays;
-                                casesCreatedPerDay = parseFloat(casesCreatedPerDay.toFixed(1));
+                                casesCreatedPerDay = Math.round(parseFloat(casesCreatedPerDay));
 
                             }
 
@@ -262,7 +268,6 @@ $(document).ready(function () {
                             //Cases Created Today
 
                             if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
-                                console.log('hi');
                                 casesCreatedToday++;
 
 
@@ -647,7 +652,11 @@ $(document).ready(function () {
         if (h === 24) {
             d++;
             h = 0;
+
+
         }
+
+        console.log(m);
         return [d, pad(h), pad(m)].join(':');
     }
 
