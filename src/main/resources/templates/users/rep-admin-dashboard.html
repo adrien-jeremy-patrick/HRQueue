@@ -88,7 +88,7 @@
                         <th scope="col">Completed</th>
                     </div>
                     <div th:if="${user.isAdmin()}">
-                        <th scope="col">Status</th>
+                        <!--<th scope="col">Status</th>-->
                         <th scope="col">Assigned User</th>
                     </div>
                     <div th:if="${user.isAdmin()}">
@@ -102,17 +102,17 @@
                     <td th:text="${case.customer_name}"></td>
                     <td th:text="${case.department.department}"></td>
                     <td th:text="${case.category.category}"></td>
-                    <div th:if="${user.isAdmin()}">
-                        <div th:if="${case.case_closed != null && case.case_open != null && case.created_at != null}">
-                            <td>Complete</td>
-                        </div>
-                        <div th:if="${case.case_open != null && case.case_closed == null && case.created_at != null}">
-                            <td>Working</td>
-                        </div>
-                        <div th:if="${case.case_open == null && case.case_closed == null && case.created_at != null}">
-                            <td>Open</td>
-                        </div>
-                    </div>
+                    <!--<div th:if="${user.isAdmin()}">-->
+                        <!--<div th:if="${case.case_closed != null && case.case_open != null && case.created_at != null}">-->
+                            <!--<td>Complete</td>-->
+                        <!--</div>-->
+                        <!--<div th:if="${case.case_open != null && case.case_closed == null && case.created_at != null}">-->
+                            <!--<td>Working</td>-->
+                        <!--</div>-->
+                        <!--<div th:if="${case.case_open == null && case.case_closed == null && case.created_at != null}">-->
+                            <!--<td>Open</td>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <span th:if="${user.isAdmin() != true}"><td th:text="${case.case_closed}"></td></span>
                     <span th:if="${user.isAdmin()}">
                         <span th:if="${case.writer == null}">
