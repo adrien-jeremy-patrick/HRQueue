@@ -42,6 +42,12 @@ public class CategoryController {
         return "redirect:/categories";
     }
 
+    @GetMapping("/categories/{category}/delete-prompt")
+    public String deleteCategoryPrompt(@PathVariable String category, Model model){
+        model.addAttribute("category", categoryRepo.findByCategory(category));
+        return "categories/delete-prompt";
+    }
+
     @GetMapping("/categories/{category}/delete")
     public String deleteCategory(@PathVariable String category){
         Category deleteCategory = categoryRepo.findByCategory(category);

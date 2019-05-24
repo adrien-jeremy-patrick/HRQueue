@@ -57,6 +57,13 @@ public class DepartmentController {
         return "redirect:/departments";
     }
 
+    @GetMapping("/departments/{department}/delete-prompt")
+    public String deleteDepartmentPrompt(@PathVariable String department, Model model){
+        model.addAttribute("department", departmentRepo.findByDepartment(department));
+        return "departments/delete-prompt";
+    }
+
+
     @GetMapping("/departments/{department}/delete")
     public String deleteDepartment(@PathVariable String department){
        Department deleteDepartment = departmentRepo.findByDepartment(department);

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: head">
+    <meta charset="UTF-8" />
+    <title>Home</title>
+</head>
+<body>
+<nav th:replace="fragments/admin-navbar :: admin-navbar" />
+
+
+<div class="body-div">
+    <h1>Are you sure you want to delete this Category?</h1>
+    <p>Category name: <span th:text="${category.category}"></span></p>
+    <a th:href="@{'/categories/' + ${category.category} + '/delete'}">
+        <button class="delete">Yes, delete forever.</button>
+    </a>
+    <a href="/categories"><button class="nevermind">No, go back.</button></a>
+
+</div>
+
+<nav th:replace="fragments/footer :: footer" />
+
+</body>
+</html>
