@@ -103,13 +103,13 @@
                     <td th:text="${case.department.department}"></td>
                     <td th:text="${case.category.category}"></td>
                     <div th:if="${user.isAdmin()}">
-                        <div th:if="${case.case_closed != null}">
+                        <div th:if="${case.case_closed != null && case.case_open != null && case.created_at != null}">
                             <td>Complete</td>
                         </div>
-                        <!--<div th:if="${case.case_open != null && case.case_closed == null}">-->
-                            <!--<td>Working</td>-->
-                        <!--</div>-->
-                        <div th:if="${case.case_open == null}">
+                        <div th:if="${case.case_open != null && case.case_closed == null && case.created_at != null}">
+                            <td>Working</td>
+                        </div>
+                        <div th:if="${case.case_open == null && case.case_closed == null && case.created_at != null}">
                             <td>Open</td>
                         </div>
                     </div>
