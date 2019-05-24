@@ -291,7 +291,6 @@ $(document).ready(function () {
                 function timeMetrics() {
 
 
-                    console.log(parsedWaitTime);
                     if(parsedWaitTime === undefined){
                         $('#BarCharts').remove();
 
@@ -333,25 +332,36 @@ $(document).ready(function () {
 
                 function totalNumber() {
 
-                    var data = new google.visualization.DataTable();
-                    data.addColumn('string', '# Total');
-                    data.addColumn('number', '#');
+                    console.log(totalNumberOfCasesCreated);
 
-                    data.addRows([
-                        [{v:'# of Cases Created', f: 'Total Number of Cases Created'}, totalNumberOfCasesCreated],
-                        [{v: '# of Cases Resolved', f: 'Total Number of Cases Resolved'}, totalNumberOfCasesResolved],
+                    if(totalNumberOfCasesCreated === 0){
+                        $('#chart_div').remove();
+                    }else {
 
-                    ]);
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('string', '# Total');
+                        data.addColumn('number', '#');
 
-                    var options = {
-                        title: 'Cases Created & Resolved',
-                        hAxis: {
-                            title: 'Cases Number Metrics',
-                        },
-                        vAxis: {
-                            title: 'Number'
-                        }
-                    };
+                        data.addRows([
+                            [{v: '# of Cases Created', f: 'Total Number of Cases Created'}, totalNumberOfCasesCreated],
+                            [{
+                                v: '# of Cases Resolved',
+                                f: 'Total Number of Cases Resolved'
+                            }, totalNumberOfCasesResolved],
+
+                        ]);
+
+                        var options = {
+                            title: 'Cases Created & Resolved',
+                            hAxis: {
+                                title: 'Cases Number Metrics',
+                            },
+                            vAxis: {
+                                title: 'Number'
+                            }
+                        };
+
+                    }
 
                     var chart = new google.visualization.ColumnChart(
                         document.getElementById('chart_div'));
