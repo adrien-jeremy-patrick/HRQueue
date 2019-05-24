@@ -7,9 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -58,12 +56,34 @@ public class UserController {
             return "users/rep-admin-dashboard";
         }
 
-        @GetMapping("/user/{id}/edit")
-        public String showUserEdit (Model model){
+        @GetMapping("/user/display")
+        public String showeEditpage(Model model){
             User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", userRepository.findById(loggedInUser.getId()));
+            model.addAttribute("allUsers",userRepository.findAll());
+        return "users/user-display";
+        }
+
+        @GetMapping("/user/{id}/display")
+        public String showUserEdit(Model model, @PathVariable long id){
+            User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", userRepository.findById(loggedInUser.getId()));
+            model.addAttribute("userProfile", userRepository.findById(id));
             return "users/user-edit";
         }
+
+    @PostMapping("/user/{id}/edit")
+    public String showUserEdit(@PathVariable long id, @RequestParam(name = "firstName")String firstName,@RequestParam(name = "lastName")String lastName,@RequestParam(name = "username")String username,@RequestParam(name = "password")String password){
+        User editUser = userRepository.findById(id);
+        System.out.println(id);
+        editUser.setFirstName(firstName);
+        editUser.setLastName(lastName);
+        editUser.setUsername(username);
+        String newPassword = passwordEncoder.encode(password);
+        editUser.setPassword(newPassword);
+        userRepository.save(editUser);
+        return "redirect:/user/display";
+    }
 
 
 

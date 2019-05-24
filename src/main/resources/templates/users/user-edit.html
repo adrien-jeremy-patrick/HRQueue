@@ -16,7 +16,27 @@
 
 
 <div class="body-div">
-    view profile
+    <div class="dashboard-wrapper">
+        <h1 th:text="'User: ' + ${userProfile.firstName} + ' ' + ${userProfile.lastName}"></h1>
+        <br/>
+        <br/>
+        <h2>Edit User</h2>
+        <br/>
+        <form th:method="post" th:action="@{'/user/'+${userProfile.id}+'/edit'}">
+            <label th:text="'First Name: ' + ${userProfile.firstName}"></label>
+            <input id="firstName" name="firstName" type="text"/>
+            <br/>
+            <label th:text="'Last Name: ' + ${userProfile.lastName}"></label>
+            <input id="lastName" name="lastName" type="text"/>
+            <br/>
+            <label th:text="'Username: ' + ${userProfile.username}"></label>
+            <input id="username" name="username" type="text"/>
+            <br/>
+            <label>Password Reset</label>
+            <input id="password" name="password" type="text"/>
+            <br/>
+            <input type="submit" value="Submit">
+        </form>
 </div>
 
 
