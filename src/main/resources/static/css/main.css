@@ -360,6 +360,15 @@
         text-transform: uppercase;
         color: var(--color9);
     }
+    .description {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+    }
+    .description h4 {
+        font-size: 24px;
+    }
     .about-us-header h1 {
         font-family: 'Poppins', sans-serif;
         display: inline-block;
@@ -384,41 +393,117 @@
     }
     .the-process {
         width: 100%;
-        background-color: var(--color6);
-        height: 1500px;
+        background-color: var(--color8);
     }
     .the-process h1 {
         margin: 0;
+        font-size: 45px!important;
+        top: -29px!important;
     }
+
+    .about-us-img-wrapper {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .about-us-img1,
+    .about-us-img2,
+    .about-us-img3,
+    .about-us-img4,
+    .about-us-img5,
+    .about-us-img6,
+    .about-us-img7,
+    .about-us-img8{
+        width: 100%;
+        margin: auto;
+        height: 271px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: left;
+    }
+    .about-us-img1 {
+        background-image: url("../images/aboutus-tables.jpg");
+    }
+    .about-us-img2 {
+        background-image: url("../images/aboutus-tables.png");
+    }
+    .about-us-img3 {
+        background-image: url("../images/aboutus-story.png");
+    }
+    .about-us-img4 {
+        background-image: url("../images/aboutus-wireframing.jpg");
+    }
+    .about-us-img5 {
+        background-image: url("../images/aboutus-pat.jpg");
+
+    }
+    .about-us-img6 {
+        background-image: url("../images/aboutus-happyadrien.jpg");
+    }
+    .about-us-img7 {
+        background-image: url("../images/aboutus-jer.jpg");
+    }
+    .about-us-img8 {
+        background-image: url("../images/aboutus-pat2.jpg");
+    }
+
     .the-team {
+        margin-top: 200px;
         width: 100%;
-        background-color: var(--color10);
-        height: 1500px;
+        background-color: var(--color9);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    .about-us-image {
+    .the-team h1 {
+        font-size: 45px;
+        top: -31px;
+    }
+    .everyone-wrapper {
+        padding-top: 1px;
+        color: white;
+    }
+    .each-person-wrapper {
         width: 100%;
-        height: 100vh;
-        background-image: url("../images/Image from iOS.jpg");
-        background-size: 70%;
+        margin: 80px auto;
+        background-color: var(--color6);
+        padding: 30px 0 40px;
+    }
+    .each-person-wrapper h2 {
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        font-size: 56px;
+        /*color: var(--color8);*/
+        color: white;
+        margin: 0 auto;
+        line-height: 50px;
+        border-bottom: 3px solid var(--color9);
+        padding-bottom: 20px;
+        max-width: 300px;
+
+    }
+    .each-person-img {
+        width: 90%;
+        margin: 40px auto;
+        height: 300px;
+
+        background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
     }
+    .each-person-desc {
+        width: 80%;
+        background-color: var(--color13);
+        height: 150px;
+        margin: 0 auto;
+    }
+    .adrien-img {
+        background-image: url("../images/adrien.jpg");
+    }
+    .jeremy-img {
+        background-image: url("../images/jer.jpeg");
+    }
+    .patrick-img {
+        background-image: url("../images/pat.jpg");
+    }
+
+
 
 
 
@@ -433,6 +518,11 @@
         max-width: 500px;
         font-size: 8vw;
         line-height: 42px;
+    }
+    .the-process h1 {
+        margin: 0;
+        font-size: 62px!important;
+        top: -39px!important;
     }
 
 
@@ -479,6 +569,17 @@
         height: 407px;
     }
 
+    .about-us-img1,
+    .about-us-img2,
+    .about-us-img3,
+    .about-us-img4,
+    .about-us-img5,
+    .about-us-img6,
+    .about-us-img7,
+    .about-us-img8{
+        height: 350px;
+    }
+
 
 
 
@@ -490,6 +591,27 @@
     .intro-message h1 {
         font-size: 75px;
         line-height: normal;
+    }
+    .about-us-img-wrapper {
+        width: 100%;
+        padding-bottom: 100px;
+    }
+    .about-us-img1,
+    .about-us-img2,
+    .about-us-img3,
+    .about-us-img4,
+    .about-us-img5,
+    .about-us-img6,
+    .about-us-img7,
+    .about-us-img8{
+        height: 280px;
+        display: inline-block;
+        width: 49%;
+        margin: 0 0px 0px 5px;
+        padding: 0;
+    }
+    .each-person-img {
+        height: 500px;
     }
 
 
@@ -582,6 +704,35 @@
     }
     .about-us a {
         font-size: 12px;
+    }
+
+    .about-us-img1,
+    .about-us-img2,
+    .about-us-img3,
+    .about-us-img4,
+    .about-us-img5,
+    .about-us-img6,
+    .about-us-img7,
+    .about-us-img8 {
+        height: 260px;
+        width: 47%;
+        margin: 10px 0px 0px 2%;
+    }
+    .everyone-wrapper {
+        padding-top: 50px;
+        position: relative;
+        width: 129%;
+        left: -14%;
+        height: 1000px;
+    }
+    .each-person-wrapper {
+        width: 33%;
+        margin: 90px auto;
+        padding: 30px 0 40px;
+        float: left;
+    }
+    .each-person-img {
+        height: 350px;
     }
 
     /*-------------------------------------------------------------------------*/

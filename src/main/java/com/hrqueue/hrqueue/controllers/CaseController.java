@@ -237,6 +237,14 @@ public class CaseController {
         return "cases/case";
     }
 
+    @GetMapping("/case/{id}/delete-prompt")
+    public String deletePrompt(@PathVariable long id, Model model) {
+        model.addAttribute("case", caseRepo.findById(id));
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", userRepo.findById(loggedInUser.getId()));
+        return "cases/delete-prompt";
+    }
+
     @GetMapping("/case/{id}/delete")
     public String deleteCase(@PathVariable long id) {
         caseRepo.delete(id);
