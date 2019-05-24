@@ -119,10 +119,10 @@
                         <!--<span th:if="${case.writer == null}">-->
                         <!--<td>Open</td>-->
                         <!--</div>-->
-                        <div th:if="${case.writer != null}">
-                        <td th:text="${case.writer.username}"></td>
-                        </div>
-                    </div>
+                        <!--<div th:if="${case.writer != null}">-->
+                        <!--<td th:text="${case.writer.username}"></td>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <div th:if="${case.writer != null}">
                         <div th:if="${case.case_closed == null}">
                             <div th:if="${user.isAdmin()}"><td><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></td></div>
