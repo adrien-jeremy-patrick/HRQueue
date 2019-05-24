@@ -44,6 +44,7 @@ $(document).ready(function () {
                 var totalNumberOfCasesResolved = 0;
 
 
+
                 var parsedResolveTime;
                 var parsedWaitTime;
                 var parsedCaseCompleteTime;
@@ -134,6 +135,7 @@ $(document).ready(function () {
                             counter++;
                             totalNumberOfCasesResolved++;
                             totalNumberOfCasesCreated++;
+
 
 
                             //Avg Wait Time
@@ -287,28 +289,40 @@ $(document).ready(function () {
                 google.charts.setOnLoadCallback(timeMetrics);
 
                 function timeMetrics() {
-                    var data = new google.visualization.arrayToDataTable([
-                        ['Time Metrics', 'Hours'],
-                        ["Avg. Customer Wait Time per Case", parsedWaitTime / (1000 * 60 * 60)],
-                        ["Avg. Resolve Time per Case", parsedResolveTime / (1000 * 60 * 60)],
-                        ["Avg. Case Completion Time per Case", parsedCaseCompleteTime / (1000 * 60 * 60)]
-                    ]);
 
-                    var options = {
-                        title: 'Time Metrics',
-                        width: 900,
-                        legend: { position: 'none' },
-                        chart: { title: 'Time Metrics',
-                            subtitle: 'Performances by Time' },
-                        bars: 'horizontal', // Required for Material Bar Charts.
-                        axes: {
-                            x: {
-                                0: { side: 'top', label: 'Days:Hours:Minutes'} // Top x-axis.
-                            }
-                        },
 
-                        bar: { groupWidth: "90%" }
-                    };
+                    console.log(parsedWaitTime);
+                    if(parsedWaitTime === undefined){
+                        $('#BarCharts').remove();
+
+                    }else {
+
+                        var data = new google.visualization.arrayToDataTable([
+                            ['Time Metrics', 'Hours'],
+                            ["Avg. Customer Wait Time per Case", parsedWaitTime / (1000 * 60 * 60)],
+                            ["Avg. Resolve Time per Case", parsedResolveTime / (1000 * 60 * 60)],
+                            ["Avg. Case Completion Time per Case", parsedCaseCompleteTime / (1000 * 60 * 60)]
+                        ]);
+
+                        var options = {
+                            title: 'Time Metrics',
+                            width: 900,
+                            legend: {position: 'none'},
+                            chart: {
+                                title: 'Time Metrics',
+                                subtitle: 'Performances by Time'
+                            },
+                            bars: 'horizontal', // Required for Material Bar Charts.
+                            axes: {
+                                x: {
+                                    0: {side: 'top', label: 'Days:Hours:Minutes'} // Top x-axis.
+                                }
+                            },
+
+                            bar: {groupWidth: "90%"}
+                        };
+
+                    }
 
                     var chart = new google.charts.Bar(document.getElementById('BarCharts'));
                     chart.draw(data, options);
@@ -349,16 +363,22 @@ $(document).ready(function () {
                 google.charts.setOnLoadCallback(chartCasesCreated);
 
                 function chartCasesCreated() {
-                    var data = google.visualization.arrayToDataTable([
-                        ['Cases Created', 'Cases today & per day'],
-                        ['# of Cases Created Today',     casesCreatedToday],
-                        ['Avg. Cases Created Per Day',      casesCreatedPerDay],
-                    ]);
 
-                    var options = {
-                        title: 'Cases Created Performance',
-                        pieHole: 0.4,
-                    };
+                    if(casesCreatedToday === 0 && casesCreatedPerDay === 0 || casesCreatedToday === 0 || casesCreatedPerDay === 0){
+                        $('#donutchartCasesCreated').remove();
+
+                    }else {
+                        var data = google.visualization.arrayToDataTable([
+                            ['Cases Created', 'Cases today & per day'],
+                            ['# of Cases Created Today', casesCreatedToday],
+                            ['Avg. Cases Created Per Day', casesCreatedPerDay],
+                        ]);
+
+                        var options = {
+                            title: 'Cases Created Performance',
+                            pieHole: 0.4,
+                        };
+                    }
 
                     var chart = new google.visualization.PieChart(document.getElementById('donutchartCasesCreated'));
                     chart.draw(data, options);
@@ -368,16 +388,22 @@ $(document).ready(function () {
                 google.charts.setOnLoadCallback(chartCasesResolved);
 
                 function chartCasesResolved() {
-                    var data = google.visualization.arrayToDataTable([
-                        ['Cases Resolved', 'Cases today & per day'],
-                        ['# of Cases Resolved Today',     casesResolvedToday],
-                        ['Avg. Cases Resolved Per Day',      casesResolvedPerDay],
-                    ]);
 
-                    var options = {
-                        title: 'Cases Resolved Performance',
-                        pieHole: 0.4,
-                    };
+                    if(casesResolvedToday === 0 && casesResolvedPerDay === 0 || casesResolvedToday === 0 || casesResolvedPerDay === 0){
+                        $('#donutchartCasesResolved').remove();
+                    }else {
+                        var data = google.visualization.arrayToDataTable([
+                            ['Cases Resolved', 'Cases today & per day'],
+                            ['# of Cases Resolved Today', casesResolvedToday],
+                            ['Avg. Cases Resolved Per Day', casesResolvedPerDay],
+                        ]);
+
+                        var options = {
+                            title: 'Cases Resolved Performance',
+                            pieHole: 0.4,
+                        };
+
+                    }
 
                     var chart = new google.visualization.PieChart(document.getElementById('donutchartCasesResolved'));
                     chart.draw(data, options);
