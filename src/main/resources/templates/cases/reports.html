@@ -21,7 +21,53 @@
 <body>
 <nav th:replace="fragments/admin-navbar :: admin-navbar" />
 
+
+
+
 <div class="body-div">
+
+
+    <div id="BarCharts" style="width: 900px; height: 500px;"></div>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+    <div id="donutchartCasesCreated" style="width: 900px; height: 500px;"></div>
+    <div id="donutchartCasesResolved" style="width: 900px; height: 500px;"></div>
+
+    <h1>Performance Metrcis</h1>
+    <table id="performanceTable" class="display" >
+
+        <!-- Header Table -->
+        <thead>
+        <tr>
+            <th id="sorting">All</th>
+            <th>Avg. Customer Wait Time per Case (Days:Hours:Minutes)</th>
+            <th>Avg. Resolve Time per Case (Days:Hours:Minutes)</th>
+            <th>Cases Created Today</th>
+            <th>Cases Created per Day</th>
+            <th>Cases Resolved Today</th>
+            <th>Cases Resolved per Day</th>
+            <th>Total # of Cases Created</th>
+            <th>Total # of Cases Resolved</th>
+
+
+        </tr>
+        </thead>
+        <!-- Footer Table -->
+        <tfoot>
+        <tr>
+            <th>Sorting By</th>
+            <th>Avg. Customer Wait Time per Case (Days:Hours:Minutes)</th>
+            <th>Avg. Resolve Time per Case (Days:Hours:Minutes)</th>
+            <th>Cases Created Today</th>
+            <th>Cases Created per Day</th>
+            <th>Cases Resolved Today</th>
+            <th>Cases Resolved per Day</th>
+            <th>Total # of Cases Created</th>
+            <th>Total # of Cases Resolved</th>
+
+        </tr>
+        </tfoot>
+    </table>
+
 
     <h1>Cases</h1>
     <table id="CasesTable" class="display" >
@@ -53,51 +99,18 @@
             <th>Reps/Admins Comments</th>
             <th>Customer Wait Time (Days:Hours:Minutes)</th>
             <th>Resolve Time (Days:Hours:Minutes)</th>
-
         </tr>
         </tfoot>
     </table>
 </div>
 
-<div class="body-div">
 
-    <h1>Performance Metrcis</h1>
-    <table id="performanceTable" class="display" >
-
-        <!-- Header Table -->
-        <thead>
-        <tr>
-            <th id="sorting">All</th>
-            <th>Avg. Customer Wait Time per Case (Days:Hours:Minutes)</th>
-            <th>Avg. Resolve Time per Case (Days:Hours:Minutes)</th>
-            <th>Cases Created Today</th>
-            <th>Total # of Cases Created</th>
-            <th>Cases Resolved per Day</th>
-            <th>Total Number of Cases Resolved</th>
-
-
-        </tr>
-        </thead>
-        <!-- Footer Table -->
-        <tfoot>
-        <tr>
-            <th>Sorting By</th>
-            <th>Avg. Customer Wait Time per Case (Days:Hours:Minutes)</th>
-            <th>Avg. Resolve Time per Case (Days:Hours:Minutes)</th>
-            <th>Cases Created Today</th>
-            <th>Total # of Cases Created</th>
-            <th>Cases Resolved per Day</th>
-            <th>Total Number of Cases Resolved</th>
-
-        </tr>
-        </tfoot>
-    </table>
-</div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="js/moment.js"></script>
 <script src="js/reports.js"></script>
 
