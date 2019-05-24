@@ -397,13 +397,11 @@ $(document).ready(function () {
                 }
 
 
-                // var sortingItems = ['All', 'Category', 'Department', 'Representatives, Time'];
-
 
 
                 return_data.push({
 
-                    'Sorting_Drop_Down': 'All',
+                    'Sorting_Drop_Down': "All",
                     'Avg_Customer_Wait_Time_per_Case': avg_Wait_Time,
                     'Avg_Resolve_Time_per_Case': avg_resolve_Time,
                     'Cases_Created_Today': casesCreatedToday,
@@ -437,8 +435,13 @@ $(document).ready(function () {
         ],
 
         'initComplete': function () {
+
+
             this.api().columns().every(function () {
                 var column = this;
+
+
+
                 var th = $("#sorting").eq(column.index());
                 var select = $('<select><option value="">' + th.text() + '</option></select>')
                     .on('change', function () {
@@ -448,7 +451,10 @@ $(document).ready(function () {
                         column.search(val ? '^' + val + '$' : '', true, false)
                             .draw();
                     });
+
+
                 $(th).replaceWith($("<th>", {html: select}));
+
 
 
                 column.data().unique().sort().each(function (d, j) {
@@ -458,6 +464,7 @@ $(document).ready(function () {
         }
 
     });
+
 
     $('#CasesTable').dataTable({
 
