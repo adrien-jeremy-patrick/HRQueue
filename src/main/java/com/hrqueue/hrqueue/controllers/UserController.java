@@ -76,11 +76,19 @@ public class UserController {
     public String showUserEdit(@PathVariable long id, @RequestParam(name = "firstName")String firstName,@RequestParam(name = "lastName")String lastName,@RequestParam(name = "username")String username,@RequestParam(name = "password")String password){
         User editUser = userRepository.findById(id);
         System.out.println(id);
-        editUser.setFirstName(firstName);
-        editUser.setLastName(lastName);
-        editUser.setUsername(username);
-        String newPassword = passwordEncoder.encode(password);
-        editUser.setPassword(newPassword);
+        if (firstName != ""){
+            editUser.setFirstName(firstName);
+        }
+        if (lastName != ""){
+            editUser.setLastName(lastName);
+        }
+        if (username != ""){
+            editUser.setUsername(username);
+        }
+        if (password != ""){
+            String newPassword = passwordEncoder.encode(password);
+            editUser.setPassword(newPassword);
+        }
         userRepository.save(editUser);
         return "redirect:/user/display";
     }
