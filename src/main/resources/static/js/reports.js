@@ -66,7 +66,7 @@ $(document).ready(function () {
 
                         if (json[i].case_open !== null && json[i].case_closed === null) {
 
-                            counter++;
+                            // counter++;
                             totalNumberOfCasesCreated++;
 
                             //Avg Wait Time
@@ -105,6 +105,8 @@ $(document).ready(function () {
                             } else {
 
                                 casesCreatedPerDay = totalNumberOfCasesCreated / roundedDays;
+
+                                casesCreatedPerDay = parseFloat(casesCreatedPerDay.toFixed(1));
 
                             }
 
@@ -158,11 +160,14 @@ $(document).ready(function () {
                             } else {
 
                                 casesCreatedPerDay = totalNumberOfCasesCreated / roundedDays;
+                                casesCreatedPerDay = parseFloat(casesCreatedPerDay.toFixed(1));
 
                             }
 
 
                             //Avg Resolve Time;
+
+                            console.log(counter);
 
                             date_case_close = json[i].case_closed;
                             resolve_Time = date_case_close - date_case_open;
@@ -197,6 +202,7 @@ $(document).ready(function () {
                             } else {
 
                                 casesResolvedPerDay = totalNumberOfCasesResolved / roundedDays;
+                                casesResolvedPerDay = parseFloat(casesResolvedPerDay.toFixed(1));
 
                             }
 
@@ -242,6 +248,7 @@ $(document).ready(function () {
                             } else {
 
                                 casesCreatedPerDay = totalNumberOfCasesCreated / roundedDays;
+                                casesCreatedPerDay = parseFloat(casesCreatedPerDay.toFixed(1));
 
                             }
 
