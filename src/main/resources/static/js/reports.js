@@ -401,7 +401,7 @@ $(document).ready(function () {
 
                 return_data.push({
 
-                    'Sorting_Drop_Down': "All",
+                    'Sorting_Drop_Down': "All ",
                     'Avg_Customer_Wait_Time_per_Case': avg_Wait_Time,
                     'Avg_Resolve_Time_per_Case': avg_resolve_Time,
                     'Cases_Created_Today': casesCreatedToday,
