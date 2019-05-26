@@ -117,7 +117,7 @@
                     <td th:text="${case.category.category}"></td>
 
                         <!--Status-->
-                    <!--<td th:if="${case.case_closed != null && case.case_open != null && case.created_at != null}">Complete</td>-->
+                    <td th:if="${case.case_closed != null && case.case_open != null && case.created_at != null}">Complete</td>
                     <td th:if="${case.case_open != null && case.case_closed == null && case.created_at != null}">Working</td>
                     <td th:if="${case.case_open == null && case.case_closed == null && case.created_at != null}">Open</td>
 
