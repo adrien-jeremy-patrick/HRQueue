@@ -104,31 +104,35 @@
                     <th scope="col">Customer Name</th>
                     <th scope="col">Department</th>
                     <th scope="col">Category</th>
-                    <th scope="col">Completed</th>
                     <th scope="col">Status</th>
                     <th scope="col">Assigned User</th>
                     <th scope="col">Assign</th>
                     <th scope="col">Delete</th>
                     <th scope="col">Open</th>
                     <th scope="col">Comments</th>
+                </tr>
                 <tr th:each="case : ${closedCases}">
                     <td th:text="${case.customer_name}"></td>
                     <td th:text="${case.department.department}"></td>
                     <td th:text="${case.category.category}"></td>
                         <!--Status-->
-                    <td th:if="${case.case_closed != null && case.case_open != null && case.created_at != null}">Complete</td>
-                    <td th:if="${case.case_open != null && case.case_closed == null && case.created_at != null}">Working</td>
-                    <td th:if="${case.case_open == null && case.case_closed == null && case.created_at != null}">Open</td>
+                    <td>
+                        <span th:if="${case.case_closed != null && case.case_open != null && case.created_at != null}">Complete</span>
+                        <span th:if="${case.case_open != null && case.case_closed == null && case.created_at != null}">Working</span>
+                        <span th:if="${case.case_open == null && case.case_closed == null && case.created_at != null}">Open</span>
+                    </td>
 
                     <!--Assigned User-->
-                    <td th:if="${case.writer == null}">Open</td>
-                    <td th:if="${case.writer != null}" th:text="${case.writer.username}"></td>
-
+                    <td>
+                        <span th:if="${case.writer == null}">Open</span>
+                        <span th:if="${case.writer != null}" th:text="${case.writer.username}"></span>
+                    </td>
                     <!--Assign-->
-                    <td th:if="${case.case_closed != null}">Complete</td>
-                    <td th:if="${case.case_closed == null && case.writer != null}"><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></td>
-                    <td th:if="${case.case_closed == null && case.writer == null}"><a th:href="@{'/case/' + ${case.getId()} + '/assign'}"><button>Assign</button></a></td>
-
+                <td>
+                    <span th:if="${case.case_closed != null}">Complete</span>
+                    <span th:if="${case.case_closed == null && case.writer != null}"><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></span>
+                    <span th:if="${case.case_closed == null && case.writer == null}"><a th:href="@{'/case/' + ${case.getId()} + '/assign'}"><button>Assign</button></a></span>
+                </td>
 
                     <td><a th:href="@{'/case/' + ${case.getId()} + '/delete-prompt'}"><button class="delete-button">Delete</button></a></td>
                     <td><a th:href="@{'/case/' + ${case.getId()} + '/open'}"><button>Open</button></a></td>
