@@ -17,40 +17,43 @@
         <h3>Comments are <i>not</i> required but are highly <b>encouraged</b> so our representatives can assist your needs better. All other fields are required.</h3>
         <p id="error-message"></p>
 
-        <form th:method="post" th:object="${case}" th:action="@{/create-case}">
-            <label>Name</label>
-            <input required="required" id="customer_name" placeholder="Enter full name" th:field="${case.customer_name}"/>
-            <p id="name-error-message"></p>
-            <br/>
-            <label>E-mail</label>
-            <input required="required" type="email" id="customer_email" placeholder="example@example" th:field="${case.customer_email}"/>
-            <p id="email-error-message"></p>
-            <br/>
-            <label>Phone</label>
-            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone"  required="required" id="customer_phone" placeholder="Format: xxx-xxx-xxxx" th:field="${case.customer_phone}"/>
-            <p id="phone-error-message"></p>
 
-            <br/>
-            <label for="department">Department</label>
-            <select id="department" th:field="${case.department}">
-                <option th:type="hidden" th:each="department : ${allDepartment}" th:value="${department.getId()}" >
-                    <span th:text="${department.department}"></span>
-                </option>
-            </select>
-            <br/>
-            <label for="category">Category</label>
-            <select id="category" th:field="${case.category}">
-                <option th:type="hidden" th:each="category : ${allCategory}" th:value="${category.getId()}">
-                    <span th:text="${category.category}"></span>
-                </option>
-            </select>
-            <br/>
-            <label for="customer_comment">Comment
-            <textarea id="customer_comment" th:field="${case.customer_comment}"/>
-            </label>
-            <br/>
-            <button id="submit-case-button">Submit</button>
-        </form>
+        <div class="wpforms-container wpforms-container-full" id="wpforms-14">
+            <form class="create-case-form" th:method="post" th:object="${case}" th:action="@{/create-case}">
+                <label>Name</label>
+                <input required="required" id="customer_name" placeholder="Enter full name" th:field="${case.customer_name}"/>
+                <p id="name-error-message"></p>
+                <br/>
+                <label>E-mail</label>
+                <input required="required" type="email" id="customer_email" placeholder="example@example" th:field="${case.customer_email}"/>
+                <p id="email-error-message"></p>
+                <br/>
+                <label>Phone</label>
+                <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone"  required="required" id="customer_phone" placeholder="Format: xxx-xxx-xxxx" th:field="${case.customer_phone}"/>
+                <p id="phone-error-message"></p>
+
+                <br/>
+                <label for="department">Department</label>
+                <select id="department" th:field="${case.department}">
+                    <option th:type="hidden" th:each="department : ${allDepartment}" th:value="${department.getId()}" >
+                        <span th:text="${department.department}"></span>
+                    </option>
+                </select>
+                <br/>
+                <label for="category">Category</label>
+                <select id="category" th:field="${case.category}">
+                    <option th:type="hidden" th:each="category : ${allCategory}" th:value="${category.getId()}">
+                        <span th:text="${category.category}"></span>
+                    </option>
+                </select>
+                <br/>
+                <label for="customer_comment">Comment
+                <textarea id="customer_comment" th:field="${case.customer_comment}"/>
+                </label>
+                <br/>
+                <button id="submit-case-button">Submit</button>
+            </form>
+        </div>
     </div>
 </div>
 
