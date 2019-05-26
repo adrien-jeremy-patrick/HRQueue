@@ -118,21 +118,21 @@
 
                         <!--Status-->
                     <td>
-                        <span th:if="${case.case_closed != null && case.case_open != null && case.created_at != null}">Complete</span>
-                        <span th:if="${case.case_open != null && case.case_closed == null && case.created_at != null}">Working</span>
-                        <span th:if="${case.case_open == null && case.case_closed == null && case.created_at != null}">Open</span>
+                        <span th:if="${case.case_closed} != null and ${case.case_open} != null and ${case.created_at} != null">Complete</span>
+                        <span th:if="${case.case_open} != null and ${case.case_closed} == null and ${case.created_at} != null">Working</span>
+                        <span th:if="${case.case_open} == null and ${case.case_closed} == null and ${case.created_at} != null">Open</span>
                     </td>
 
                     <!--Assigned User-->
                     <td>
-                        <span th:if="${case.writer == null}">Open</span>
-                        <span th:if="${case.writer != null}" th:text="${case.writer.username}"></span>
+                        <span th:if="${case.writer}==null">Open</span>
+                        <span th:if="${case.writer}!=null" th:text="${case.writer.username}"></span>
                     </td>
                     <!--Assign-->
                 <td>
-                    <span th:if="${case.case_closed != null}">Complete</span>
-                    <span th:if="${case.case_closed == null && case.writer != null}"><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></span>
-                    <span th:if="${case.case_closed == null && case.writer == null}"><a th:href="@{'/case/' + ${case.getId()} + '/assign'}"><button>Assign</button></a></span>
+                    <span th:if="${case.case_closed} != null">Complete</span>
+                    <span th:if="${case.case_closed} == null and ${case.writer} != null"><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></span>
+                    <span th:if="${case.case_closed} == null and ${case.writer} == null"><a th:href="@{'/case/' + ${case.getId()} + '/assign'}"><button>Assign</button></a></span>
                 </td>
 
                     <td><a th:href="@{'/case/' + ${case.getId()} + '/delete-prompt'}"><button class="delete-button">Delete</button></a></td>
