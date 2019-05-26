@@ -224,14 +224,27 @@
     /*----------------------------------FORMS STYLING--------------------------*/
     /*-------------------------------------------------------------------------*/
 
-    input {
+
+    select {
+
+    }
+    input[type=text] {
         border: none;
-        background-color: transparent;
-        margin: 20px auto;
+        border-bottom: 2px solid black;
     }
-    .form-button {
+    input[type=password] {
+        border: none;
+        border-bottom: 2px solid black;
+    }
+
+
+    .login-form button {
         background-color: var(--color13);
+        font-size: 22px;
+        color: white;
+
     }
+
 
 
 

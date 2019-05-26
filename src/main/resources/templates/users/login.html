@@ -17,20 +17,24 @@
 
         <h1>Log In</h1>
         <div th:if="${param.error}">
+
+           
+
             <br/><br/><span class="invalid-username-password">Oops! Invalid Username or Password.</span><br/><br/>
+
         </div>
         <div th:if="${param.logout}">
-            <span class="logout-success">You have been successfully logged out.</span>
+            <br/><br/> <span class="logout-success">You have been successfully logged out.</span><br/><br/>
         </div>
 
         <form class="white-text login-form" th:action="@{/login}" method="post">
             <label for="username">Username</label>
-            <input required="required" placeholder="Enter username here" id="username" name="username" type="text" />
-            <br/>
+
+            <input required="required" placeholder="Enter username here" id="username" name="username" type="text" /><br/><br/>
             <label for="password">Password</label>
-            <input required="required" placeholder="password" id="password" name="password" type="password" />
-            <br/>
-            <button class="form-button" type="submit" name="action">Log In
+            <input required="required" placeholder="password" id="password" name="password" type="password" /><br/><br/>
+            <button type="submit" name="action"><i class="fas fa-arrow-right"></i>
+
                 <i class="material-icons right"></i>
             </button>
             <br/>
