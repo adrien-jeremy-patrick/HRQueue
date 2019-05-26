@@ -20,134 +20,126 @@
 <div class="body-div">
     <div class="dashboard-wrapper">
         <h1>Welcome, <span th:text="${user.username}"/></h1>
-        <h1>Admin: <span th:text="${user.isAdmin()}"/></h1>
+
+        <!--Open Cases Table that is only shown to reps.-->
     <div th:if="${user.isAdmin() != true}">
         <h1>Open Cases</h1>
-        <table class="table table-striped">
-            <tr>
-                <th scope="col">Customer Name</th>
-                <th scope="col">Department</th>
-                <th scope="col">Category</th>
-                <th scope="col">Sign In Time</th>
-                <th scope="col">Assign</th>
-            </tr>
-            <tr th:each="case : ${allCases}">
-                <td th:text="${case.customer_name}"></td>
-                <td th:text="${case.department.department}"></td>
-                <td th:text="${case.category.category}"></td>
-                <td th:text="${case.created_at}"></td>
-                <td><a th:href="@{'/case/' + ${case.getId()} + '/assign'}"><button>Assign</button></a></td>
-            </tr>
-        </table>
-        </div>
-        <div>
-            <h1>Your Assigned Cases</h1>
             <table class="table table-striped">
                 <tr>
                     <th scope="col">Customer Name</th>
                     <th scope="col">Department</th>
                     <th scope="col">Category</th>
                     <th scope="col">Sign In Time</th>
-                    <span th:if="${user.isAdmin()}">
-                        <th scope="col">Delete</th>
-                    </span>
-                    <th scope="col">Unassign</th>
-                    <th scope="col">Complete</th>
-                    <th scope="col">Comments</th>
+                    <th scope="col">Assign</th>
                 </tr>
-                <tr th:each="case : ${user.getCases()}" >
-                    <span th:if="${case.case_closed == null}">
-                        <td th:text="${case.customer_name}"></td>
-                        <td th:text="${case.department.department}"></td>
-                        <td th:text="${case.category.category}"></td>
-                        <td th:text="${case.created_at}"></td>
-                        <span th:if="${user.isAdmin()}">
-                            <td><a th:href="@{'/case/' + ${case.getId()} + '/delete-prompt'}"><button class="delete-button">Delete</button></a></td>
-                        </span>
-                        <td><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></td>
-                        <td><a th:href="@{'/case/' + ${case.getId()} + '/complete'}"><button>Complete</button></a></td>
-                        <td><a th:href="@{'/case/' + ${case.getId()} + '/comment'}"><button>Comments</button></a></td>
-                    </span>
+                <tr th:each="case : ${allCases}">
+                    <td th:text="${case.customer_name}"></td>
+                    <td th:text="${case.department.department}"></td>
+                    <td th:text="${case.category.category}"></td>
+                    <td th:text="${case.created_at}"></td>
+                    <td><a th:href="@{'/case/' + ${case.getId()} + '/assign'}"><button>Assign</button></a></td>
                 </tr>
             </table>
-        </div>
-        <div>
-            <div th:if="${user.isAdmin() == true}">
-                <h1>Manage Cases</h1>
-            </div>
-            <div th:if="${user.isAdmin() != true}">
-                <h1>Your Closed Cases</h1>
-            </div>
+    </div>
+
+
+        <!--Rep Assigned Case Table -->
+    <div th:if="${user.isAdmin() != true}">
+        <h1>Your Assigned Cases</h1>
             <table class="table table-striped">
                 <tr>
                     <th scope="col">Customer Name</th>
                     <th scope="col">Department</th>
                     <th scope="col">Category</th>
-
-                    <div th:if="${user.isAdmin() != true}">
-                        <th scope="col">Completed</th>
-                    </div>
-                    <div th:if="${user.isAdmin()}">
-                        <!--<th scope="col">Status</th>-->
-                        <th scope="col">Assigned User</th>
-                    </div>
-                    <div th:if="${user.isAdmin()}">
-                        <th scope="col">Assign</th>
-                        <th scope="col">Delete</th>
-                        <th scope="col">Open</th>
-                        <th scope="col">Comments</th>
-                    </div>
+                    <th scope="col">Sign In Time</th>
+                    <th scope="col">Unassign</th>
+                    <th scope="col">Complete</th>
+                    <th scope="col">Comments</th>
                 </tr>
+                <tr th:each="case : ${user.getCases()}" th:if="${case.case_closed == null}">
+                        <td th:text="${case.customer_name}"></td>
+                        <td th:text="${case.department.department}"></td>
+                        <td th:text="${case.category.category}"></td>
+                        <td th:text="${case.created_at}"></td>
+                        <td><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></td>
+                        <td><a th:href="@{'/case/' + ${case.getId()} + '/complete'}"><button>Complete</button></a></td>
+                        <td><a th:href="@{'/case/' + ${case.getId()} + '/comment'}"><button>Comments</button></a></td>
+                </tr>
+            </table>
+    </div>
+
+
+        <!--Admin Assigned Case Table -->
+    <div th:if="${user.isAdmin()}">
+        <h1>Your Assigned Cases</h1>
+            <table class="table table-striped">
+                <tr>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Sign In Time</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Unassign</th>
+                    <th scope="col">Complete</th>
+                    <th scope="col">Comments</th>
+                </tr>
+                <tr th:each="case : ${user.getCases()}" th:if="${case.case_closed == null}">
+                        <td th:text="${case.customer_name}"></td>
+                        <td th:text="${case.department.department}"></td>
+                        <td th:text="${case.category.category}"></td>
+                        <td th:text="${case.created_at}"></td>
+                        <td><a th:href="@{'/case/' + ${case.getId()} + '/delete-prompt'}"><button class="delete-button">Delete</button></a></td>
+                        <td><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></td>
+                        <td><a th:href="@{'/case/' + ${case.getId()} + '/complete'}"><button>Complete</button></a></td>
+                        <td><a th:href="@{'/case/' + ${case.getId()} + '/comment'}"><button>Comments</button></a></td>
+                </tr>
+            </table>
+    </div>
+
+        <!--Admin Manage Cases Table-->
+        <div th:if="${user.isAdmin()}">
+                <h1>Manage Cases</h1>
+            <table class="table table-striped">
+                <tr>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Completed</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Assigned User</th>
+                    <th scope="col">Assign</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Open</th>
+                    <th scope="col">Comments</th>
                 <tr th:each="case : ${closedCases}">
                     <td th:text="${case.customer_name}"></td>
                     <td th:text="${case.department.department}"></td>
                     <td th:text="${case.category.category}"></td>
-                    <div th:if="${user.isAdmin()}">
-                        <div th:if="${case.case_closed != null && case.case_open != null && case.created_at != null}">
-                            <td>Complete</td>
-                        </div>
-                        <div th:if="${case.case_open != null && case.case_closed == null && case.created_at != null}">
-                            <td>Working</td>
-                        </div>
-                        <div th:if="${case.case_open == null && case.case_closed == null && case.created_at != null}">
-                            <td>Open</td>
-                        </div>
-                    </div>
-                    <div th:if="${user.isAdmin() != true}"><td th:text="${case.case_closed}"></td></div>
-                    <div th:if="${user.isAdmin()}">
-                        <div th:if="${case.writer == null}">
-                        <td>Open</td>
-                        </div>
-                        <div th:if="${case.writer != null}">
-                        <td th:text="${case.writer.username}"></td>
-                        </div>
-                    </div>
-                    <div th:if="${case.writer != null}">
-                        <div th:if="${case.case_closed == null}">
-                            <div th:if="${user.isAdmin()}"><td><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></td></div>
-                        </div>
-                        <div th:if="${case.case_closed != null}">
-                            <td>Complete</td>
-                        </div>
-                    </div>
-                    <div th:if="${case.writer == null}">
-                        <div th:if="${user.isAdmin()}"><td><a th:href="@{'/case/' + ${case.getId()} + '/assign'}"><button>Assign</button></a></td></div>
-                    </div>
-                    <div th:if="${user.isAdmin()}"><td><a th:href="@{'/case/' + ${case.getId()} + '/delete-prompt'}"><button class="delete-button">Delete</button></a></td></div>
-                    <div th:if="${user.isAdmin()}"><td><a th:href="@{'/case/' + ${case.getId()} + '/open'}"><button>Open</button></a></td></div>
-                    <div th:if="${user.isAdmin()}"><td><a th:href="@{'/case/' + ${case.getId()} + '/comment'}"><button>Comments</button></a></td></div>
+
+                        <!--Status-->
+                    <td th:if="${case.case_closed != null && case.case_open != null && case.created_at != null}">Complete</td>
+                    <td th:if="${case.case_open != null && case.case_closed == null && case.created_at != null}">Working</td>
+                    <td th:if="${case.case_open == null && case.case_closed == null && case.created_at != null}">Open</td>
+
+                    <!--Assigned User-->
+                    <td th:if="${case.writer == null}">Open</td>
+                    <td th:if="${case.writer != null}" th:text="${case.writer.username}"></td>
+
+                    <!--Assign-->
+                    <td th:if="${case.case_closed != null}">Complete</td>
+                    <td th:if="${case.case_closed == null && case.writer != null}"><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></td>
+                    <td th:if="${case.case_closed == null && case.writer == null}"><a th:href="@{'/case/' + ${case.getId()} + '/assign'}"><button>Assign</button></a></td>
+
+
+                    <td><a th:href="@{'/case/' + ${case.getId()} + '/delete-prompt'}"><button class="delete-button">Delete</button></a></td>
+                    <td><a th:href="@{'/case/' + ${case.getId()} + '/open'}"><button>Open</button></a></td>
+                    <td><a th:href="@{'/case/' + ${case.getId()} + '/comment'}"><button>Comments</button></a>
+
                 </tr>
             </table>
         </div>
     </div>
 </div>
-
-
-
-
 <nav th:replace="fragments/footer :: footer" />
-
-
-
 </body>
 </html>
