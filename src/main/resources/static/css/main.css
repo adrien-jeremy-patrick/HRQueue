@@ -224,10 +224,14 @@
     /*----------------------------------FORMS STYLING--------------------------*/
     /*-------------------------------------------------------------------------*/
 
-
-
-
-
+    input {
+        border: none;
+        background-color: transparent;
+        margin: 20px auto;
+    }
+    .form-button {
+        background-color: var(--color13);
+    }
 
 
 
