@@ -224,7 +224,25 @@
     /*----------------------------------FORMS STYLING--------------------------*/
     /*-------------------------------------------------------------------------*/
 
+    select {
 
+    }
+    input[type=text] {
+        border: none;
+        border-bottom: 2px solid black;
+    }
+    input[type=password] {
+        border: none;
+        border-bottom: 2px solid black;
+    }
+
+
+    .login-form button {
+        background-color: var(--color13);
+        font-size: 22px;
+        color: white;
+
+    }
 
 
 
