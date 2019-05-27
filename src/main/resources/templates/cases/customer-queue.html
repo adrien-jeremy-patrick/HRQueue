@@ -15,14 +15,13 @@
     <div class="customer-queue-wrapper">
         <table role="table">
             <thead role="rowgroup">
-            <tr role="row">
+            <tr role="row" th:if="${noCases}">
                 <th role="columnheader">Name</th>
                 <th role="columnheader">Department</th>
                 <th role="columnheader">Sign-in time</th>
                 <th role="columnheader">Est. Wait Time</th>
             </tr>
             </thead>
-
             <tbody class="one-case" role="rowgroup" th:each="case : ${allCases}">
             <tr th:if="${case.case_open == null}" role="row">
 
