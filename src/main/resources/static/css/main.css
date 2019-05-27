@@ -38,6 +38,10 @@
         z-index: 20;
         bottom: 0;
     }
+    .hide-big-nav,
+    .show-big-nav {
+        display: none;
+    }
     .extended-nav {
         display: none;
         text-align: right;
@@ -82,7 +86,8 @@
         z-index: 200;
         border-radius: 50%;
         opacity: .8;
-    }.x-icon {
+    }
+    .x-icon {
          width: 50px;
          position: fixed;
          display: none;
@@ -95,7 +100,6 @@
      }
 
     .body-div {
-        height: 1300px;
         width: 100%;
         margin: 0 auto;
         background-color: white;
@@ -226,23 +230,34 @@
 
 
     select {
-
+        width: 150px;
     }
-    input[type=text] {
+    input[type=text],
+    input {
         border: none;
-        border-bottom: 2px solid black;
+        border-bottom: 1px solid black;
+        background: transparent;
+
     }
     input[type=password] {
         border: none;
         border-bottom: 2px solid black;
     }
-
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+        outline: none;
+    }
 
     .login-form button {
         background-color: var(--color13);
         font-size: 22px;
         color: white;
-
+    }
+    .login-form:hover {
+        background-color: var(--color8);
+        color: white;
     }
 
 
@@ -285,17 +300,27 @@
     /*----------------------------------CUSTOMER-QUEUE-------------------------*/
     /*-------------------------------------------------------------------------*/
 
-
+    .customer-queue {
+        font-size: 13px;
+    }
     .customer-queue-header {
         background-image: url("../images/sands-of-time.jpg");
 
     }
     .customer-queue-wrapper {
         text-align: center;
-        width: 80%;
+        width: 90%;
         margin: 0 auto;
     }
-
+    table {
+        margin: 0 auto;
+    }
+    th {
+        font-size: 25px;
+    }
+    .customer-queue-wrapper {
+        font-size: 10px;
+    }
     .customer-queue-wrapper span
     {
         margin: 5px 40px;
@@ -315,6 +340,9 @@
         text-align: center;
         width: 80%;
         margin: 0 auto;
+    }
+    .login-wrapper h1 {
+        margin: 30px auto 21px auto;
     }
     .rep-admin-login-header {
         background-image: url("../images/hr-queue-2.jpeg");
@@ -347,6 +375,10 @@
     .create-case-form {
         margin-top: 50px;
     }
+    /*.create-case-form label {*/
+        /*font-size: 20px;*/
+        /*text-transform: uppercase;*/
+    /*}*/
     #department,
     #category
     {
@@ -364,6 +396,31 @@
     #email-error-message,
     #phone-error-message {
         color: red;
+    }
+
+    .create-case-form-container select{
+        width: 150px;
+        border: 1px solid black;
+        position: relative;
+        z-index: 99;
+        background: none;
+    }
+
+    #customer_comment {
+        width: 50%;
+        margin: 0 auto;
+        height: 100px;
+        box-shadow: 4px 4px 9px -3px black;
+    }
+    #submit-case-button {
+        margin-bottom: 200px;
+        background-color: var(--color13);
+        font-size: 22px;
+        color: white;
+    }
+    #submit-case-button:hover {
+        background-color: var(--color8);
+        color: white;
     }
 
     /*-------------------------------------------------------------------------*/
@@ -638,7 +695,11 @@
     .about-us-img8{
         height: 350px;
     }
-
+    .customer-queue-wrapper
+    {
+        font-size: 15px;
+        text-align: center;
+    }
 
 
 
@@ -689,6 +750,22 @@
     }
     .extended-nav {
         display: block;
+    }
+    .hide-big-nav {
+        display: block;
+        color: white;
+        font-size: 40px;
+        position: fixed;
+        left: 20px;
+        bottom: 20px;
+    }
+    .show-big-nav {
+        display: none;
+        color: black;
+        font-size: 40px;
+        position: fixed;
+        left: 20px;
+        bottom: 20px;
     }
     .menu-icon,
     .x-icon {
@@ -828,10 +905,7 @@
 
 
 
-    @media
-    only screen
-    and (max-width: 650px), (min-device-width: 650px)
-    and (max-device-width: 700px)  {
+    @media only screen and (max-device-width: 800px) {
 
         /* Force table to not be like tables anymore */
         table, thead, tbody, th, td, tr {
@@ -846,12 +920,9 @@
         }
 
         tr {
-            margin: 0 0 1rem 0;
+            margin: 30px auto;
         }
 
-        tr:nth-child(odd) {
-            background: #ccc;
-        }
 
         td {
             /* Behave  like a "row" */

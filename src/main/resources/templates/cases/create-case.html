@@ -18,7 +18,7 @@
         <p id="error-message"></p>
 
 
-        <div class="wpforms-container wpforms-container-full" id="wpforms-14">
+        <div class="create-case-form-container">
             <form class="create-case-form" th:method="post" th:object="${case}" th:action="@{/create-case}">
                 <label>Name</label>
                 <input required="required" id="customer_name" placeholder="Enter full name" th:field="${case.customer_name}"/>
@@ -33,23 +33,27 @@
                 <p id="phone-error-message"></p>
 
                 <br/>
-                <label for="department">Department</label>
+                <h3>Please note: Your selected department will be shown on the customer queue, but your selected category will not.</h3>
+                <label for="department">Department  </label>
                 <select id="department" th:field="${case.department}">
                     <option th:type="hidden" th:each="department : ${allDepartment}" th:value="${department.getId()}" >
                         <span th:text="${department.department}"></span>
                     </option>
                 </select>
                 <br/>
-                <label for="category">Category</label>
+                <label for="category">Category  </label>
                 <select id="category" th:field="${case.category}">
                     <option th:type="hidden" th:each="category : ${allCategory}" th:value="${category.getId()}">
                         <span th:text="${category.category}"></span>
                     </option>
                 </select>
                 <br/>
-                <label for="customer_comment">Comment
+                <br/>
+                <label for="customer_comment">Comment (optional) <br/><br/>
                 <textarea id="customer_comment" th:field="${case.customer_comment}"/>
                 </label>
+                <br/>
+                <br/>
                 <br/>
                 <button id="submit-case-button">Submit</button>
             </form>
