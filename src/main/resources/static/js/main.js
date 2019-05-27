@@ -90,19 +90,19 @@
     $('.show-more').on('click', function(){
         $(this).animate({
             opacity: 0
-        }, 4000);
+        });
         $('.about-us-hidden-message').animate({
             opacity: 1
-        }, 4000)
+        })
     })
 
     $('.show-less').on('click', function(){
         $('.about-us-hidden-message').animate({
             opacity: 0
-        }, 4000);
+        });
         $('.show-more').animate({
             opacity: 1
-        }, 4000)
+        })
     })
 
 //    Hide big nav
