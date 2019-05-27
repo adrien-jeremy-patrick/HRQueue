@@ -56,12 +56,13 @@
         text-transform: uppercase;
     }
     .extended-nav button {
-        font-size: 35px;
+        font-size: 23px;
         text-decoration: none;
         text-transform: uppercase;
         color: white;
         background-color: var(--color13);
         border: none;
+        padding-right: 20px;
     }
     .extended-nav p {
         font-size: 25px;
@@ -232,6 +233,15 @@
     select {
         width: 150px;
     }
+    .login-form button {
+        background-color: var(--color13);
+        font-size: 22px;
+        color: white;
+    }
+    .login-form button:hover {
+        background-color: var(--color10);
+        color: white;
+    }
     input[type=text],
     input {
         border: none;
@@ -241,7 +251,7 @@
     }
     input[type=password] {
         border: none;
-        border-bottom: 2px solid black;
+        border-bottom: 1px solid black;
     }
     input:focus,
     select:focus,
@@ -255,8 +265,8 @@
         font-size: 22px;
         color: white;
     }
-    .login-form:hover {
-        background-color: var(--color8);
+    .login-form button:hover {
+        background-color: var(--color10);
         color: white;
     }
 
@@ -419,19 +429,65 @@
         color: white;
     }
     #submit-case-button:hover {
-        background-color: var(--color8);
+        background-color: var(--color10);
         color: white;
     }
 
     /*-------------------------------------------------------------------------*/
     /*----------------------------------CREATE USER PAGE-----------------------*/
     /*-------------------------------------------------------------------------*/
+    .create-user-header {
+          background-image: url("../images/hr-queue-10.jpeg");
+      }
+    .edit-user-header {
+        background-image: url("../images/hr-queue-10.jpeg");
+    }
     .create-user-wrapper {
         text-align: center;
         width: 80%;
         margin: 0 auto;
     }
+    .create-user-wrapper input,
+    .create-user-wrapper label
+    {
+        margin: 20px 5px;
+    }
+    .create-user-wrapper form {
+        margin-bottom: 200px;
+    }
+    .create-user-wrapper button {
+        background-color: var(--color13);
+        font-size: 22px;
+        color: white;
+    }
+    .create-user-wrapper button:hover {
+        background-color: var(--color10);
+        color: white;
+    }
 
+
+
+    /*-------------------------------------------------------------------------*/
+    /*-------------------------------VIEW ALL USERS PAGE-----------------------*/
+    /*-------------------------------------------------------------------------*/
+    .all-users {
+        text-align: center;
+    }
+    .all-users th {
+
+    }
+    .all-users td {
+        padding: 6px 20px;
+    }
+    .all-users button {
+        background-color: var(--color6);
+        font-size: 22px;
+        color: white;
+    }
+    .all-users button:hover {
+        background-color: var(--color9);
+        color: black;
+    }
 
     /*-------------------------------------------------------------------------*/
     /*----------------------------------REPORTS PAGE---------------------------*/
@@ -443,6 +499,50 @@
         background-color: var(--color4);
         color: white;
     }
+
+    /*-------------------------------------------------------------------------*/
+    /*---------------------CATEGORIES/DEPARTMENTS PAGES------------------------*/
+    /*-------------------------------------------------------------------------*/
+
+    .category-header {
+        background-image: url("../images/hr-queue-6.jpeg");
+    }
+
+
+    .department-header {
+        background-image: url("../images/hr-queue-3.jpeg");
+    }
+    .cat-dept-wrapper {
+        text-align: center;
+        margin: 0 auto;
+        width: 80%;
+    }
+    .cat-dept-wrapper h3 {
+        font-size: 40px;
+    }
+    .cat-dept-wrapper table {
+        text-align: left;
+        margin-bottom: 100px;
+    }
+    /*.cat-dept-wrapper table th {*/
+       /*text-align: justify;*/
+    /*}*/
+    .cat-dept-wrapper table td {
+        padding: 10px 30px 5px 0;
+    }
+    .cat-dept-wrapper button {
+        background-color: var(--color13);
+        font-size: 22px;
+        color: white;
+    }
+    .cat-dept-wrapper button:hover {
+        background-color: var(--color10);
+        color: white;
+    }
+
+
+
+
 
     /*-------------------------------------------------------------------------*/
     /*----------------------------------ABOUT US PAGE--------------------------*/
@@ -472,6 +572,17 @@
     .show-less {
         color: var(--color13);
         font-size: 40px;
+        margin: 20px auto;
+    }
+    .description button {
+        background-color: var(--color13);
+        font-size: 22px;
+        color: white;
+    }
+    .description button:hover {
+        background-color: var(--color10);
+        color: white;
+    }
     }
     .fa-arrow-down {
         font-size: 40px;
@@ -627,7 +738,8 @@
 
 
 
-}
+
+
 
 @media only screen and (min-width: 500px) {
     .intro-message h1 {

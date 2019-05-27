@@ -8,8 +8,9 @@
 <nav th:replace="fragments/admin-navbar :: admin-navbar" />
 
 <div class="body-div">
+    <div class="page-header create-user-header"><h1>Create User</h1></div>
     <div class="create-user-wrapper">
-        <h1>Create a new user</h1>
+        <h1>Enter the new rep's information here. All fields are required.</h1>
         <form th:method="post" th:object="${user}" th:action="@{/create-user}">
             <label>First Name</label>
             <input required="required" id="first_name"  th:field="${user.firstName}"/>
@@ -23,7 +24,7 @@
             <label>Password</label>
             <input required="required" type="password" id="password" th:field="${user.password}"/>
             <br/>
-            <label>User Privileges:</label>
+            <label><h1>User Privileges:</h1></label>
             <br/>
             Admin <input type="radio" id="isAdmin" value="true" th:field="${user.admin}"/><br/>
             Representative <input type="radio" id="noAdmin" value="false" th:field="${user.admin}"/><br/>

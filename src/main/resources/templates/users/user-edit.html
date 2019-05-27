@@ -16,8 +16,9 @@
 
 
 <div class="body-div">
-    <div class="dashboard-wrapper">
-        <h1 th:text="'User: ' + ${userProfile.firstName} + ' ' + ${userProfile.lastName}"></h1>
+    <div class="page-header edit-user-header"><h1>Edit</h1></div>
+    <div class="create-user-wrapper">
+    <h1 th:text="'User: ' + ${userProfile.firstName} + ' ' + ${userProfile.lastName}"></h1>
         <br/>
         <br/>
         <h2>Edit User</h2>
@@ -35,9 +36,11 @@
             <label>Password Reset</label>
             <input id="password" name="password" type="text"/>
             <br/>
-            <input type="submit" value="Submit">
+            <button>Submit</button>
         </form>
+    </div>
 </div>
+
 
 
 
