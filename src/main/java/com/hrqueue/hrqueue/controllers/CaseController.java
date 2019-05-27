@@ -215,8 +215,6 @@ public class CaseController {
 
 
     @GetMapping("/customer-queue")
-
-
     public String viewCustQueue(Model model) {
         model.addAttribute("allCases", caseRepo.findAll());
         return "cases/customer-queue";
