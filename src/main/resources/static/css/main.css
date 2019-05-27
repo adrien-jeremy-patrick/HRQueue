@@ -38,6 +38,10 @@
         z-index: 20;
         bottom: 0;
     }
+    .hide-big-nav,
+    .show-big-nav {
+        display: none;
+    }
     .extended-nav {
         display: none;
         text-align: right;
@@ -746,6 +750,22 @@
     }
     .extended-nav {
         display: block;
+    }
+    .hide-big-nav {
+        display: block;
+        color: white;
+        font-size: 40px;
+        position: fixed;
+        left: 20px;
+        bottom: 20px;
+    }
+    .show-big-nav {
+        display: none;
+        color: black;
+        font-size: 40px;
+        position: fixed;
+        left: 20px;
+        bottom: 20px;
     }
     .menu-icon,
     .x-icon {

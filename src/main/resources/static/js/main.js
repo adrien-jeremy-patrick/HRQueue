@@ -104,4 +104,40 @@
             opacity: 1
         }, 4000)
     })
+
+//    Hide big nav
+
+    $('.hide-big-nav').on('click', function(){
+        $(this).fadeOut();
+        $('.extended-nav p').fadeOut();
+        $('.navbar-link').fadeOut();
+        $('.extended-nav button').fadeOut();
+        $('.nav-div').animate({
+            width: '0%'
+        });
+        $('.body-div').animate({
+            width: '100%',
+            'margin-left': '0'
+
+        });
+        $('.show-big-nav').fadeIn();
+
+
+    });
+
+    $('.show-big-nav').on('click', function(){
+        $(this).fadeOut();
+        $('.extended-nav p').fadeIn();
+        $('.navbar-link').fadeIn();
+        $('.extended-nav button').fadeIn();
+        $('.nav-div').animate({
+            width: '30%'
+        });
+        $('.body-div').animate({
+            width: '70%',
+            'margin-left': '30%'
+
+        });
+        $('.hide-big-nav').fadeIn();
+    });
 })();
