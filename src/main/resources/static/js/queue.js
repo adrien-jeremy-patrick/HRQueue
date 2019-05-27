@@ -51,6 +51,9 @@
 
                         // avg_Wait_Time = dhm(avg_Wait_Time);
 
+                    } else if (json[i].case_open === null && json[i].case_closed === null) {
+
+
                     }
 
                 }
