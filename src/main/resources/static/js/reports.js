@@ -1,4 +1,8 @@
-$(document).ready(function () {
+(function(){
+
+
+
+    window.onload = function(e) {
 
 
 
@@ -398,7 +402,6 @@ $(document).ready(function () {
 
 
 
-
                 return_data.push({
 
                     'Sorting_Drop_Down': "All ",
@@ -417,6 +420,8 @@ $(document).ready(function () {
                 return return_data;
             }
 
+
+
         },
         "sAjaxDataProp": "",
         "order": [[0, "asc"]],
@@ -432,38 +437,12 @@ $(document).ready(function () {
             {"data": "Total_#_of_Cases_Resolved"}
 
 
-        ],
+        ]
 
-        'initComplete': function () {
-
-
-            this.api().columns().every(function () {
-                var column = this;
+    }
 
 
-
-                var th = $("#sorting").eq(column.index());
-                var select = $('<select><option value="">' + th.text() + '</option></select>')
-                    .on('change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val());
-
-                        column.search(val ? '^' + val + '$' : '', true, false)
-                            .draw();
-                    });
-
-
-                $(th).replaceWith($("<th>", {html: select}));
-
-
-
-                column.data().unique().sort().each(function (d, j) {
-                    $(select).append('<option value="' + d + '">' + d + '</option>')
-                });
-            });
-        }
-
-    });
+    );
 
 
     $('#CasesTable').dataTable({
@@ -612,7 +591,6 @@ $(document).ready(function () {
                         'department': json[i].department.department,
                         'category': json[i].category.category,
                         'customer_comment': customer_comment,
-                        'reps-admins_comments' : 'test',
                         'customer_wait_time': customer_wait_time,
                         'resolve_time': resolve_time,
 
@@ -631,7 +609,6 @@ $(document).ready(function () {
             {"data": "department"},
             {"data": "category"},
             {"data": "customer_comment"},
-            {"data": "reps-admins_comments"},
             {"data": "customer_wait_time"},
             {"data": "resolve_time"}
 
@@ -703,7 +680,8 @@ $(document).ready(function () {
 
 
 
-});
+
+};
 
 
-
+})();
