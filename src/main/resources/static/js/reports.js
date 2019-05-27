@@ -1,4 +1,8 @@
-$(document).ready(function () {
+(function(){
+
+
+
+    window.onload = function(e) {
 
 
 
@@ -397,13 +401,10 @@ $(document).ready(function () {
                 }
 
 
-                // var sortingItems = ['All', 'Category', 'Department', 'Representatives, Time'];
-
-
 
                 return_data.push({
 
-                    'Sorting_Drop_Down': 'All',
+                    'Sorting_Drop_Down': "All ",
                     'Avg_Customer_Wait_Time_per_Case': avg_Wait_Time,
                     'Avg_Resolve_Time_per_Case': avg_resolve_Time,
                     'Cases_Created_Today': casesCreatedToday,
@@ -418,6 +419,8 @@ $(document).ready(function () {
 
                 return return_data;
             }
+
+
 
         },
         "sAjaxDataProp": "",
@@ -434,30 +437,13 @@ $(document).ready(function () {
             {"data": "Total_#_of_Cases_Resolved"}
 
 
-        ],
+        ]
 
-        'initComplete': function () {
-            this.api().columns().every(function () {
-                var column = this;
-                var th = $("#sorting").eq(column.index());
-                var select = $('<select><option value="">' + th.text() + '</option></select>')
-                    .on('change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val());
-
-                        column.search(val ? '^' + val + '$' : '', true, false)
-                            .draw();
-                    });
-                $(th).replaceWith($("<th>", {html: select}));
+    }
 
 
-                column.data().unique().sort().each(function (d, j) {
-                    $(select).append('<option value="' + d + '">' + d + '</option>')
-                });
-            });
-        }
+    );
 
-    });
 
     $('#CasesTable').dataTable({
 
@@ -466,6 +452,7 @@ $(document).ready(function () {
         "scrollX": true,
         "ajax": {
             "url": "/reports-cases",
+
             "dataSrc": function (json) {
                 var return_data = new Array();
                 var date_created_at;
@@ -490,7 +477,7 @@ $(document).ready(function () {
 
                         writer = "No Representative associated with this case";
 
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+                        date_created_at = formatDate(json[i].created_at);
 
 
                     } else if (json[i].case_open === null && json[i].case_closed === null && json[i].customer_comment !== "") {
@@ -504,7 +491,7 @@ $(document).ready(function () {
 
                         writer = "No Representative associated with this case";
 
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+                        date_created_at = formatDate(json[i].created_at);
 
 
                     } else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment === "") {
@@ -521,7 +508,7 @@ $(document).ready(function () {
 
                         customer_wait_time = date_case_open - date_created_at;
 
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+                        date_created_at = formatDate(json[i].created_at);
 
                         customer_wait_time = dhm(customer_wait_time);
 
@@ -540,7 +527,7 @@ $(document).ready(function () {
 
                         customer_wait_time = date_case_open - date_created_at;
 
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+                        date_created_at = formatDate(json[i].created_at);
 
                         customer_wait_time = dhm(customer_wait_time);
 
@@ -560,7 +547,7 @@ $(document).ready(function () {
 
                         resolve_time = date_case_closed - date_case_open;
 
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+                        date_created_at = formatDate(json[i].created_at);
 
                         customer_wait_time = dhm(customer_wait_time);
 
@@ -584,7 +571,7 @@ $(document).ready(function () {
 
                         resolve_time = date_case_closed - date_case_open;
 
-                        date_created_at = new Date(json[i].created_at).toString().replace(/GMT.*/g, "");
+                        date_created_at = formatDate(json[i].created_at);
 
                         customer_wait_time = dhm(customer_wait_time);
 
@@ -604,7 +591,6 @@ $(document).ready(function () {
                         'department': json[i].department.department,
                         'category': json[i].category.category,
                         'customer_comment': customer_comment,
-                        'reps-admins_comments' : 'test',
                         'customer_wait_time': customer_wait_time,
                         'resolve_time': resolve_time,
 
@@ -623,7 +609,6 @@ $(document).ready(function () {
             {"data": "department"},
             {"data": "category"},
             {"data": "customer_comment"},
-            {"data": "reps-admins_comments"},
             {"data": "customer_wait_time"},
             {"data": "resolve_time"}
 
@@ -679,11 +664,24 @@ $(document).ready(function () {
 
     }
 
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [year, month, day].join('/');
+    }
 
 
 
 
-});
 
 
+};
 
+
+})();

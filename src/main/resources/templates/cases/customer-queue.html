@@ -22,8 +22,10 @@
                 <th role="columnheader">Est. Wait Time</th>
             </tr>
             </thead>
+
             <tbody class="one-case" role="rowgroup" th:each="case : ${allCases}">
-            <tr role="row">
+            <tr th:if="${case.case_open == null}" role="row">
+
                 <td role="call"><span th:text="${case.customer_name}"></span></td>
                 <td role="call"><span th:text="${case.department.department}"></span></td>
                 <td role="call"><span th:text="${case.created_at}"></span></td>
@@ -41,7 +43,12 @@
 
 
 <footer th:replace="fragments/footer :: footer" />
-<!--<script src="js/queue.js"></script>-->
+
+<script src="js/queue.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="js/queue.js"></script>
+
 
 
 </body>
