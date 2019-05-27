@@ -216,6 +216,15 @@ public class CaseController {
 
     @GetMapping("/customer-queue")
     public String viewCustQueue(Model model) {
+        Iterable<Case> cases = caseRepo.findAll();
+        boolean display = false;
+        for (Case caseIterate : cases){
+            if (caseIterate.getCase_open() == null) {
+                display = true;
+            }
+        }
+        model.addAttribute("noCases", display);
+
         model.addAttribute("allCases", caseRepo.findAll());
         return "cases/customer-queue";
     }
