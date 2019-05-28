@@ -37,6 +37,7 @@
         position: fixed;
         z-index: 20;
         bottom: 0;
+        margin-top: 200px;
     }
     .hide-big-nav,
     .show-big-nav {
@@ -87,6 +88,7 @@
         z-index: 200;
         border-radius: 50%;
         opacity: .8;
+        color: var(--color8);
     }
     .x-icon {
          width: 50px;
@@ -98,6 +100,8 @@
          z-index: 200;
          opacity: .8;
          border-radius: 50%;
+        color: var(--color8);
+
      }
 
     .body-div {
@@ -321,15 +325,14 @@
         text-align: center;
         width: 90%;
         margin: 0 auto;
+        font-size: 10px;
+        padding-bottom: 200px;
     }
     table {
         margin: 0 auto;
     }
     th {
         font-size: 25px;
-    }
-    .customer-queue-wrapper {
-        font-size: 10px;
     }
     .customer-queue-wrapper span
     {
@@ -349,7 +352,9 @@
     .login-wrapper {
         text-align: center;
         width: 80%;
-        margin: 0 auto;
+        margin: 0 auto 100px auto;
+        padding-bottom: 100px;
+
     }
     .login-wrapper h1 {
         margin: 30px auto 21px auto;
@@ -472,6 +477,7 @@
     /*-------------------------------------------------------------------------*/
     .all-users {
         text-align: center;
+        margin-bottom: 200px;
     }
     .all-users th {
 
@@ -516,6 +522,10 @@
         text-align: center;
         margin: 0 auto;
         width: 80%;
+        padding-bottom: 100px;
+    }
+    .department-header h1 {
+        font-size: 30px;
     }
     .cat-dept-wrapper h3 {
         font-size: 40px;
