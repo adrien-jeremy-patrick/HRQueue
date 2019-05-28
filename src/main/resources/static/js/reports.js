@@ -20,10 +20,18 @@
 
                 var return_data = new Array();
 
-                var counter = 0;
+                var counterWaitNotClosed = 0;
+                var counterWaitClosed = 0;
+                var resolvedCounter = 0;
 
-                var total_Wait_Time = 0;
-                var avg_Wait_Time;
+                var total_Wait_Time_Not_Closed = 0;
+                var total_Wait_Time_Closed = 0;
+                var wait_Time_Not_Closed;
+                var wait_Time_Closed;
+                var total_Avg_Combined_Wait_Time;
+
+
+
                 var date_case_open;
                 var date_created_at;
                 var customer_wait_time;
@@ -49,7 +57,7 @@
 
                 if (json.length === 0) {
 
-                    avg_Wait_Time = 'N/A';
+                    total_Avg_Combined_Wait_Time = 'N/A';
                     avg_resolve_Time = 'N/A';
 
 
@@ -71,22 +79,27 @@
 
                         if (json[i].case_open !== null && json[i].case_closed === null) {
 
-                            // counter++;
+
+                            counterWaitNotClosed++;
                             totalNumberOfCasesCreated++;
 
                             //Avg Wait Time
 
                             //ONLY COUNTING THE AVG WAIT TIME Of the CASES That Have been RESOLVED!!
 
-                            // date_created_at = json[i].created_at;
-                            // date_case_open = json[i].case_open;
-                            // customer_wait_time = date_case_open - date_created_at;
-                            // total_Wait_Time += customer_wait_time;
-                            // parsedWaitTime = total_Wait_Time/ counter;
-                            // avg_Wait_Time = total_Wait_Time / counter;
+                            date_created_at = json[i].created_at;
+                            date_case_open = json[i].case_open;
+                            customer_wait_time = date_case_open - date_created_at;
+                            total_Wait_Time_Not_Closed += customer_wait_time;
+                            wait_Time_Not_Closed = total_Wait_Time_Not_Closed;
+
+
+                            parsedWaitTime = wait_Time_Not_Closed/ counterWaitNotClosed;
+
+                            // avg_Wait_Time_Not_Closed = total_Wait_Time / counterWaitNotClosed;
                             // avg_Wait_Time = dhm(avg_Wait_Time);
-                            // avg_Wait_Time = 'N/A';
-                            // avg_resolve_Time = 'N/A';
+
+                            avg_resolve_Time = 'N/A';
 
 
                             //Cases Created Per Day
@@ -128,7 +141,8 @@
                         } else if (json[i].case_open !== null && json[i].case_closed !== null) {
 
 
-                            counter++;
+                            resolvedCounter++;
+                            counterWaitClosed++;
                             totalNumberOfCasesResolved++;
                             totalNumberOfCasesCreated++;
 
@@ -140,11 +154,18 @@
                             date_created_at = json[i].created_at;
                             date_case_open = json[i].case_open;
                             customer_wait_time = date_case_open - date_created_at;
-                            total_Wait_Time += customer_wait_time;
-                            parsedWaitTime = total_Wait_Time/ counter;
-                            avg_Wait_Time = Math.floor(total_Wait_Time / counter);
+                            total_Wait_Time_Closed += customer_wait_time;
 
-                            avg_Wait_Time = dhm(avg_Wait_Time);
+                            wait_Time_Closed = total_Wait_Time_Closed;
+
+                            console.log("wait time2: " + wait_Time_Closed);
+
+                            parsedWaitTime = wait_Time_Closed/ counterWaitClosed;
+
+
+                            // avg_Wait_Time = Math.floor(total_Wait_Time / counterWaitClosed);
+                            //
+                            // avg_Wait_Time = dhm(avg_Wait_Time);
 
                             //Cases Created Per Day
 
@@ -175,8 +196,8 @@
                             date_case_close = json[i].case_closed;
                             resolve_Time = date_case_close - date_case_open;
                             total_Resolve_Time += resolve_Time;
-                            avg_resolve_Time = Math.floor(total_Resolve_Time / counter);
-                            parsedResolveTime = total_Resolve_Time/ counter;
+                            avg_resolve_Time = Math.floor(total_Resolve_Time / resolvedCounter);
+                            parsedResolveTime = total_Resolve_Time/ resolvedCounter;
                             avg_resolve_Time = dhm(avg_resolve_Time);
 
 
@@ -247,11 +268,6 @@
                             }
 
 
-                            if (counter === 0) {
-                                avg_Wait_Time = 'N/A';
-                                avg_resolve_Time = 'N/A';
-                            }
-
                             //Cases Created Today
 
                             if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
@@ -262,7 +278,11 @@
 
                         }
 
+
                     }
+
+                    console.log(counterWaitNotClosed);
+                    console.log(counterWaitClosed);
 
                 }
 
@@ -278,9 +298,16 @@
 
                     }else {
 
+
+                        if(wait_Time_Not_Closed === undefined){
+                            wait_Time_Not_Closed = 0;
+                        }else if(wait_Time_Closed === undefined){
+                            wait_Time_Closed = 0;
+                        }
+
                         var data = new google.visualization.arrayToDataTable([
                             ['Time Metrics', 'Hours'],
-                            ["Avg. Customer Wait Time per Case", parsedWaitTime / (1000 * 60 * 60)],
+                            ["Avg. Customer Wait Time per Case", Math.floor(((wait_Time_Closed + wait_Time_Not_Closed)/(counterWaitClosed+counterWaitNotClosed)) / (1000 * 60 * 60))],
                             ["Avg. Resolve Time per Case", parsedResolveTime / (1000 * 60 * 60)]
                         ]);
 
@@ -313,7 +340,7 @@
 
                 function totalNumber() {
 
-                    console.log(totalNumberOfCasesCreated);
+
 
                     if(totalNumberOfCasesCreated === 0){
                         $('#chart_div').remove();
@@ -402,10 +429,27 @@
 
 
 
+                if (counterWaitNotClosed === 0 && counterWaitClosed === 0) {
+                    total_Avg_Combined_Wait_Time = 'N/A';
+                    avg_resolve_Time = 'N/A';
+                }else{
+
+                    if(wait_Time_Not_Closed === undefined){
+                        wait_Time_Not_Closed = 0;
+                    }else if(wait_Time_Closed === undefined){
+                        wait_Time_Closed = 0;
+                    }
+                    total_Avg_Combined_Wait_Time = dhm((wait_Time_Closed + wait_Time_Not_Closed)/(counterWaitClosed+counterWaitNotClosed));
+                }
+
+
+
+
+
                 return_data.push({
 
                     'Sorting_Drop_Down': "All ",
-                    'Avg_Customer_Wait_Time_per_Case': avg_Wait_Time,
+                    'Avg_Customer_Wait_Time_per_Case': total_Avg_Combined_Wait_Time,
                     'Avg_Resolve_Time_per_Case': avg_resolve_Time,
                     'Cases_Created_Today': casesCreatedToday,
                     'Cases_Created_per_Day': casesCreatedPerDay,
