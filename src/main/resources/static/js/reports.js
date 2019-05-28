@@ -97,7 +97,7 @@
                             parsedWaitTime = wait_Time_Not_Closed/ counterWaitNotClosed;
 
                             // avg_Wait_Time_Not_Closed = total_Wait_Time / counterWaitNotClosed;
-                            // avg_Wait_Time = dhm(avg_Wait_Time);
+                            // avg_Wait_Time = hm(avg_Wait_Time);
 
                             avg_resolve_Time = 'N/A';
 
@@ -165,7 +165,7 @@
 
                             // avg_Wait_Time = Math.floor(total_Wait_Time / counterWaitClosed);
                             //
-                            // avg_Wait_Time = dhm(avg_Wait_Time);
+                            // avg_Wait_Time = hm(avg_Wait_Time);
 
                             //Cases Created Per Day
 
@@ -198,7 +198,7 @@
                             total_Resolve_Time += resolve_Time;
                             avg_resolve_Time = Math.floor(total_Resolve_Time / resolvedCounter);
                             parsedResolveTime = total_Resolve_Time/ resolvedCounter;
-                            avg_resolve_Time = dhm(avg_resolve_Time);
+                            avg_resolve_Time = hm(avg_resolve_Time);
 
 
 
@@ -439,7 +439,7 @@
                     }else if(wait_Time_Closed === undefined){
                         wait_Time_Closed = 0;
                     }
-                    total_Avg_Combined_Wait_Time = dhm((wait_Time_Closed + wait_Time_Not_Closed)/(counterWaitClosed+counterWaitNotClosed));
+                    total_Avg_Combined_Wait_Time = hm((wait_Time_Closed + wait_Time_Not_Closed)/(counterWaitClosed+counterWaitNotClosed));
                 }
 
 
@@ -554,7 +554,7 @@
 
                         date_created_at = formatDate(json[i].created_at);
 
-                        customer_wait_time = dhm(customer_wait_time);
+                        customer_wait_time = hm(customer_wait_time);
 
 
                     } else if (json[i].case_open !== null && json[i].case_closed === null && json[i].customer_comment !== "") {
@@ -573,7 +573,7 @@
 
                         date_created_at = formatDate(json[i].created_at);
 
-                        customer_wait_time = dhm(customer_wait_time);
+                        customer_wait_time = hm(customer_wait_time);
 
                     } else if (json[i].case_open !== null && json[i].case_closed !== null && json[i].customer_comment !== "") {
 
@@ -593,9 +593,9 @@
 
                         date_created_at = formatDate(json[i].created_at);
 
-                        customer_wait_time = dhm(customer_wait_time);
+                        customer_wait_time = hm(customer_wait_time);
 
-                        resolve_time = dhm(resolve_time);
+                        resolve_time = hm(resolve_time);
 
 
                     }else if(json[i].case_open !== null && json[i].case_closed !== null && json[i].customer_comment === ""){
@@ -617,9 +617,9 @@
 
                         date_created_at = formatDate(json[i].created_at);
 
-                        customer_wait_time = dhm(customer_wait_time);
+                        customer_wait_time = hm(customer_wait_time);
 
-                        resolve_time = dhm(resolve_time);
+                        resolve_time = hm(resolve_time);
 
                     }
 
@@ -661,29 +661,22 @@
 
 
 
-    function dhm(t) {
-        var cd = 24 * 60 * 60 * 1000,
-            ch = 60 * 60 * 1000,
-            d = Math.floor(t / cd),
-            h = Math.floor((t - d * cd) / ch),
-            m = Math.floor((t - d * cd - h * ch) / 60000),
+        function hm(t) {
+            var ch = 60 * 60 * 1000,
+                h = Math.floor((t) / ch),
+                m = Math.floor((t - h * ch) / 60000),
 
-            pad = function (n) {
-                return n < 10 ? '0' + n : n;
-            };
-        if (m === 60) {
-            h++;
-            m = 0;
+                pad = function (n) {
+                    return n < 10 ? '0' + n : n;
+                };
+            if (m === 60) {
+                h++;
+                m = 0;
+            }
+
+
+            return [h, pad(m)].join(':');
         }
-        if (h === 24) {
-            d++;
-            h = 0;
-
-
-        }
-
-        return [d, pad(h), pad(m)].join(':');
-    }
 
 
     function today() {
