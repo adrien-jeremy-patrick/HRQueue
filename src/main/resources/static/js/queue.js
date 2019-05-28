@@ -82,13 +82,13 @@
                 //Little Rules Formula
 
 
-               var casesInQueue = json.length - (counterClosed + counterNotClosed);
+               var casesInQueue = (json.length - (counterClosed + counterNotClosed));
 
                 // console.log('cases in queue ' + casesInQueue);
                 //
                 // console.log("last" + json[json.length-1].customer_name);
 
-                var meanRateOfArrival = json.length/(json[json.length-1].created_at - json[0].created_at);
+                var meanRateOfArrival = (json.length)/(json[json.length-1].created_at - json[0].created_at);
 
                 var meanWaitInQueue = casesInQueue/meanRateOfArrival;
 
