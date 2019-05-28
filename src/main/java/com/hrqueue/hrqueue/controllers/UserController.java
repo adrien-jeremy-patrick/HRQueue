@@ -44,7 +44,6 @@ public class UserController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("allCases", caseRepository.findByCaseOpenIsNull());
         model.addAttribute("user", userRepository.findById(loggedInUser.getId()));
-
         if (loggedInUser.isAdmin()) {
             System.out.println(true);
             model.addAttribute("closedCases", caseRepository.findAll());
@@ -56,21 +55,49 @@ public class UserController {
             return "users/rep-admin-dashboard";
         }
 
-        @GetMapping("/user/display")
-        public String showeEditpage(Model model){
-            User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("user", userRepository.findById(loggedInUser.getId()));
-            model.addAttribute("allUsers",userRepository.findAll());
-        return "users/user-display";
+    @GetMapping("/rep-admin-dashboard/{status}")
+    public String showRepDash(Model model, @PathVariable String status) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("allCases", caseRepository.findByCaseOpenIsNull());
+        model.addAttribute("user", userRepository.findById(loggedInUser.getId()));
+        if (loggedInUser.isAdmin()) {
+            if (status.equalsIgnoreCase("working")) {
+                model.addAttribute("closedCases", caseRepository.findByCaseClosedIsNullAndCaseOpenIsNotNull());
+            } else if(status.equalsIgnoreCase("complete")){
+                model.addAttribute("closedCases", caseRepository.findByCaseClosedIsNotNull());
+            } else if (status.equalsIgnoreCase("open")){
+                model.addAttribute("closedCases",caseRepository.findByCaseOpenIsNull());
+            } else if (status.equalsIgnoreCase("all")) {
+                model.addAttribute("closedCases", caseRepository.findAll());
+            }
+        } else {
+
+            model.addAttribute("closedCases", caseRepository.findByCaseClosedIsNotNullAndWriterId(loggedInUser.getId()));
         }
 
-        @GetMapping("/user/{id}/display")
-        public String showUserEdit(Model model, @PathVariable long id){
-            User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("user", userRepository.findById(loggedInUser.getId()));
-            model.addAttribute("userProfile", userRepository.findById(id));
-            return "users/user-edit";
-        }
+
+
+        System.out.println(status);
+
+        return "users/rep-admin-dashboard";
+    }
+
+
+    @GetMapping("/user/display")
+    public String showeEditpage(Model model){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", userRepository.findById(loggedInUser.getId()));
+        model.addAttribute("allUsers",userRepository.findAll());
+    return "users/user-display";
+    }
+
+    @GetMapping("/user/{id}/display")
+    public String showUserEdit(Model model, @PathVariable long id){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", userRepository.findById(loggedInUser.getId()));
+        model.addAttribute("userProfile", userRepository.findById(id));
+        return "users/user-edit";
+    }
 
     @PostMapping("/user/{id}/edit")
     public String showUserEdit(@PathVariable long id, @RequestParam(name = "firstName")String firstName,@RequestParam(name = "lastName")String lastName,@RequestParam(name = "username")String username,@RequestParam(name = "password")String password){

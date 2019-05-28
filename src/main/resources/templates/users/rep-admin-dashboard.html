@@ -96,9 +96,16 @@
             </table>
     </div>
 
+        <div>
+
+        </div>
         <!--Admin Manage Cases Table-->
         <div th:if="${user.isAdmin()}">
-                <h1>Manage Cases</h1>
+                <h1>Case Management</h1>
+            <a th:href="@{'/rep-admin-dashboard'}"><button>All</button></a>
+            <a th:href="@{'/rep-admin-dashboard/working'}"><button>Working</button></a>
+            <a th:href="@{'/rep-admin-dashboard/complete'}"><button>Complete</button></a>
+            <a th:href="@{'/rep-admin-dashboard/open'}"><button>Open</button></a>
             <table class="table table-striped">
                 <tr>
                     <th scope="col">Customer Name</th>
