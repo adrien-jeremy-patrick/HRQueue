@@ -376,16 +376,37 @@
 
     .dashboard-wrapper {
         text-align: center;
-        width: 80%;
+        width: 90%;
         margin: 0 auto;
+    }
+    .dashboard-wrapper h1 {
+        font-size: 40px;
     }
     .dashboard-header {
         background-image: url("../images/airport-architectural-design-architecture-2351445.jpg");
+    }
+    .dashboard-table {
+        font-size: 15px;
+    }
+    .dashboard-table th{
+        font-size: 15px;
+        padding: 5px;
+    }
+    .dashboard-button {
+        background-color: var(--color13);
+        font-size: 22px;
+        color: white;
+        margin: 20px 10px 50px 10px;
+    }
+    .dashboard-button:hover {
+        background-color: var(--color10);
+        color: white;
     }
     .scrollable {
         height: 400px;
         overflow: scroll;
     }
+
 
 
     /*-------------------------------------------------------------------------*/
