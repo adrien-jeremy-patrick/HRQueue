@@ -439,8 +439,6 @@
                     }else if(wait_Time_Closed === undefined){
                         wait_Time_Closed = 0;
                     }
-
-                    console.log("total time: " + (wait_Time_Closed + wait_Time_Not_Closed));
                     total_Avg_Combined_Wait_Time = dhm((wait_Time_Closed + wait_Time_Not_Closed)/(counterWaitClosed+counterWaitNotClosed));
                 }
 
