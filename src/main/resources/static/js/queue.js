@@ -77,7 +77,9 @@
                 }
 
 
-                total_Avg_Wait_Time =((inputClosed + inputNotClosed)/(counterClosed+counterNotClosed));
+                // total_Avg_Wait_Time =((inputClosed + inputNotClosed)/(counterClosed+counterNotClosed));
+
+                //Little Rules Formula
 
 
                var casesInQueue = json.length - (counterClosed + counterNotClosed);
