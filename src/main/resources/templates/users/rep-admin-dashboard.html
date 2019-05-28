@@ -17,9 +17,7 @@
     <nav th:replace="fragments/rep-navbar :: rep-navbar" />
 </div>
 
-
 <div class="body-div">
-    <div class="page-header dashboard-header"><h1>Your Dashboard</h1></div>
     <div class="dashboard-wrapper">
         <h1>Welcome, <span th:text="${user.username}"/></h1>
 
@@ -98,9 +96,16 @@
             </table>
         </div>
 
+        <div>
+
+        </div>
         <!--Admin Manage Cases Table-->
         <div th:if="${user.isAdmin()}">
-            <h1>Manage Cases</h1>
+            <h1>Case Management</h1>
+            <a th:href="@{'/rep-admin-dashboard'}"><button>All</button></a>
+            <a th:href="@{'/rep-admin-dashboard/working'}"><button>Working</button></a>
+            <a th:href="@{'/rep-admin-dashboard/complete'}"><button>Complete</button></a>
+            <a th:href="@{'/rep-admin-dashboard/open'}"><button>Open</button></a>
             <table class="table table-striped">
                 <tr>
                     <th scope="col">Customer Name</th>
@@ -146,7 +151,6 @@
         </div>
     </div>
 </div>
-
 <nav th:replace="fragments/footer :: footer" />
 </body>
 </html>
