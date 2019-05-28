@@ -77,23 +77,40 @@
                 }
 
 
-                total_Avg_Wait_Time =((inputClosed + inputNotClosed)/(counterClosed+counterNotClosed));
-                console.log("Input Closed: " + inputClosed);
-                console.log("Input not closed: " + inputNotClosed);
-                console.log("total time: " + total_Avg_Wait_Time);
+                // total_Avg_Wait_Time =((inputClosed + inputNotClosed)/(counterClosed+counterNotClosed));
+
+                //Little Rules Formula
 
 
+               var casesInQueue = (json.length - (counterClosed + counterNotClosed));
+
+                // console.log('cases in queue ' + casesInQueue);
+                //
+                // console.log("last" + json[json.length-1].customer_name);
+
+                var meanRateOfArrival = (json.length)/(json[json.length-1].created_at - json[0].created_at);
+
+                var meanWaitInQueue = casesInQueue/meanRateOfArrival;
+
+
+                console.log('mean wait in queue ' + hm(meanWaitInQueue));
+
+
+                //Lq = mean rate of arrival * Q
+                //mean number of customers in queue = mean rate of arrival * mean wait in Queues
+                //Solving for Queue
 
             for (let i = 0; i < estTime.length; i++) {
-                console.log(estTime[i]);
-                waitTime = dhm((total_Avg_Wait_Time + (total_Avg_Wait_Time * i)));
+                // console.log(estTime[i]);
+                waitTime = hm((meanWaitInQueue + (meanWaitInQueue * i)));
+
 
                 if(counterNotClosed === 0 && counterClosed === 0){
                     waitTime = 'N/A';
                     estTime[i].textContent = waitTime;
                 }else {
 
-                    estTime[i].textContent = waitTime + " d:h:mn";
+                    estTime[i].textContent = waitTime + " h:mn";
 
                 }
             }
@@ -105,12 +122,10 @@
     };
 
 
-    function dhm(t) {
-        var cd = 24 * 60 * 60 * 1000,
-            ch = 60 * 60 * 1000,
-            d = Math.floor(t / cd),
-            h = Math.floor((t - d * cd) / ch),
-            m = Math.floor((t - d * cd - h * ch) / 60000),
+    function hm(t) {
+            var ch = 60 * 60 * 1000,
+            h = Math.floor((t) / ch),
+            m = Math.floor((t - h * ch) / 60000),
 
             pad = function (n) {
                 return n < 10 ? '0' + n : n;
@@ -119,32 +134,10 @@
             h++;
             m = 0;
         }
-        if (h === 24) {
-            d++;
-            h = 0;
 
 
-        }
-
-        return [d, pad(h), pad(m)].join(':');
+        return [h, pad(m)].join(':');
     }
 
-
-    function startTimer(duration, display) {
-        var timer = duration, minutes, seconds;
-        setInterval(function () {
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
-
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            display.textContent = minutes + ":" + seconds;
-
-            if (--timer < 0) {
-                timer = duration;
-            }
-        }, 1000);
-    }
 
 })();
