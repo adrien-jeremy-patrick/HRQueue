@@ -8,28 +8,34 @@
 <nav th:replace="fragments/admin-navbar :: admin-navbar" />
 
 <div class="body-div">
-    <div class=""
-            <div class="dashboard-wrapper">
+    <div class="page-header dashboard-header"><h1>Your Dashboard</h1></div>
+    <div class="cat-dept-wrapper">
+        <div class="comments-wrapper">
             <h1>Comments</h1>
             </div>
-            <span><a th:href="@{'/rep-admin-dashboard'}"><h6>Dashboard</h6></a></span>
+            <span><a th:href="@{'/rep-admin-dashboard'}"><h6>Click here to go back to the dashboard</h6></a></span>
 
         <div>
-            <h2 th:text="${case.customer_name}"></h2>
-            <h3 th:text="${case.department.department}"></h3>
-            <h3 th:text="${case.category.category}"></h3>
-            <p th:text="'Customer Comments: ' + ${case.customer_comment}"></p>
+            <p>Customer name: <span th:text="${case.customer_name}"></span></p>
+            <p>Case department: <span th:text="${case.department.department}"></span></p>
+            <p>Case category: <span th:text="${case.category.category}"></span></p>
+            <p>Customer comments: </p><span th:text="${case.customer_comment}"></span>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <h1>Submit a new comment here.</h1>
         </div>
         <div>
         <form th:method="post" th:object="${commentObject}" th:action="@{'/comment/'+${case.id}+'/create'}">
             <label>Comment:</label>
             <input required="required" id="comment" th:field="*{comment}"/>
             <br/>
-            <button>Submit</button>
+            <button class="comment-button">Submit</button>
         </form>
         </div>
         <div>
-            <table class="table table-striped">
+            <table class="table table-striped comment-table">
                 <tr>
                     <th scope="col">Comment</th>
                     <th scope="col">Time</th>
@@ -42,8 +48,9 @@
                 </tr>
             </table>
         </div>
+    </div>
 </div>
 
-<nav th:replace="fragments/footer :: footer" />s
+<nav th:replace="fragments/footer :: footer" />
 </body>
 </html>
