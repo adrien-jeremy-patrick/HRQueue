@@ -52,12 +52,12 @@
         padding: 7px 20px;
     }
     .extended-nav a {
-        font-size: 23px;
+        font-size: 18px;
         text-decoration: none;
         text-transform: uppercase;
     }
     .extended-nav button {
-        font-size: 23px;
+        font-size: 18px;
         text-decoration: none;
         text-transform: uppercase;
         color: white;
@@ -66,7 +66,7 @@
         padding-right: 20px;
     }
     .extended-nav p {
-        font-size: 25px;
+        font-size: 18px;
         color: var(--color9);
 
     }
@@ -338,6 +338,10 @@
     {
         margin: 5px 40px;
     }
+    .customer-queue-wrapper td
+    {
+        padding: 6px;
+    }
 
     .est-wait-time {
         color: red;
@@ -392,11 +396,22 @@
         font-size: 15px;
         padding: 5px;
     }
+    .dashboard-table button {
+        background-color: var(--color13);
+        font-size: 15px;
+        color: white;
+        margin: 10px 10px 30px 10px;
+    }
+    .dashboard-table button:hover {
+        background-color: var(--color10);
+        color: white;
+    }
     .dashboard-button {
         background-color: var(--color13);
         font-size: 22px;
         color: white;
-        margin: 20px 10px 50px 10px;
+        margin: 10px 10px 50px 10px;
+
     }
     .dashboard-button:hover {
         background-color: var(--color10);
@@ -405,6 +420,12 @@
     .scrollable {
         height: 400px;
         overflow: scroll;
+    }
+    .comment-button {
+        margin: 30px auto;
+    }
+    .comment-table th {
+        padding: 0px 15px 0px 0px;
     }
 
 
@@ -433,7 +454,7 @@
         margin: 0 auto;
     }
     .create-case-header {
-        background-image: url("../images/4k-wallpaper-afterglow-architecture-2346005.jpg");
+        background-image: url("../images/architecture-building-car-2353355.jpg");
     }
     #name-error-message,
     #email-error-message,
@@ -554,6 +575,9 @@
         margin: 0 auto;
         width: 80%;
         padding-bottom: 100px;
+    }
+    .cat-dept-wrapper a {
+        color: var(--color13)
     }
     .department-header h1 {
         font-size: 55px;
@@ -900,6 +924,10 @@
     }
     .extended-nav {
         display: block;
+    }
+    .extended-nav a,
+    .extended-nav button {
+        font-size: 23px;
     }
     .hide-big-nav {
         display: block;
