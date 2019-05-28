@@ -155,7 +155,7 @@
     .message-wrapper {
         position: relative;
         /*background-color: var(--color1);*/
-        margin: 260px auto;
+        margin: 120px auto;
     }
     .terminal-wrapper {
         background-image: linear-gradient(45deg, var(--color9), #dbc2ad);
@@ -318,7 +318,7 @@
         font-size: 13px;
     }
     .customer-queue-header {
-        background-image: url("../images/sands-of-time.jpg");
+        background-image: url("../images/accuracy-afternoon-alarm-clock-280277.jpg");
 
     }
     .customer-queue-wrapper {
@@ -360,7 +360,7 @@
         margin: 30px auto 21px auto;
     }
     .rep-admin-login-header {
-        background-image: url("../images/hr-queue-2.jpeg");
+        background-image: url("../images/architectural-design-architecture-building-2346019.jpg");
     }
     .invalid-username-password {
         color: red;
@@ -378,6 +378,13 @@
         text-align: center;
         width: 80%;
         margin: 0 auto;
+    }
+    .dashboard-header {
+        background-image: url("../images/airport-architectural-design-architecture-2351445.jpg");
+    }
+    .scrollable {
+        height: 400px;
+        overflow: scroll;
     }
 
 
@@ -405,7 +412,7 @@
         margin: 0 auto;
     }
     .create-case-header {
-        background-image: url("../images/hr-queue-8.jpeg");
+        background-image: url("../images/4k-wallpaper-afterglow-architecture-2346005.jpg");
     }
     #name-error-message,
     #email-error-message,
@@ -475,6 +482,9 @@
     /*-------------------------------------------------------------------------*/
     /*-------------------------------VIEW ALL USERS PAGE-----------------------*/
     /*-------------------------------------------------------------------------*/
+    .user-display-header {
+        background-image: url("../images/architecture-bed-bedroom-2346091.jpg");
+    }
     .all-users {
         text-align: center;
         margin-bottom: 200px;
@@ -486,13 +496,13 @@
         padding: 6px 20px;
     }
     .all-users button {
-        background-color: var(--color6);
+        background-color: var(--color13);
         font-size: 22px;
         color: white;
     }
     .all-users button:hover {
-        background-color: var(--color9);
-        color: black;
+        background-color: var(--color10);
+        color: white;
     }
 
     /*-------------------------------------------------------------------------*/
@@ -525,7 +535,7 @@
         padding-bottom: 100px;
     }
     .department-header h1 {
-        font-size: 30px;
+        font-size: 55px;
     }
     .cat-dept-wrapper h3 {
         font-size: 40px;
@@ -632,7 +642,9 @@
         width: 100%;
         background-color: var(--color8);
     }
-    .the-process h1 {
+    .the-process h1,
+    .the-team h1
+    {
         margin: 0;
         font-size: 45px!important;
         top: -29px!important;
@@ -757,10 +769,14 @@
         font-size: 8vw;
         line-height: 42px;
     }
-    .the-process h1 {
+    .the-process h1,
+    .the-team h1 {
         margin: 0;
         font-size: 62px!important;
         top: -39px!important;
+    }
+    .department-header h1 {
+        font-size: 70px;
     }
 
 
@@ -772,15 +788,6 @@
     }
     .nav-div {
         height: 100px;
-    }
-    .about-us {
-        /*text-align: right;*/
-        /*padding-right: 20px;*/
-        /*font-size: 20px;*/
-        /*text-shadow: 5px 8px 13px black;*/
-        /*position: absolute;*/
-        /*bottom: 4px;*/
-        /*right: 28px;*/
     }
     .intro-message h1 {
         max-width: 500px;
@@ -903,7 +910,7 @@
 
     .message-wrapper {
         width: 60%;
-        margin: 250px auto 135px auto;
+        margin: 120px auto 135px auto;
         /*background-image: linear-gradient(to bottom right, #f3f1f2, white);*/
     }
 

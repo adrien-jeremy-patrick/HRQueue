@@ -6,16 +6,11 @@
     <title>Home</title>
 </head>
 <body>
-<div th:if="${user.isAdmin()}==true">
-    <nav th:replace="fragments/admin-navbar :: admin-navbar" />
-</div>
-
-<div th:if="${user.isAdmin()}==false">
-    <nav th:replace="fragments/rep-navbar :: rep-navbar" />
-</div>
+<nav th:replace="fragments/admin-navbar :: admin-navbar" />
 
 
 <div class="body-div">
+    <div class="page-header user-display-header"><h1>All Profiles</h1></div>
     <div class="all-users">
         <h1>Users</h1>
  <table>
@@ -43,14 +38,6 @@
  </table>
 </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 <nav th:replace="fragments/footer :: footer" />
