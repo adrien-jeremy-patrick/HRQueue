@@ -99,7 +99,7 @@
                             // avg_Wait_Time_Not_Closed = total_Wait_Time / counterWaitNotClosed;
                             // avg_Wait_Time = dhm(avg_Wait_Time);
 
-                            // avg_resolve_Time = 'N/A';
+                            avg_resolve_Time = 'N/A';
 
 
                             //Cases Created Per Day
@@ -161,6 +161,8 @@
                             console.log("wait time2: " + wait_Time_Closed);
 
                             parsedWaitTime = wait_Time_Closed/ counterWaitClosed;
+
+
                             // avg_Wait_Time = Math.floor(total_Wait_Time / counterWaitClosed);
                             //
                             // avg_Wait_Time = dhm(avg_Wait_Time);
@@ -296,6 +298,13 @@
 
                     }else {
 
+
+                        if(wait_Time_Not_Closed === undefined){
+                            wait_Time_Not_Closed = 0;
+                        }else if(wait_Time_Closed === undefined){
+                            wait_Time_Closed = 0;
+                        }
+
                         var data = new google.visualization.arrayToDataTable([
                             ['Time Metrics', 'Hours'],
                             ["Avg. Customer Wait Time per Case", Math.floor(((wait_Time_Closed + wait_Time_Not_Closed)/(counterWaitClosed+counterWaitNotClosed)) / (1000 * 60 * 60))],
@@ -331,7 +340,7 @@
 
                 function totalNumber() {
 
-                    console.log(totalNumberOfCasesCreated);
+
 
                     if(totalNumberOfCasesCreated === 0){
                         $('#chart_div').remove();
@@ -425,6 +434,11 @@
                     avg_resolve_Time = 'N/A';
                 }else{
 
+                    if(wait_Time_Not_Closed === undefined){
+                        wait_Time_Not_Closed = 0;
+                    }else if(wait_Time_Closed === undefined){
+                        wait_Time_Closed = 0;
+                    }
 
                     console.log("total time: " + (wait_Time_Closed + wait_Time_Not_Closed));
                     total_Avg_Combined_Wait_Time = dhm((wait_Time_Closed + wait_Time_Not_Closed)/(counterWaitClosed+counterWaitNotClosed));

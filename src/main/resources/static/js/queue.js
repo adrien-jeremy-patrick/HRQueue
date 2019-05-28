@@ -23,9 +23,16 @@
         $.getJSON('/reports-cases', {get_param: 'value'}, function (json) {
 
 
-            var avg_Wait_Time;
-            var counter = 0;
-            var total_Wait_Time = 0;
+            var avg_Wait_Time_Not_Closed;
+            var avg_Wait_Time_Closed;
+
+            var totalNotClosed = 0;
+            var totalClosed = 0;
+
+            var total_Avg_Wait_Time;
+
+            var counterNotClosed = 0;
+            var counterClosed = 0;
 
             var date_created_at;
             var date_case_open;
@@ -33,7 +40,7 @@
 
             if (json.length === 0) {
 
-                avg_Wait_Time = 'N/A';
+                total_Avg_Wait_Time = 'N/A';
 
             } else {
 
@@ -41,27 +48,45 @@
 
 
                     if (json[i].case_open !== null && json[i].case_closed !== null) {
-                        counter++;
+                        counterNotClosed++;
 
                         date_created_at = json[i].created_at;
                         date_case_open = json[i].case_open;
+
                         customer_wait_time = date_case_open - date_created_at;
-                        total_Wait_Time += customer_wait_time;
-                        avg_Wait_Time = Math.floor(total_Wait_Time / counter);
+                        totalNotClosed += customer_wait_time;
+
+                        // avg_Wait_Time = Math.floor(total_Wait_Time / counter);
 
                         // avg_Wait_Time = dhm(avg_Wait_Time);
 
                     } else if (json[i].case_open === null && json[i].case_closed === null) {
 
+                        counterClosed++;
+                        date_created_at = json[i].created_at;
+                        date_case_open = json[i].case_open;
+
+                        customer_wait_time = date_case_open - date_created_at;
+                        totalClosed += customer_wait_time;
+
+                        // avg_Wait_Time = Math.floor(total_Wait_Time / counter);
 
                     }
 
                 }
             }
 
+            if (counterNotClosed === 0 && counterClosed === 0) {
+                total_Avg_Wait_Time = 'N/A';
+            }else{
+
+                total_Avg_Wait_Time = dhm((totalClosed + totalNotClosed)/(counterClosed+counterNotClosed));
+            }
+
+
             for (let i = 0; i < estTime.length; i++) {
                 console.log(estTime[i]);
-                waitTime = (avg_Wait_Time+ (avg_Wait_Time * i));
+                waitTime = (total_Avg_Wait_Time + (total_Avg_Wait_Time * i));
 
                 estTime[i].textContent = dhm(waitTime) + " d:h:mn";
             }
