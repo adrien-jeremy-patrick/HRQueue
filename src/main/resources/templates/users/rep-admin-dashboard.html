@@ -18,13 +18,14 @@
 </div>
 
 <div class="body-div">
+    <div class="page-header dashboard-header"><h1>Your Dashboard</h1></div>
     <div class="dashboard-wrapper">
         <h1>Welcome, <span th:text="${user.username}"/></h1>
 
         <!--Open Cases Table that is only shown to reps.-->
     <div th:if="${user.isAdmin() != true}">
-        <h1>Open Cases</h1>
-            <table class="table table-striped">
+        <h3>Open Cases</h3>
+            <table class="table table-striped dashboard-table">
                 <tr>
                     <th scope="col">Customer Name</th>
                     <th scope="col">Department</th>
@@ -45,8 +46,8 @@
 
         <!--Rep Assigned Case Table -->
     <div th:if="${user.isAdmin() != true}">
-        <h1>Your Assigned Cases</h1>
-            <table class="table table-striped">
+        <h3>Your Assigned Cases</h3>
+            <table class="table table-striped dashboard-table">
                 <tr>
                     <th scope="col">Customer Name</th>
                     <th scope="col">Department</th>
@@ -69,44 +70,14 @@
     </div>
 
 
-        <!--Admin Assigned Case Table -->
-    <div th:if="${user.isAdmin()}">
-        <h1>Your Assigned Cases</h1>
-            <table class="table table-striped">
-                <tr>
-                    <th scope="col">Customer Name</th>
-                    <th scope="col">Department</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Sign In Time</th>
-                    <th scope="col">Delete</th>
-                    <th scope="col">Unassign</th>
-                    <th scope="col">Complete</th>
-                    <th scope="col">Comments</th>
-                </tr>
-                <tr th:each="case : ${user.getCases()}" th:if="${case.case_closed == null}">
-                        <td th:text="${case.customer_name}"></td>
-                        <td th:text="${case.department.department}"></td>
-                        <td th:text="${case.category.category}"></td>
-                        <td th:text="${case.created_at}"></td>
-                        <td><a th:href="@{'/case/' + ${case.getId()} + '/delete-prompt'}"><button class="delete-button">Delete</button></a></td>
-                        <td><a th:href="@{'/case/' + ${case.getId()} + '/unassign'}"><button>Unassign</button></a></td>
-                        <td><a th:href="@{'/case/' + ${case.getId()} + '/complete'}"><button>Complete</button></a></td>
-                        <td><a th:href="@{'/case/' + ${case.getId()} + '/comment'}"><button>Comments</button></a></td>
-                </tr>
-            </table>
-    </div>
-
-        <div>
-
-        </div>
         <!--Admin Manage Cases Table-->
         <div th:if="${user.isAdmin()}">
-                <h1>Case Management</h1>
-            <a th:href="@{'/rep-admin-dashboard'}"><button>All</button></a>
-            <a th:href="@{'/rep-admin-dashboard/working'}"><button>Working</button></a>
-            <a th:href="@{'/rep-admin-dashboard/complete'}"><button>Complete</button></a>
-            <a th:href="@{'/rep-admin-dashboard/open'}"><button>Open</button></a>
-            <table class="table table-striped">
+                <h3>Case Management</h3>
+            <a th:href="@{'/rep-admin-dashboard'}"><button class="dashboard-button">All</button></a>
+            <a th:href="@{'/rep-admin-dashboard/working'}"><button class="dashboard-button">Working</button></a>
+            <a th:href="@{'/rep-admin-dashboard/complete'}"><button class="dashboard-button">Complete</button></a>
+            <a th:href="@{'/rep-admin-dashboard/open'}"><button class="dashboard-button">Open</button></a>
+            <table class="table table-striped dashboard-table">
                 <tr>
                     <th scope="col">Customer Name</th>
                     <th scope="col">Department</th>
