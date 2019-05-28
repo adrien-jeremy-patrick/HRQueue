@@ -131,11 +131,11 @@
         $('.navbar-link').fadeIn();
         $('.extended-nav button').fadeIn();
         $('.nav-div').animate({
-            width: '30%'
+            width: '20%'
         });
         $('.body-div').animate({
-            width: '70%',
-            'margin-left': '30%'
+            width: '80%',
+            'margin-left': '20%'
 
         });
         $('.hide-big-nav').fadeIn();
