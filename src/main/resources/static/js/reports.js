@@ -18,98 +18,90 @@
 
 
                         //Count the number of cases created and resolved
-                        var totalNumberOfCasesCreated = 0;
-                        var totalNumberOfCasesResolved = 0;
+                        var total_number_of_cases_created = 0;
+                        var total_number_of_cases_resolved = 0;
 
                         //Counters used to Calculate the Avg Customer Wait Time
-                        var counterCaseNotAssigned = 0;
-                        var counterCaseAssigned = 0;
-                        var counterCaseResolvedCounter = 0;
+                        var counter_case_not_assigned = 0;
+                        var total_number_of_cases_assigned = 0;
 
                         //Sum of wait times used to calculate the Avg Customer Wait Time
-                        var sumOfWaitTimeForCasesNotAssigned = 0;
-                        var sumOfTotalWaitTimeForCasesAssigned = 0;
+                        var sum_of_total_wait_time_for_cases_assigned = 0;
 
                         //Total wait time used to calculate the avg Customer Wait Time
-                        var totalWaitTimeForCasesNotAssigned;
-                        var totalWaitTimeForCasesAssigned;
+                        var total_wait_time_for_cases_not_assigned;
+                        var total_wait_time_for_cases_Assigned;
 
 
                         //Average Customer Wait Time
-                        var averageWaitTime;
+                        var average_wait_time;
                         //Time Stamp for when user submits a case
-                        var caseCreatedOn;
+                        var case_created_on;
                         //Time Stamp for when rep/admin assigns case to themselves
-                        var dateCaseAssigned;
+                        var date_case_assigned;
                         // The difference between date case assigned and case created on
-                        var customerWaitTime;
+                        var customer_wait_time;
 
+                        //Using two different counters to count cases created per day and today
+                        var cases_created_per_day = 0;
+                        var cases_created_today = 0;
 
 
                         //Sum of resolve times used to calculate the Avg Case Resolve Time
-                        var sumResolveTime = 0;
+                        var sum_resolve_time = 0;
                         //Total resolve times used to calculate the Avg Case Resolve Time
-                        var totalResolveTime;
+                        var total_resolve_time;
                         //Average Resolve Time for all cases resolved
-                        var averageResolveTime;
+                        var average_resolve_time;
                         //Time stamp for case resolved
-                        var dateCaseResolved;
+                        var date_case_resolved;
 
+                        //Using two different counters to count cases resolved per day and today
+                        var cases_resolved_per_day = 0;
+                        var cases_resolved_today = 0;
 
-                        var casesResolvedPerDay = 0;
-                        var casesResolvedToday = 0;
-                        var casesCreatedPerDay = 0;
-                        var casesCreatedToday = 0;
+                        //Parsed averages for Google Charts API
 
+                        var parsed_average_resolve_time;
+                        var parsed_average_wait_time;
 
-
-                        var parsedResolveTime;
-                        var parsedWaitTime;
-
+                        //No cases
 
                         if (json.length === 0) {
 
-                            averageWaitTime = 'N/A';
-                            averageResolveTime = 'N/A';
+                            average_wait_time = 'N/A';
+                            average_resolve_time = 'N/A';
 
-
-                            casesResolvedPerDay = 0;
-                            casesCreatedPerDay = 0;
-
-                            casesCreatedToday = 0;
-                            casesResolvedToday = 0;
-
-                            totalNumberOfCasesCreated = 0;
-                            totalNumberOfCasesResolved = 0;
+                            total_number_of_cases_created = 0;
+                            total_number_of_cases_resolved = 0;
 
                         } else {
 
+                            //Loop through all cases stored in database
                             for (var i = 0; i < json.length; i++) {
 
 
+                                //Case Assigned but not closed
                                 if (json[i].case_open !== null && json[i].case_closed === null) {
 
 
-                                    counterCaseNotAssigned++;
-                                    totalNumberOfCasesCreated++;
-
-                                    //Avg Wait Time
-
-                                    //ONLY COUNTING THE AVG WAIT TIME Of the CASES That Have been RESOLVED!!
-
-                                    caseCreatedOn = json[i].created_at;
-                                    dateCaseAssigned = json[i].case_open;
-                                    customerWaitTime = dateCaseAssigned - caseCreatedOn;
-                                    sumOfWaitTimeForCasesNotAssigned += customerWaitTime;
-                                    totalWaitTimeForCasesNotAssigned = sumOfWaitTimeForCasesNotAssigned;
+                                    //Counting cases created and assigned
+                                    total_number_of_cases_created++;
+                                    total_number_of_cases_assigned++;
 
 
-                                    parsedWaitTime = totalWaitTimeForCasesNotAssigned / counterCaseNotAssigned;
 
-                                    // avg_Wait_Time_Not_Closed = total_Wait_Time / counterCaseNotAssigned;
-                                    // avg_Wait_Time = hm(avg_Wait_Time);
+                                    //
+                                    case_created_on = json[i].created_at;
+                                    date_case_assigned = json[i].case_open;
+                                    customer_wait_time = date_case_assigned - case_created_on;
+                                    sum_of_total_wait_time_for_cases_assigned += customer_wait_time;
+                                    total_wait_time_for_cases_Assigned = sum_of_total_wait_time_for_cases_assigned;
 
-                                    averageResolveTime = 'N/A';
+
+                                    parsed_average_wait_time = total_wait_time_for_cases_Assigned / total_number_of_cases_assigned;
+
+                                    average_resolve_time = 'N/A';
 
 
                                     //Cases Created Per Day
@@ -126,13 +118,13 @@
 
                                     if (roundedDays === 0) {
 
-                                        casesCreatedPerDay = 0;
+                                        cases_created_per_day = 0;
 
                                     } else {
 
-                                        casesCreatedPerDay = totalNumberOfCasesCreated / roundedDays;
+                                        cases_created_per_day = total_number_of_cases_created / roundedDays;
 
-                                        casesCreatedPerDay = Math.round(parseFloat(casesCreatedPerDay));
+                                        cases_created_per_day = Math.round(parseFloat(cases_created_per_day));
 
                                     }
 
@@ -140,68 +132,63 @@
 
                                     if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
 
-                                        casesCreatedToday++;
+                                        cases_created_today++;
 
 
                                     }
 
 
+                                    //Case assigned and closed
                                 } else if (json[i].case_open !== null && json[i].case_closed !== null) {
 
 
-                                    counterCaseResolvedCounter++;
-                                    counterCaseAssigned++;
-                                    totalNumberOfCasesResolved++;
-                                    totalNumberOfCasesCreated++;
+                                    //count case created, assigned and resolved
+
+                                    total_number_of_cases_created++;
+                                    total_number_of_cases_assigned++;
+                                    total_number_of_cases_resolved++;
+
 
 
                                     //Avg Wait Time
 
+                                    case_created_on = json[i].created_at;
+                                    date_case_assigned = json[i].case_open;
+                                    customer_wait_time = date_case_assigned - case_created_on;
+                                    sum_of_total_wait_time_for_cases_assigned += customer_wait_time;
+                                    total_wait_time_for_cases_Assigned = sum_of_total_wait_time_for_cases_assigned;
 
-                                    caseCreatedOn = json[i].created_at;
-                                    dateCaseAssigned = json[i].case_open;
-                                    customerWaitTime = dateCaseAssigned - caseCreatedOn;
-                                    sumOfTotalWaitTimeForCasesAssigned += customerWaitTime;
-
-                                    totalWaitTimeForCasesAssigned = sumOfTotalWaitTimeForCasesAssigned;
-
-                                    console.log("wait time2: " + totalWaitTimeForCasesAssigned);
-
-                                    parsedWaitTime = totalWaitTimeForCasesAssigned / counterCaseAssigned;
+                                    parsed_average_wait_time = total_wait_time_for_cases_Assigned / total_number_of_cases_assigned;
                                     
 
                                     //Cases Created Per Day
 
-
                                     todaysDate = new Date();
-
 
                                     timeline = todaysDate - json[0].created_at;
                                     days = (timeline / (1000 * 60 * 60 * 24));
                                     roundedDays = Math.round(days);
 
-
                                     if (roundedDays === 0) {
 
-                                        casesCreatedPerDay = 0;
+                                        cases_created_per_day = 0;
 
                                     } else {
 
-                                        casesCreatedPerDay = totalNumberOfCasesCreated / roundedDays;
-                                        casesCreatedPerDay = Math.round(parseFloat(casesCreatedPerDay));
+                                        cases_created_per_day = total_number_of_cases_created / roundedDays;
+                                        cases_created_per_day = Math.round(parseFloat(cases_created_per_day));
 
                                     }
 
 
                                     //Avg Resolve Time;
 
-
-                                    dateCaseResolved = json[i].case_closed;
-                                    totalResolveTime = dateCaseResolved - dateCaseAssigned;
-                                    sumResolveTime += totalResolveTime;
-                                    averageResolveTime = Math.floor(sumResolveTime / counterCaseResolvedCounter);
-                                    parsedResolveTime = sumResolveTime / counterCaseResolvedCounter;
-                                    averageResolveTime = hm(averageResolveTime);
+                                    date_case_resolved = json[i].case_closed;
+                                    total_resolve_time = date_case_resolved - date_case_assigned;
+                                    sum_resolve_time += total_resolve_time;
+                                    average_resolve_time = Math.floor(sum_resolve_time / total_number_of_cases_resolved);
+                                    parsed_average_resolve_time = sum_resolve_time / total_number_of_cases_resolved;
+                                    average_resolve_time = hm(average_resolve_time);
 
 
                                     //Cases Resolved Per Day
@@ -216,20 +203,19 @@
 
                                     if (roundedDays === 0) {
 
-                                        casesResolvedPerDay = 0;
+                                        cases_resolved_per_day = 0;
 
                                     } else {
 
-                                        casesResolvedPerDay = totalNumberOfCasesResolved / roundedDays;
-                                        casesResolvedPerDay = Math.round(parseFloat(casesResolvedPerDay));
+                                        cases_resolved_per_day = total_number_of_cases_resolved / roundedDays;
+                                        cases_resolved_per_day = Math.round(parseFloat(cases_resolved_per_day));
 
                                     }
 
                                     //Cases Created Today
 
                                     if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
-                                        casesCreatedToday++;
-
+                                        cases_created_today++;
 
                                     }
 
@@ -237,21 +223,21 @@
 
                                     if (moment(json[i].case_closed).format("MM/DD/YYYY") === today()) {
 
-                                        casesResolvedToday++;
+                                        cases_resolved_today++;
 
 
                                     }
 
+                                    //Case created at, not assigned, and not resolved
 
                                 } else if (json[i].case_open === null && json[i].case_closed === null) {
 
-                                    totalNumberOfCasesCreated++;
+                                    //count cases created
+                                    total_number_of_cases_created++;
 
                                     //Cases Created Per Day
 
-
                                     todaysDate = new Date();
-
 
                                     timeline = todaysDate - json[0].created_at;
                                     days = (timeline / (1000 * 60 * 60 * 24));
@@ -260,12 +246,12 @@
 
                                     if (roundedDays === 0) {
 
-                                        casesCreatedPerDay = 0;
+                                        cases_created_per_day = 0;
 
                                     } else {
 
-                                        casesCreatedPerDay = totalNumberOfCasesCreated / roundedDays;
-                                        casesCreatedPerDay = Math.round(parseFloat(casesCreatedPerDay));
+                                        cases_created_per_day = total_number_of_cases_created / roundedDays;
+                                        cases_created_per_day = Math.round(parseFloat(cases_created_per_day));
 
                                     }
 
@@ -273,7 +259,7 @@
                                     //Cases Created Today
 
                                     if (moment(json[i].created_at).format("MM/DD/YYYY") === today()) {
-                                        casesCreatedToday++;
+                                        cases_created_today++;
 
 
                                     }
@@ -283,8 +269,7 @@
 
                             }
 
-                            console.log(counterCaseNotAssigned);
-                            console.log(counterCaseAssigned);
+
 
                         }
 
@@ -292,25 +277,28 @@
                         google.charts.load('current', {'packages': ['bar']});
                         google.charts.setOnLoadCallback(timeMetrics);
 
+                        //Generating Bar Chart
                         function timeMetrics() {
 
 
-                            if (parsedWaitTime === undefined) {
+                            //Remove chart if lacking average wait time information
+                            if (parsed_average_wait_time === undefined) {
                                 $('#BarCharts').remove();
 
                             } else {
 
 
-                                if (totalWaitTimeForCasesNotAssigned === undefined) {
-                                    totalWaitTimeForCasesNotAssigned = 0;
-                                } else if (totalWaitTimeForCasesAssigned === undefined) {
-                                    totalWaitTimeForCasesAssigned = 0;
+                                //Redefining variables
+                                if (total_wait_time_for_cases_not_assigned === undefined) {
+                                    total_wait_time_for_cases_not_assigned = 0;
+                                } else if (total_wait_time_for_cases_Assigned === undefined) {
+                                    total_wait_time_for_cases_Assigned = 0;
                                 }
 
                                 var data = new google.visualization.arrayToDataTable([
                                     ['Time Metrics', 'Hours'],
-                                    ["Avg. Customer Wait Time per Case", Math.floor(((totalWaitTimeForCasesAssigned + totalWaitTimeForCasesNotAssigned) / (counterCaseAssigned + counterCaseNotAssigned)) / (1000 * 60 * 60))],
-                                    ["Avg. Resolve Time per Case", parsedResolveTime / (1000 * 60 * 60)]
+                                    ["Avg. Customer Wait Time per Case", Math.floor(((total_wait_time_for_cases_Assigned + total_wait_time_for_cases_not_assigned) / (total_number_of_cases_assigned + counter_case_not_assigned)) / (1000 * 60 * 60))],
+                                    ["Avg. Resolve Time per Case", parsed_average_resolve_time / (1000 * 60 * 60)]
                                 ]);
 
                                 var options = {
@@ -343,7 +331,7 @@
                         function totalNumber() {
 
 
-                            if (totalNumberOfCasesCreated === 0) {
+                            if (total_number_of_cases_created === 0) {
                                 $('#chart_div').remove();
                             } else {
 
@@ -355,11 +343,11 @@
                                     [{
                                         v: '# of Cases Created',
                                         f: 'Total Number of Cases Created'
-                                    }, totalNumberOfCasesCreated],
+                                    }, total_number_of_cases_created],
                                     [{
                                         v: '# of Cases Resolved',
                                         f: 'Total Number of Cases Resolved'
-                                    }, totalNumberOfCasesResolved],
+                                    }, total_number_of_cases_resolved],
 
                                 ]);
 
@@ -386,14 +374,14 @@
 
                         function chartCasesCreated() {
 
-                            if (casesCreatedToday === 0 && casesCreatedPerDay === 0 || casesCreatedToday === 0 || casesCreatedPerDay === 0) {
+                            if (cases_created_today === 0 && cases_created_per_day === 0 || cases_created_today === 0 || cases_created_per_day === 0) {
                                 $('#donutchartCasesCreated').remove();
 
                             } else {
                                 var data = google.visualization.arrayToDataTable([
                                     ['Cases Created', 'Cases today & per day'],
-                                    ['# of Cases Created Today', casesCreatedToday],
-                                    ['Avg. Cases Created Per Day', casesCreatedPerDay],
+                                    ['# of Cases Created Today', cases_created_today],
+                                    ['Avg. Cases Created Per Day', cases_created_per_day],
                                 ]);
 
                                 var options = {
@@ -411,13 +399,13 @@
 
                         function chartCasesResolved() {
 
-                            if (casesResolvedToday === 0 && casesResolvedPerDay === 0 || casesResolvedToday === 0 || casesResolvedPerDay === 0) {
+                            if (cases_resolved_today === 0 && cases_resolved_per_day === 0 || cases_resolved_today === 0 || cases_resolved_per_day === 0) {
                                 $('#donutchartCasesResolved').remove();
                             } else {
                                 var data = google.visualization.arrayToDataTable([
                                     ['Cases Resolved', 'Cases today & per day'],
-                                    ['# of Cases Resolved Today', casesResolvedToday],
-                                    ['Avg. Cases Resolved Per Day', casesResolvedPerDay],
+                                    ['# of Cases Resolved Today', cases_resolved_today],
+                                    ['Avg. Cases Resolved Per Day', cases_resolved_per_day],
                                 ]);
 
                                 var options = {
@@ -432,31 +420,31 @@
                         }
 
 
-                        if (counterCaseNotAssigned === 0 && counterCaseAssigned === 0) {
-                            averageWaitTime = 'N/A';
-                            averageResolveTime = 'N/A';
+                        if (counter_case_not_assigned === 0 && total_number_of_cases_assigned === 0) {
+                            average_wait_time = 'N/A';
+                            average_resolve_time = 'N/A';
                         } else {
 
-                            if (totalWaitTimeForCasesNotAssigned === undefined) {
-                                totalWaitTimeForCasesNotAssigned = 0;
-                            } else if (totalWaitTimeForCasesAssigned === undefined) {
-                                totalWaitTimeForCasesAssigned = 0;
+                            if (total_wait_time_for_cases_not_assigned === undefined) {
+                                total_wait_time_for_cases_not_assigned = 0;
+                            } else if (total_wait_time_for_cases_Assigned === undefined) {
+                                total_wait_time_for_cases_Assigned = 0;
                             }
-                            averageWaitTime = hm((totalWaitTimeForCasesAssigned + totalWaitTimeForCasesNotAssigned) / (counterCaseAssigned + counterCaseNotAssigned));
+                            average_wait_time = hm((total_wait_time_for_cases_Assigned + total_wait_time_for_cases_not_assigned) / (total_number_of_cases_assigned + counter_case_not_assigned));
                         }
 
 
                         return_data.push({
 
                             'Sorting_Drop_Down': "All ",
-                            'Avg_Customer_Wait_Time_per_Case': averageWaitTime,
-                            'Avg_Resolve_Time_per_Case': averageResolveTime,
-                            'Cases_Created_Today': casesCreatedToday,
-                            'Cases_Created_per_Day': casesCreatedPerDay,
-                            'Cases_Resolved_Today': casesResolvedToday,
-                            'Cases_Resolved_per_Day': casesResolvedPerDay,
-                            'Total_#_of_Cases_Created': totalNumberOfCasesCreated,
-                            'Total_#_of_Cases_Resolved': totalNumberOfCasesResolved
+                            'Avg_Customer_Wait_Time_per_Case': average_wait_time,
+                            'Avg_Resolve_Time_per_Case': average_resolve_time,
+                            'Cases_Created_Today': cases_created_today,
+                            'Cases_Created_per_Day': cases_created_per_day,
+                            'Cases_Resolved_Today': cases_resolved_today,
+                            'Cases_Resolved_per_Day': cases_resolved_per_day,
+                            'Total_#_of_Cases_Created': total_number_of_cases_created,
+                            'Total_#_of_Cases_Resolved': total_number_of_cases_resolved
 
 
                         });
