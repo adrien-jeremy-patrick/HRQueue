@@ -20,48 +20,60 @@
     window.onload = function (e) {
 
 
+        //Calculating Estimated Queue Time
+
         $.getJSON('/reports-cases', {get_param: 'value'}, function (json) {
 
 
 
-            var totalNotClosed = 0;
-            var totalClosed = 0;
+            var sum_of_customer_wait_time = 0;
+            var sum_of_customer_cases_Resolve_times = 0;
 
-            var total_Avg_Wait_Time;
-
-            var counterNotClosed = 0;
-            var counterClosed = 0;
+            var total_number_of_Cases_assigned = 0;
+            var total_number_of_cases_resolved = 0;
 
             var date_created_at;
             var date_case_open;
-            var customer_wait_time;
+            var date_case_resolved;
 
-            var inputClosed;
-            var inputNotClosed;
+            var customer_wait_time;
+            var customer_resolve_time;
+
+
+            var total_customer_wait_time;
+            var total_resolve_wait_time;
+
 
                 for (var i = 0; i < json.length; i++) {
 
 
                     if (json[i].case_open !== null && json[i].case_closed == null) {
-                        counterNotClosed++;
+                        total_number_of_Cases_assigned++;
 
                         date_created_at = json[i].created_at;
                         date_case_open = json[i].case_open;
 
                         customer_wait_time = date_case_open - date_created_at;
-                        totalNotClosed += customer_wait_time;
-                        inputNotClosed = totalNotClosed;
+                        sum_of_customer_wait_time += customer_wait_time;
+                        total_customer_wait_time = sum_of_customer_wait_time;
 
 
                     } else if (json[i].case_open !== null && json[i].case_closed !== null) {
 
-                        counterClosed++;
-                        date_created_at = json[i].created_at;
+                        total_number_of_cases_resolved++;
+
                         date_case_open = json[i].case_open;
 
-                        customer_wait_time = date_case_open - date_created_at;
-                        totalClosed += customer_wait_time;
-                        inputClosed = totalClosed;
+                        date_case_resolved = json[i].case_closed;
+
+                        customer_resolve_time =date_case_resolved - date_case_open;
+
+                        sum_of_customer_cases_Resolve_times += customer_resolve_time;
+
+                        total_resolve_wait_time = sum_of_customer_cases_Resolve_times;
+
+
+
 
 
                     }
@@ -69,24 +81,11 @@
                 }
 
 
-                if(inputClosed === undefined){
-                    inputClosed = 0;
-
-                }else if(inputNotClosed === undefined){
-                    inputNotClosed = 0;
-                }
-
-
-                // total_Avg_Wait_Time =((inputClosed + inputNotClosed)/(counterClosed+counterNotClosed));
 
                 //Little Rules Formula
 
+               var casesInQueue = (json.length - (total_number_of_cases_resolved + total_number_of_Cases_assigned));
 
-               var casesInQueue = (json.length - (counterClosed + counterNotClosed));
-
-                // console.log('cases in queue ' + casesInQueue);
-                //
-                // console.log("last" + json[json.length-1].customer_name);
 
                 var meanRateOfArrival = (json.length)/(json[json.length-1].created_at - json[0].created_at);
 
@@ -101,11 +100,11 @@
                 //Solving for Queue
 
             for (let i = 0; i < estTime.length; i++) {
-                // console.log(estTime[i]);
+
                 waitTime = hm((meanWaitInQueue + (meanWaitInQueue * i)));
 
 
-                if(counterNotClosed === 0 && counterClosed === 0){
+                if(total_number_of_Cases_assigned === 0 && total_number_of_cases_resolved === 0){
                     waitTime = 'N/A';
                     estTime[i].textContent = waitTime;
                 }else {
@@ -121,6 +120,8 @@
 
     };
 
+
+    //Hours minutes format
 
     function hm(t) {
             var ch = 60 * 60 * 1000,

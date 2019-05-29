@@ -130,6 +130,7 @@
                                     //Avg Resolve Time;
 
                                     date_case_resolved = json[i].case_closed;
+                                    date_case_assigned = json[i].case_open;
                                     total_resolve_time = date_case_resolved - date_case_assigned;
                                     sum_resolve_time += total_resolve_time;
                                     average_resolve_time = Math.floor(sum_resolve_time / total_number_of_cases_resolved);
