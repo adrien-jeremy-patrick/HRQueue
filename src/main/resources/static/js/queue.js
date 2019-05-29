@@ -26,6 +26,8 @@
 
 
 
+
+
             var sum_of_customer_wait_time = 0;
             var sum_of_customer_cases_Resolve_times = 0;
 
@@ -39,7 +41,6 @@
             var customer_wait_time;
             var customer_resolve_time;
 
-
             var total_customer_wait_time;
             var total_resolve_wait_time;
 
@@ -47,29 +48,25 @@
                 for (var i = 0; i < json.length; i++) {
 
 
+                    //Case assigned but not resolved
                     if (json[i].case_open !== null && json[i].case_closed == null) {
-                        total_number_of_Cases_assigned++;
 
-                        date_created_at = json[i].created_at;
-                        date_case_open = json[i].case_open;
-
-                        customer_wait_time = date_case_open - date_created_at;
-                        sum_of_customer_wait_time += customer_wait_time;
-                        total_customer_wait_time = sum_of_customer_wait_time;
+                        //Total Wait TIme
+                        totalCustomerWaitTime();
 
 
+                        //Case assigned and resolved
                     } else if (json[i].case_open !== null && json[i].case_closed !== null) {
 
+                        //Total Wait Time
+                        totalCustomerWaitTime();
+
+                        //Total Resolve Time
                         total_number_of_cases_resolved++;
-
                         date_case_open = json[i].case_open;
-
                         date_case_resolved = json[i].case_closed;
-
                         customer_resolve_time =date_case_resolved - date_case_open;
-
                         sum_of_customer_cases_Resolve_times += customer_resolve_time;
-
                         total_resolve_wait_time = sum_of_customer_cases_Resolve_times;
 
 
@@ -112,6 +109,21 @@
                     estTime[i].textContent = waitTime + " h:mn";
 
                 }
+            }
+
+
+            function totalCustomerWaitTime(){
+
+                total_number_of_Cases_assigned++;
+
+                date_created_at = json[i].created_at;
+                date_case_open = json[i].case_open;
+
+                customer_wait_time = date_case_open - date_created_at;
+                sum_of_customer_wait_time += customer_wait_time;
+                total_customer_wait_time = sum_of_customer_wait_time;
+
+
             }
         });
 
