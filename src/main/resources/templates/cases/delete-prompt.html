@@ -10,8 +10,8 @@
 
 <div class="body-div">
 
-    <div class="page-header delete-prompt-header"><h1>Confirm Delete</h1></div>
-    <div class="delete-prompt-wrapper">
+    <div class="page-header dashboard-header"><h1>Your Dashboard</h1></div>
+    <div class="cat-dept-wrapper">
 
         <h1>Are you sure you want to delete this case?</h1>
         <p>Created at: <span th:text="${case.created_at}"></span></p>
@@ -24,7 +24,8 @@
 
         <a th:if="${user.isAdmin()}"><a th:href="@{'/case/' + ${case.getId()} + '/delete'}"><button class="delete">Yes, delete forever.</button></a>
         <a href="/rep-admin-dashboard"><button class="nevermind">Nope, nevermind..</button></a>
-
+        </a>
+    </div>
 
 
 </div>

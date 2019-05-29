@@ -397,13 +397,17 @@
     }
     .dashboard-table th{
         font-size: 15px;
-        padding: 5px;
+        padding: 10px;
+    }
+    .dashboard-table td{
+        font-size: 15px;
+        padding: 10px;
     }
     .dashboard-table button {
         background-color: var(--color13);
         font-size: 15px;
         color: white;
-        margin: 10px 10px 30px 10px;
+        /*margin: 10px 10px 30px 10px;*/
     }
     .dashboard-table button:hover {
         background-color: var(--color10);
@@ -423,6 +427,9 @@
     .scrollable {
         height: 400px;
         overflow: scroll;
+        border: 3px solid var(--color10);
+        margin-bottom: 100px;
+        box-shadow: 4px 4px 9px -3px black;
     }
     .comment-button {
         margin: 30px auto;
@@ -607,6 +614,10 @@
         background-color: var(--color10);
         color: white;
     }
+    .delete,
+    .nevermind {
+        margin: 5px;
+    }
 
 
 
@@ -765,7 +776,7 @@
     .each-person-wrapper h2 {
         font-family: 'Poppins', sans-serif;
         text-align: center;
-        font-size: 56px;
+        font-size: 30px;
         /*color: var(--color8);*/
         color: white;
         margin: 0 auto;
@@ -787,8 +798,13 @@
     .each-person-desc {
         width: 80%;
         background-color: var(--color13);
-        height: 150px;
         margin: 0 auto;
+    }
+    .each-person-desc h5 {
+        color: white;
+        margin: 0 auto;
+        padding: 5px 0;
+        font-size: 20px;
     }
     .adrien-img {
         background-image: url("../images/adrien.jpg");
