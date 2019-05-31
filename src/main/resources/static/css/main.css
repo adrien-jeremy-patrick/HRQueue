@@ -440,6 +440,17 @@
     .dataTables_length {
         margin-bottom: 50px;
     }
+    #BarCharts,
+    #chart_div,
+    #donutchartCasesResolved,
+    #donutchartCasesCreated{
+        border: 3px solid var(--color13);
+        width: 90% !important;
+        margin: 100px auto;
+        padding: 5px;
+        box-shadow: 4px 4px 9px -3px black;
+    }
+
 
 
     /*-------------------------------------------------------------------------*/
