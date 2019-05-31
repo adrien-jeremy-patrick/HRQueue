@@ -6,20 +6,15 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Reports</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Stylish" rel="stylesheet"/>
     <link rel="stylesheet" href="/static/css/main.css" th:href="@{/css/main.css}"/>
 </head>
 
-<style>
-
-
-</style>
 
 
 <body>
-<nav th:replace="fragments/admin-navbar :: admin-navbar" />
 
 
 
@@ -27,13 +22,13 @@
 <div class="body-div">
 
 
-    <div id="BarCharts" style="width: 900px; height: 500px;"></div>
-    <div id="chart_div" style="width: 900px; height: 500px;"></div>
-    <div id="donutchartCasesCreated" style="width: 900px; height: 500px;"></div>
-    <div id="donutchartCasesResolved" style="width: 900px; height: 500px;"></div>
+    <div id="BarCharts" style="height: 500px;"></div>
+    <div id="chart_div" style="height: 500px;"></div>
+    <div id="donutchartCasesCreated" style="height: 500px;"></div>
+    <div id="donutchartCasesResolved" style="height: 500px;"></div>
 
-    <h1>Performance Metrics</h1>
-    <table id="performanceTable" class="display" >
+    <h2>Performance Metrics</h2>
+    <table id="performanceTable" class="display">
 
         <!-- Header Table -->
         <thead>
@@ -70,8 +65,8 @@
     </table>
 
 
-    <h1>Cases</h1>
-    <table id="CasesTable" class="display" >
+    <h2>Cases</h2>
+    <table id="CasesTable" class="display">
 
         <!-- Header Table -->
         <thead>
@@ -109,7 +104,6 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="js/moment.js"></script>
