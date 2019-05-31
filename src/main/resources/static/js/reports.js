@@ -23,7 +23,6 @@
                         var total_number_of_cases_resolved = 0;
 
                         //Counters used to Calculate the Avg Customer Wait Time
-                        var counter_case_not_assigned = 0;
                         var total_number_of_cases_assigned = 0;
 
                         //Sum of wait times used to calculate the Avg Customer Wait Time
@@ -94,7 +93,7 @@
                                     //Avg wait time
                                     avgWaitTime();
 
-                                    average_resolve_time = 'N/A';
+                                    // average_resolve_time = 'N/A';
 
 
                                     //Cases Created Per Day
@@ -204,7 +203,7 @@
                             sum_of_total_wait_time_for_cases_assigned += customer_wait_time;
                             total_wait_time_for_cases_Assigned = sum_of_total_wait_time_for_cases_assigned;
 
-                            parsed_average_wait_time = total_wait_time_for_cases_Assigned / total_number_of_cases_assigned;
+                            parsed_average_wait_time = Math.floor(total_wait_time_for_cases_Assigned / total_number_of_cases_assigned);
                         }
 
                         function casesCreatedToday(){
@@ -253,8 +252,6 @@
 
                             } else {
 
-                                console.log(total_wait_time_for_cases_Assigned);
-                                console.log(total_number_of_cases_assigned)
 
                                 //Redefining variables
                                  if (total_wait_time_for_cases_Assigned === undefined) {
@@ -263,7 +260,7 @@
 
                                 var data = new google.visualization.arrayToDataTable([
                                     ['Time Metrics', 'Hours'],
-                                    ["Avg. Customer Wait Time per Case", Math.floor(((total_wait_time_for_cases_Assigned) / (total_number_of_cases_assigned)) / (1000 * 60 * 60))],
+                                    ["Avg. Customer Wait Time per Case", parsed_average_wait_time/ (1000 * 60 * 60)],
                                     ["Avg. Resolve Time per Case", parsed_average_resolve_time / (1000 * 60 * 60)]
                                 ]);
 
@@ -395,16 +392,23 @@
                         }
 
 
-                        if (counter_case_not_assigned === 0 && total_number_of_cases_assigned === 0) {
-                            average_wait_time = 'N/A';
-                            average_resolve_time = 'N/A';
-                        } else {
 
-                           if (total_wait_time_for_cases_Assigned === undefined) {
-                                total_wait_time_for_cases_Assigned = 0;
-                            }
-                            average_wait_time = hm((total_wait_time_for_cases_Assigned) / (total_number_of_cases_assigned));
+                        if(total_number_of_cases_assigned === 0){
+                            average_resolve_time = 'N/A';
                         }
+
+
+                        if(total_number_of_cases_resolved === 0){
+                            average_resolve_time = 'N/A';
+                        }
+
+
+                       if (total_wait_time_for_cases_Assigned === undefined) {
+                            total_wait_time_for_cases_Assigned = 0;
+
+                        }
+
+                        average_wait_time = hm((total_wait_time_for_cases_Assigned) / (total_number_of_cases_assigned));
 
 
                         //Push data to DataTables
