@@ -81,15 +81,12 @@
 
                 //Little Rules Formula
 
-               var casesInQueue = (json.length - (total_number_of_cases_resolved + total_number_of_Cases_assigned));
-
+               var casesInQueue = (json.length - ( total_number_of_Cases_assigned));
 
                 var meanRateOfArrival = (json.length)/(json[json.length-1].created_at - json[0].created_at);
 
                 var meanWaitInQueue = casesInQueue/meanRateOfArrival;
 
-
-                console.log('mean wait in queue ' + hm(meanWaitInQueue));
 
 
                 //Lq = mean rate of arrival * Q
@@ -101,7 +98,7 @@
                 waitTime = hm((meanWaitInQueue + (meanWaitInQueue * i)));
 
 
-                if(total_number_of_Cases_assigned === 0 && total_number_of_cases_resolved === 0){
+                if(total_number_of_Cases_assigned === 0){
                     waitTime = 'N/A';
                     estTime[i].textContent = waitTime;
                 }else {

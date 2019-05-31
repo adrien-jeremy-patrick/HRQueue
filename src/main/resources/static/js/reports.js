@@ -30,7 +30,7 @@
                         var sum_of_total_wait_time_for_cases_assigned = 0;
 
                         //Total wait time used to calculate the avg Customer Wait Time
-                        var total_wait_time_for_cases_not_assigned;
+                        // var total_wait_time_for_cases_not_assigned;
                         var total_wait_time_for_cases_Assigned;
 
 
@@ -253,17 +253,17 @@
 
                             } else {
 
+                                console.log(total_wait_time_for_cases_Assigned);
+                                console.log(total_number_of_cases_assigned)
 
                                 //Redefining variables
-                                if (total_wait_time_for_cases_not_assigned === undefined) {
-                                    total_wait_time_for_cases_not_assigned = 0;
-                                } else if (total_wait_time_for_cases_Assigned === undefined) {
+                                 if (total_wait_time_for_cases_Assigned === undefined) {
                                     total_wait_time_for_cases_Assigned = 0;
                                 }
 
                                 var data = new google.visualization.arrayToDataTable([
                                     ['Time Metrics', 'Hours'],
-                                    ["Avg. Customer Wait Time per Case", Math.floor(((total_wait_time_for_cases_Assigned + total_wait_time_for_cases_not_assigned) / (total_number_of_cases_assigned + counter_case_not_assigned)) / (1000 * 60 * 60))],
+                                    ["Avg. Customer Wait Time per Case", Math.floor(((total_wait_time_for_cases_Assigned) / (total_number_of_cases_assigned)) / (1000 * 60 * 60))],
                                     ["Avg. Resolve Time per Case", parsed_average_resolve_time / (1000 * 60 * 60)]
                                 ]);
 
@@ -400,12 +400,10 @@
                             average_resolve_time = 'N/A';
                         } else {
 
-                            if (total_wait_time_for_cases_not_assigned === undefined) {
-                                total_wait_time_for_cases_not_assigned = 0;
-                            } else if (total_wait_time_for_cases_Assigned === undefined) {
+                           if (total_wait_time_for_cases_Assigned === undefined) {
                                 total_wait_time_for_cases_Assigned = 0;
                             }
-                            average_wait_time = hm((total_wait_time_for_cases_Assigned + total_wait_time_for_cases_not_assigned) / (total_number_of_cases_assigned + counter_case_not_assigned));
+                            average_wait_time = hm((total_wait_time_for_cases_Assigned) / (total_number_of_cases_assigned));
                         }
 
 
