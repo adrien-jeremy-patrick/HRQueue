@@ -246,6 +246,9 @@
         background-color: var(--color13);
         font-size: 22px;
         color: white;
+        border-radius: 3px;
+
+
     }
     .login-form button:hover {
         background-color: var(--color10);
@@ -273,6 +276,7 @@
         background-color: var(--color13);
         font-size: 22px;
         color: white;
+        border-radius: 3px;
     }
     .login-form button:hover {
         background-color: var(--color10);
@@ -369,13 +373,72 @@
         margin: 30px auto 21px auto;
     }
     .rep-admin-login-header {
-        background-image: url("../images/architectural-design-architecture-building-2346019.jpg");
+        background-image: url("../images/apartment-architectural-design-architecture-2363333.jpg");
     }
+    /*.rep-admin-login-header h1 {*/
+        /*color: white!important;*/
+    /*}*/
     .invalid-username-password {
         color: red;
     }
     .logout-success {
         color: green;
+    }
+
+
+
+    /*-------------------------------------------------------------------------*/
+    /*------------------------------------REP REPORTS--------------------------*/
+    /*-------------------------------------------------------------------------*/
+
+    .reports-wrapper {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .reports-wrapper h1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 70px;
+        line-height: 54px;
+        margin: 0 auto;
+        font-weight: bold;
+        text-align: center;
+        padding: 215px 0 0 0;
+        color: var(--color9);
+    }
+    .dashboard-link {
+        text-align: center;
+        font-size: 20px;
+        color: var(--color13);
+    }
+    .reports-wrapper h2 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 70px;
+        line-height: 54px;
+        margin: 0 auto 100px auto;
+        font-weight: bold;
+        text-align: center;
+        padding: 215px 0 0 0;
+        color: var(--color13);
+    }
+    .reports-header {
+        background-image: url("../images/analytics-blur-close-up-590045.jpg");
+        margin: 0 0 50px 0;
+    }
+    .dataTables_wrapper {
+        max-width: 100%;
+    }
+    .reports-wrapper th,
+    .reports-wrapper td
+    {
+        font-size: 12px;
+        padding: 10px;
+    }
+    .dataTables_info {
+         margin-top: 50px;
+     }
+    .dataTables_length {
+        margin-bottom: 50px;
     }
 
 
@@ -409,6 +472,7 @@
         background-color: var(--color13);
         font-size: 15px;
         color: white;
+        border-radius: 3px;
         /*margin: 10px 10px 30px 10px;*/
     }
     .dashboard-table button:hover {
@@ -420,6 +484,7 @@
         font-size: 22px;
         color: white;
         margin: 10px 10px 50px 10px;
+        border-radius: 3px;
 
     }
     .dashboard-button:hover {
@@ -435,6 +500,7 @@
     }
     .comment-button {
         margin: 30px auto;
+        border-radius: 3px;
     }
     .comment-table th {
         padding: 0px 15px 0px 0px;
@@ -487,12 +553,14 @@
         margin: 0 auto;
         height: 100px;
         box-shadow: 4px 4px 9px -3px black;
+        background-color: var(--color1);
     }
     #submit-case-button {
         margin-bottom: 200px;
         background-color: var(--color13);
         font-size: 22px;
         color: white;
+        border-radius: 3px;
     }
     #submit-case-button:hover {
         background-color: var(--color10);
@@ -525,6 +593,7 @@
         background-color: var(--color13);
         font-size: 22px;
         color: white;
+        border-radius: 3px;
     }
     .create-user-wrapper button:hover {
         background-color: var(--color10);
@@ -553,22 +622,15 @@
         background-color: var(--color13);
         font-size: 22px;
         color: white;
+        border-radius: 3px;
     }
     .all-users button:hover {
         background-color: var(--color10);
         color: white;
     }
 
-    /*-------------------------------------------------------------------------*/
-    /*----------------------------------REPORTS PAGE---------------------------*/
-    /*-------------------------------------------------------------------------*/
-    .quick-reports {
-        width: 90%;
-        margin: 10px;
-        height: 50vm;
-        background-color: var(--color4);
-        color: white;
-    }
+
+
 
     /*-------------------------------------------------------------------------*/
     /*---------------------CATEGORIES/DEPARTMENTS PAGES------------------------*/
@@ -611,6 +673,7 @@
         background-color: var(--color13);
         font-size: 22px;
         color: white;
+        border-radius: 3px;
     }
     .cat-dept-wrapper button:hover {
         background-color: var(--color10);
@@ -658,6 +721,7 @@
     .description button {
         background-color: var(--color13);
         font-size: 22px;
+        border-radius: 3px;
         color: white;
     }
     .description button:hover {
@@ -831,8 +895,6 @@
         background-image: url("../images/pat.jpg");
     }
 
-
-
 @media only screen and (min-width: 500px) {
     .intro-message h1 {
         max-width: 500px;
@@ -899,11 +961,6 @@
         font-size: 15px;
         text-align: center;
     }
-
-
-
-
-
 }
 
 @media only screen and (min-width: 720px) {
@@ -932,8 +989,6 @@
     .each-person-img {
         height: 500px;
     }
-
-
 }
 
 @media only screen and (min-width: 1000px) {
@@ -953,14 +1008,18 @@
     .extended-nav a,
     .extended-nav button {
         font-size: 20px;
+        border-radius: 3px;
     }
     .hide-big-nav {
         display: block;
         color: white;
         font-size: 40px;
         position: fixed;
-        left: 20px;
+        left: 200px;
         bottom: 20px;
+    }
+    .hide-big-nav span {
+        font-size: 60px;
     }
     .show-big-nav {
         display: none;
