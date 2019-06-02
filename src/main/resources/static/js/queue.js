@@ -89,6 +89,7 @@
 
 
 
+
                 //Lq = mean rate of arrival * Q
                 //mean number of customers in queue = mean rate of arrival * mean wait in Queues
                 //Solving for Queue
