@@ -110,7 +110,13 @@
     .body-div {
         width: 100%;
         margin: 0 auto;
+        background-image: linear-gradient(var(--color6), rgba(88,69,68,0.58));
+        background-color: var(--color6);
+        padding-bottom: 100px;
+    }
+    #body-div-landing-page {
         background-color: white;
+        background-image: none;
     }
 
 
@@ -205,7 +211,7 @@
         line-height: 33px;
         padding-left: 35px;
         z-index: 10;
-        width: 100%;
+        width: 80%;
         margin-top: 2vh;
         font-weight: bolder;
         /*color: var(--color10);*/
@@ -335,7 +341,8 @@
         width: 90%;
         margin: 0 auto;
         font-size: 10px;
-        padding-bottom: 200px;
+        background-color: white;
+        padding: 20px;
     }
     table {
         margin: 0 auto;
@@ -366,7 +373,8 @@
         text-align: center;
         width: 80%;
         margin: 0 auto 100px auto;
-        padding-bottom: 100px;
+        background-color: white;
+        padding: 20px;
 
     }
     .login-wrapper h1 {
@@ -391,6 +399,21 @@
     /*------------------------------------REP REPORTS--------------------------*/
     /*-------------------------------------------------------------------------*/
 
+    .themed-header {
+        font-family: 'Poppins', sans-serif;
+        display: inline-block;
+        padding-bottom: 7px;
+        margin: 30px auto;
+        max-width: 689px;
+        font-size: 50px;
+        color: var(--color13);
+        border-bottom: 4px solid var(--color13);
+        text-align: center;
+    }
+    #reports-div {
+        width: 100%;
+        margin: 0;
+    }
     .reports-wrapper {
         width: 100%;
         margin: 0 auto;
@@ -409,22 +432,27 @@
     .dashboard-link {
         text-align: center;
         font-size: 20px;
-        color: var(--color13);
+        color: var(--color1);
     }
     .reports-wrapper h2 {
         font-family: 'Poppins', sans-serif;
         font-size: 70px;
         line-height: 54px;
-        margin: 0 auto 100px auto;
+        margin: 0 auto -40px auto;
         font-weight: bold;
+        /* text-align: center; */
+        /* padding: 215px 0 0 0; */
+        color: var(--color1);
+        border-bottom: 3px solid var(--color9);
+        max-width: 510px;
         text-align: center;
-        padding: 215px 0 0 0;
-        color: var(--color13);
+        padding-bottom: 8px;
     }
     .reports-header {
-        background-image: url("../images/analytics-blur-close-up-590045.jpg");
-        margin: 0 0 50px 0;
+        background-image: url("../images/ancient-apartment-apartments-2351465.jpg");
+        margin: 0 0 120px 0;
     }
+
     .dataTables_wrapper {
         max-width: 100%;
     }
@@ -443,12 +471,15 @@
     #BarCharts,
     #chart_div,
     #donutchartCasesResolved,
-    #donutchartCasesCreated{
+    #donutchartCasesCreated,
+    #performanceTable_wrapper,
+    #CasesTable_wrapper{
         border: 3px solid var(--color13);
         width: 90% !important;
         margin: 100px auto;
         padding: 5px;
-        box-shadow: 4px 4px 9px -3px black;
+        box-shadow: 8px 15px 15px -3px black;
+        background-color: white;
     }
 
 
@@ -461,19 +492,23 @@
         text-align: center;
         width: 90%;
         margin: 0 auto;
+        background-color: var(--color1);
+        padding: 20px;
     }
     .dashboard-wrapper h1 {
-        font-size: 40px;
+        font-size: 60px;
     }
     .dashboard-header {
         background-image: url("../images/airport-architectural-design-architecture-2351445.jpg");
     }
     .dashboard-table {
         font-size: 15px;
+        background-color: white;
+        width: 100%;
     }
     .dashboard-table th{
         font-size: 15px;
-        padding: 10px;
+        padding: 10px 0;
     }
     .dashboard-table td{
         font-size: 15px;
@@ -508,6 +543,7 @@
         border: 3px solid var(--color10);
         margin-bottom: 100px;
         box-shadow: 4px 4px 9px -3px black;
+        background-color: white;
     }
     .comment-button {
         margin: 30px auto;
@@ -541,6 +577,8 @@
         text-align: center;
         width: 80%;
         margin: 0 auto;
+        background-color: white;
+        padding: 20px;
     }
     .create-case-header {
         background-image: url("../images/architecture-building-car-2353355.jpg");
@@ -567,7 +605,7 @@
         background-color: var(--color1);
     }
     #submit-case-button {
-        margin-bottom: 200px;
+        margin-bottom: 50px;
         background-color: var(--color13);
         font-size: 22px;
         color: white;
@@ -582,15 +620,17 @@
     /*----------------------------------CREATE USER PAGE-----------------------*/
     /*-------------------------------------------------------------------------*/
     .create-user-header {
-          background-image: url("../images/hr-queue-10.jpeg");
+          background-image: url("../images/architectural-design-architecture-birds-eye-view-1722183.jpg");
       }
     .edit-user-header {
-        background-image: url("../images/hr-queue-10.jpeg");
+        background-image: url("../images/architectural-design-architecture-birds-eye-view-1722183.jpg");
     }
     .create-user-wrapper {
         text-align: center;
         width: 80%;
         margin: 0 auto;
+        background-color: white;
+        padding: 20px;
     }
     .create-user-wrapper input,
     .create-user-wrapper label
@@ -598,13 +638,14 @@
         margin: 20px 5px;
     }
     .create-user-wrapper form {
-        margin-bottom: 200px;
+        margin-bottom: 20px;
     }
     .create-user-wrapper button {
         background-color: var(--color13);
         font-size: 22px;
         color: white;
         border-radius: 3px;
+        margin: 18px;
     }
     .create-user-wrapper button:hover {
         background-color: var(--color10);
@@ -620,8 +661,15 @@
         background-image: url("../images/architecture-bed-bedroom-2346091.jpg");
     }
     .all-users {
+
         text-align: center;
-        margin-bottom: 200px;
+        background-color: white;
+        padding: 20px;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .all-users table{
+        width: 100%;
     }
     .all-users th {
 
@@ -648,7 +696,7 @@
     /*-------------------------------------------------------------------------*/
 
     .category-header {
-        background-image: url("../images/architectural-design-architecture-building-1759478.jpg");
+        background-image: url("../images/architectural-design-architecture-black-and-white-432193.jpg");
     }
 
 
@@ -659,7 +707,8 @@
         text-align: center;
         margin: 0 auto;
         width: 80%;
-        padding-bottom: 100px;
+        background-color: white;
+        padding: 20px;
     }
     .cat-dept-wrapper a {
         color: var(--color13)
@@ -1026,7 +1075,7 @@
         color: white;
         font-size: 40px;
         position: fixed;
-        left: 200px;
+        left: 14%;
         bottom: 20px;
     }
     .hide-big-nav span {
@@ -1048,7 +1097,6 @@
 
     .body-div {
         width: 80%;
-        background-color: white;
         margin-left: 20%;
     }
 
@@ -1113,6 +1161,10 @@
     }
     .about-us a {
         font-size: 12px;
+        left: -192px;
+        position: absolute;
+        width: 200px;
+        bottom: 5px;
     }
 
     .about-us-img1,
@@ -1144,10 +1196,12 @@
     .each-person-img {
         height: 350px;
     }
+    .page-header h1 {
+        font-size: 114px;
+        line-height: 99px;
+        padding: 257px 0 0 0;
+    }
 
-    /*-------------------------------------------------------------------------*/
-    /*----------------------------------CUSTOMER-QUEUE-------------------------*/
-    /*-------------------------------------------------------------------------*/
 
 
 

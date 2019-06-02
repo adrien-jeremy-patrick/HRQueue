@@ -18,10 +18,11 @@
 <div class="body-div">
     <div class="page-header edit-user-header"><h1>Edit</h1></div>
     <div class="create-user-wrapper">
+        <h2 class="themed-header">Edit User</h2><br/>
     <h1 th:text="'User: ' + ${userProfile.firstName} + ' ' + ${userProfile.lastName}"></h1>
         <br/>
         <br/>
-        <h2>Edit User</h2>
+
         <br/>
         <form th:method="post" th:action="@{'/user/'+${userProfile.id}+'/edit'}">
             <label th:text="'First Name: ' + ${userProfile.firstName}"></label>

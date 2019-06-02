@@ -20,11 +20,11 @@
 <div class="body-div">
     <div class="page-header dashboard-header"><h1>Your Dashboard</h1></div>
     <div class="dashboard-wrapper">
-        <h1>Welcome, <span th:text="${user.username}"/></h1>
+        <!--<h1>Welcome, <span th:text="${user.username}"/></h1>-->
 
         <!--Open Cases Table that is only shown to reps.-->
     <div th:if="${user.isAdmin() != true}">
-        <h3>Open Cases</h3>
+        <h3 class="themed-header">Open Cases</h3>
         <div class="scrollable">
                 <table class="table table-striped dashboard-table">
                     <tr>
@@ -48,7 +48,7 @@
 
         <!--Rep Assigned Case Table -->
     <div th:if="${user.isAdmin() != true}">
-        <h3>Your Assigned Cases</h3>
+        <h3 class="themed-header">Your Assigned Cases</h3>
         <div class="scrollable">
             <table class="table table-striped dashboard-table">
                 <tr>
@@ -76,7 +76,7 @@
 
         <!--Admin Manage Cases Table-->
         <div th:if="${user.isAdmin()}">
-                <h3>Case Management</h3>
+                <h3 class="themed-header">Case Management</h3><br/>
             <a th:href="@{'/rep-admin-dashboard'}"><button class="dashboard-button">All</button></a>
             <a th:href="@{'/rep-admin-dashboard/working'}"><button class="dashboard-button">Working</button></a>
             <a th:href="@{'/rep-admin-dashboard/complete'}"><button class="dashboard-button">Complete</button></a>
