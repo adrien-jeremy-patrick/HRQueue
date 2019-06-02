@@ -259,9 +259,9 @@
                                 }
 
                                 var data = new google.visualization.arrayToDataTable([
-                                    ['Time Metrics', 'Hours'],
-                                    ["Avg. Customer Wait Time per Case", parsed_average_wait_time/ (1000 * 60 * 60)],
-                                    ["Avg. Resolve Time per Case", parsed_average_resolve_time / (1000 * 60 * 60)]
+                                    ['Average Time', 'Hours', {role: 'style'}],
+                                    ["Avg. Customer Wait Time", parsed_average_wait_time/ (1000 * 60 * 60), 'green'],
+                                    ["Avg. Resolve Time", parsed_average_resolve_time / (1000 * 60 * 60), 'blue']
                                 ]);
 
                                 var options = {
@@ -272,10 +272,14 @@
                                         title: 'Time Metrics',
                                         subtitle: 'Performances by Time'
                                     },
+                                    hAxis: {fontSize: '22'},
                                     bars: 'horizontal', // Required for Material Bar Charts.
                                     axes: {
                                         x: {
-                                            0: {side: 'top', label: 'Days:Hours:Minutes'} // Top x-axis.
+                                            0: {side: 'top', label: 'Hours'}  // Top x-axis.
+                                        },
+                                        v: {
+                                            0: {min:0}
                                         }
                                     },
 
@@ -303,16 +307,16 @@
 
                                 var data = new google.visualization.DataTable();
                                 data.addColumn('string', '# Total');
-                                data.addColumn('number', '#');
+                                data.addColumn('number', 'Cases');
 
                                 data.addRows([
                                     [{
                                         v: '# of Cases Created',
-                                        f: 'Total Number of Cases Created'
+                                        f: 'Number of Cases Created'
                                     }, total_number_of_cases_created],
                                     [{
                                         v: '# of Cases Resolved',
-                                        f: 'Total Number of Cases Resolved'
+                                        f: 'Number of Cases Resolved'
                                     }, total_number_of_cases_resolved],
 
                                 ]);
@@ -320,10 +324,10 @@
                                 var options = {
                                     title: 'Cases Created & Resolved',
                                     hAxis: {
-                                        title: 'Cases Number Metrics',
+                                        title: 'Number Metrics',
                                     },
                                     vAxis: {
-                                        title: 'Number'
+                                        title: 'Cases'
                                     }
                                 };
 
@@ -337,8 +341,8 @@
 
                         //Generating Pie Charts for cases created
 
-                        google.charts.load("current", {packages: ["corechart"]});
-                        google.charts.setOnLoadCallback(chartCasesCreated);
+                        // google.charts.load("current", {packages: ["corechart"]});
+                        // google.charts.setOnLoadCallback(chartCasesCreated);
 
                         function chartCasesCreated() {
 
@@ -350,7 +354,7 @@
                                 var data = google.visualization.arrayToDataTable([
                                     ['Cases Created', 'Cases today & per day'],
                                     ['# of Cases Created Today', cases_created_today],
-                                    ['Avg. Cases Created Per Day', cases_created_per_day],
+                                    ['Cases Created Per Day', cases_created_per_day],
                                 ]);
 
                                 var options = {
@@ -365,8 +369,8 @@
 
                         //Generating Pie Charts for cases resolved
 
-                        google.charts.load("current", {packages: ["corechart"]});
-                        google.charts.setOnLoadCallback(chartCasesResolved);
+                        // google.charts.load("current", {packages: ["corechart"]});
+                        // google.charts.setOnLoadCallback(chartCasesResolved);
 
                         function chartCasesResolved() {
 
@@ -377,7 +381,7 @@
                                 var data = google.visualization.arrayToDataTable([
                                     ['Cases Resolved', 'Cases today & per day'],
                                     ['# of Cases Resolved Today', cases_resolved_today],
-                                    ['Avg. Cases Resolved Per Day', cases_resolved_per_day],
+                                    ['Cases Resolved Per Day', cases_resolved_per_day],
                                 ]);
 
                                 var options = {
