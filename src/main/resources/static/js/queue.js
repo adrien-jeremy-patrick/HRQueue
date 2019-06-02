@@ -104,6 +104,8 @@
                     estTime[i].textContent = waitTime;
                 }else {
 
+                    console.log(waitTime);
+
                     estTime[i].textContent = waitTime + " h:mn";
 
                 }
